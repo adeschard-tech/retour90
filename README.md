@@ -58,13 +58,13 @@ retour90/
 - **Le Club** : pseudo/avatar, carte de membre, 24 POGS à débloquer, forum 5 fils (localStorage)
 - Code Konami sur toutes les pages
 
-## Mise en ligne (quand tu achètes retour90.fr)
+## Mise en ligne — état réel
 
-Site 100 % statique → Vercel/Netlify direct (aucun build, aucun backend). Étapes :
-1. Acheter retour90.fr
-2. `vercel` dans le dossier (ou repo GitHub + import) — servir tel quel
-3. DNS chez le registrar → Vercel
-4. Étape 2 du produit : compte réel + forum persistant (Supabase) pour remplacer le localStorage
+- Repo : github.com/adeschard-tech/retour90 (public), GitHub Pages actif (branche main), CNAME retour90.fr déclaré.
+- Backend : Supabase projet Retour90 (oajbjsevqefacdxkikmm, Paris) — tables comments / forum_posts / contact_messages / members, RLS lecture publique + insertion publique (contact et members : insertion seule). Clé publiable dans assets/r90.js (safe par design).
+- Resend : domaine retour90.fr ajouté (eu-west-1), DNS en attente — enregistrements sur send.retour90.fr + resend._domainkey (aucun conflit avec la boîte IONOS).
+- DNS IONOS à poser : A @ -> 185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153 ; CNAME www -> adeschard-tech.github.io ; + les 3 enregistrements Resend. NE PAS toucher aux MX de la racine (email).
+- Après propagation : activer « Enforce HTTPS » dans les réglages Pages du repo.
 
 ## Points d'attention
 
