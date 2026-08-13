@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le Club — ta carte de membre et le forum | RETOUR90.FR</title>
+<meta name="description" content="Le Club RETOUR90 : crée ta carte de membre, complète ton classeur de POGS, et retrouve le forum des souvenirs — t'étais où le 12 juillet 1998 ?">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎟️</text></svg>">
+<link rel="stylesheet" href="assets/r90.css">
+<script src="assets/data.js" defer></script>
+<script src="assets/docs.js" defer></script>
+<script src="assets/photos.js" defer></script>
+<script src="assets/r90.js" defer></script>
+</head>
+<body>
+<main class="page">
+  <header class="pagehead">
+    <div class="eyebrow">CANAL 12 · LA COUR DE RÉCRÉ</div>
+    <h2 class="ttl">Le <em>Club</em><br>RETOUR90.</h2>
+    <p class="lede">Le site se visite librement. Le Club, c'est pour ceux qui restent : une carte de membre
+    comme celles qu'on recevait par la poste, un classeur de POGS à compléter, et un forum où l'on se
+    souvient à voix haute. Dans ce prototype, tout vit dans ton navigateur — en version finale, ce sera ton vrai compte.</p>
+  </header>
+
+  <h3 class="sub">Ta carte de membre</h3>
+  <div class="box pop" id="carte"></div>
+
+  <div class="box" style="display:grid;gap:12px;max-width:560px">
+    <label class="mini" for="fPseudo">TON PSEUDO (celui de Caramail est accepté)</label>
+    <input class="field" id="fPseudo" maxlength="22" placeholder="ex : Kevin_du_92">
+    <label class="mini">TON AVATAR</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="avs"></div>
+    <div><button class="btn" id="saveCard">Enregistrer ma carte</button></div>
+  </div>
+
+  <h3 class="sub">Ton classeur de POGS <span class="cnt" id="pogcnt"></span></h3>
+  <p class="lede">On les gagne en explorant les canaux, en jouant à l'arcade et en participant au forum.
+  Certains sont cachés. Un vrai classeur, quoi.</p>
+  <div class="bar"><i id="pogbar" style="width:0%"></i></div>
+  <div class="pogs" id="pogwall"></div>
+
+  <h3 class="sub">Le forum des souvenirs</h3>
+  <p class="lede">Cinq fils permanents — ils ne se terminent jamais, c'est le principe. Les messages sont
+  <strong>partagés entre tous les visiteurs du site</strong> : ce que tu postes ici, les autres le lisent vraiment.</p>
+  <div id="forum"></div>
+
+  <h3 class="sub">Rejoindre le Club</h3>
+  <div class="box pop" style="display:grid;gap:12px;max-width:560px">
+    <p style="margin:0">Laisse ton pseudo et ton email : tu seras prévenu à l'ouverture officielle,
+    des nouveaux canaux, et de la boutique. Rien d'autre, promis — pas de spam, jamais.</p>
+    <input class="field" id="mPseudo" maxlength="22" placeholder="Ton pseudo">
+    <input class="field" id="mEmail" type="email" maxlength="120" placeholder="ton@email.fr">
+    <div><button class="btn" id="mGo">Je m'inscris au Club</button></div>
+    <div class="mini" id="mMsg"></div>
+  </div>
+
+  <h3 class="sub">Écrire à la chaîne</h3>
+  <div class="box" style="display:grid;gap:12px;max-width:560px">
+    <p style="margin:0">Une idée de canal, un souvenir à proposer, une vidéo introuvable, un objet
+    pour le Grenier ? Le courrier des téléspectateurs, c'est ici.</p>
+    <input class="field" id="cNom" maxlength="60" placeholder="Ton nom ou pseudo (facultatif)">
+    <input class="field" id="cEmail" type="email" maxlength="120" placeholder="Ton email si tu veux une réponse (facultatif)">
+    <textarea class="field" id="cBody" rows="4" maxlength="2000" placeholder="Ton message…"></textarea>
+    <div><button class="btn alt" id="cGo">Envoyer le courrier</button></div>
+    <div class="mini" id="cMsg"></div>
+  </div>
+
+  <h3 class="sub">Ce que le Club deviendra</h3>
+  <div class="grid">
+    <article class="fiche" style="--c:#FF2E87"><div class="yr">RITUEL</div><h4 class="h">Le Mercredi</h4>
+      <div class="d">Chaque mercredi matin, un nouveau sujet automatique : une image, un son, une odeur. Le rendez-vous hebdomadaire fixe, comme au bon vieux temps du Club du mercredi.</div><div class="tag">hebdo</div></article>
+    <article class="fiche" style="--c:#23E5DE"><div class="yr">RITUEL</div><h4 class="h">Le Grenier</h4>
+      <div class="d">Une photo d'un objet 90s que tu possèdes encore, une phrase. Le contenu le plus simple à produire et le plus émouvant à lire.</div><div class="tag">photo</div></article>
+    <article class="fiche" style="--c:#FFD23F"><div class="yr">RITUEL</div><h4 class="h">Le Tribunal</h4>
+      <div class="d">Un débat absurde par semaine — l'opercule du yaourt, le Pitch contre le BN — avec vote, verdict et archives de jurisprudence.</div><div class="tag">vote</div></article>
+    <article class="fiche" style="--c:#9BF04D"><div class="yr">RITUEL</div><h4 class="h">La Petite Annonce</h4>
+      <div class="d">« Je cherche le nom d'un dessin animé où… » Enquête collective. C'est comme ça que naissent les légendes d'un forum.</div><div class="tag">entraide</div></article>
+    <article class="fiche" style="--c:#FF7A2F"><div class="yr">JEU</div><h4 class="h">Le classement d'arcade</h4>
+      <div class="d">Sept jeux — Snake, Pong, Simon, Casse-briques, Démineur, Invasion, Tamagotchi — et un classement hebdo remis à zéro le lundi, comme la borne du camping.</div><div class="tag">arcade</div></article>
+    <article class="fiche" style="--c:#B57BFF"><div class="yr">SOIRÉE</div><h4 class="h">La soirée K7</h4>
+      <div class="d">Le vendredi à 22h, une playlist lancée en même temps pour tous les membres connectés. On écoute ensemble, chacun chez soi — comme la radio d'avant.</div><div class="tag">événement</div></article>
+  </div>
+
+  <div class="box pop">
+    <p style="margin:0"><strong>La boutique arrive ensuite :</strong> t-shirts, stickers, posters, le classeur de POGS
+    physique et une vraie K7 collector — réservés aux membres d'abord. Encore une raison de garder ta carte.</p>
+  </div>
+</main>
+
+<script>
+function R90PAGE(){
+  const AV=['R','K','☺','★','▲','♥','✦','☎','⌘','∆'];
+  const POGS=[
+   ['tele','Le Mercredi','📺'],['manga','Kaméhaméha','🐉'],['musique','Mélomane','📻'],['cine','Vidéoclub','🎬'],
+   ['jeux','Cartouche','🕹️'],['pub','Le Jingle','📣'],['sport','12 Juillet','⚽'],['actu','La Une','🗞️'],
+   ['objets','Le Grenier','📦'],['food','16h30','🍬'],['arcade','La Borne','👾'],['club','La Carte','🎟️'],
+   ['snake','Serpent d’or','🐍'],['simon','Mémoire de fer','🧠'],['quiz','Zappeur pro','❓'],['post','Grande gueule','💬'],
+   ['pseudo','Membre officiel','✍️'],['jours','Abonné fidèle','📅'],['bricks','Casseur','🧱'],['mines','Démineur','💣'],
+   ['inv','Défenseur','🛸'],['tama','Éleveur','🥚'],['nuit','Noctambule','🌙'],['souvenir','Mémorialiste','📼'],
+   ['tout','Zappeur total','🏆','foil'],['konami','↑↑↓↓←→←→BA','🎮','foil']
+  ];
+  const P1=['#FF2E87','#23E5DE','#FFD23F','#FF7A2F','#9BF04D','#B57BFF'];
+  function unlocked(){
+    const u=new Set();
+    ['tele','manga','musique','cine','jeux','pub','sport','actu','objets','food','arcade','club'].forEach(p=>{if(S.vus.includes(p))u.add(p)});
+    if(S.hi.snake>=10)u.add('snake');
+    if(S.hi.simon>=6)u.add('simon');
+    if(S.hi.quiz>=6)u.add('quiz');
+    if(S.hi.bricks>=200)u.add('bricks');
+    if(S.hi.mines>=1)u.add('mines');
+    if(S.hi.inv>=200)u.add('inv');
+    if(S.posts.length>=1)u.add('post');
+    if(S.pseudo)u.add('pseudo');
+    if(S.days.length>=3)u.add('jours');
+    if(S.vus.length>=13)u.add('tout');
+    if(new Date().getHours()<5)u.add('nuit');
+    if(S.tama&&S.tama.n>=5)u.add('tama');
+    try{if(Object.keys(JSON.parse(localStorage.getItem('retour90.cmts')||'{}')).length>=1)u.add('souvenir')}catch(e){}
+    return u;
+  }
+  function drawCard(){
+    const u=unlocked();
+    $('#carte').innerHTML=`<div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center">
+     <div style="width:96px;height:96px;border-radius:14px;background:linear-gradient(140deg,var(--mag),var(--yel));
+       display:grid;place-items:center;font-family:var(--display);font-size:46px;color:#180C36">${esc(S.avatar||'R')}</div>
+     <div>
+       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--cyan)">CARTE DE MEMBRE RETOUR90 · SAISON 1990–1999</div>
+       <div style="font-family:var(--display);font-size:34px;letter-spacing:.03em;text-transform:uppercase;line-height:1.1">${esc(S.pseudo||'visiteur anonyme')}</div>
+       <div class="mini">MEMBRE Nº ${String(1990+((S.pseudo||'').length*137+S.vus.length*31)%8000).padStart(6,'0')}
+        · ${S.days.length} JOUR(S) DE PRÉSENCE · ${S.vus.length}/13 CANAUX VUS</div>
+     </div></div>
+     <div class="stats" style="margin-bottom:0">
+       <div class="stat"><b>${u.size}/${POGS.length}</b><span>POGS</span></div>
+       <div class="stat"><b>${S.hi.snake}</b><span>Snake</span></div>
+       <div class="stat"><b>${S.hi.simon}</b><span>Simon</span></div>
+       <div class="stat"><b>${S.hi.bricks}</b><span>Casse-briques</span></div>
+       <div class="stat"><b>${S.hi.inv}</b><span>Invasion</span></div>
+       <div class="stat"><b>${S.hi.mines}</b><span>Démineur</span></div>
+       <div class="stat"><b>${S.posts.length}</b><span>Messages</span></div>
+     </div>`;
+    $('#pogcnt').textContent=u.size+'/'+POGS.length;
+    $('#pogbar').style.width=Math.round(u.size/POGS.length*100)+'%';
+    $('#pogwall').innerHTML=POGS.map((p,i)=>{
+      const on=u.has(p[0]),foil=p[3]==='foil';
+      return `<div class="pog ${on?'':'locked'} ${on&&foil?'foil':''}" style="--p1:${P1[i%6]};--p2:${P1[(i+2)%6]}" title="${p[1]}">
+        <span class="face">
+          <span><span class="ico">${on?p[2]:'？'}</span>
+          <span class="nm">${on?p[1]:'FACE CACHÉE'}</span></span>
+          <span class="num">Nº ${String(i+1).padStart(2,'0')}/${POGS.length}</span>
+        </span></div>`}).join('');
+  }
+  // réglages
+  $('#fPseudo').value=S.pseudo||'';
+  $('#avs').innerHTML=AV.map(a=>`<button class="btn sm ${a===S.avatar?'':'ghost'}" data-av="${a}" style="min-width:46px;justify-content:center">${a}</button>`).join('');
+  $$('#avs [data-av]').forEach(b=>b.onclick=()=>{S.avatar=b.dataset.av;save();
+    $$('#avs [data-av]').forEach(x=>x.classList.toggle('ghost',x.dataset.av!==S.avatar));blip(620,.05);drawCard()});
+  $('#saveCard').onclick=()=>{
+    const v=$('#fPseudo').value.trim();
+    if(v.length<2){toast('IL FAUT AU MOINS 2 CARACTÈRES');return}
+    const first=!S.pseudo;S.pseudo=v.slice(0,22);save();
+    toast(first?'BIENVENUE AU CLUB, '+S.pseudo.toUpperCase():'CARTE MISE À JOUR');
+    blip(660,.08);setTimeout(()=>blip(990,.14),120);drawCard()};
+
+  // forum
+  const THREADS=[
+   {t:'Le 12 juillet 1998, tu étais où ?',p:[
+    {n:'Sandrine_du_59',a:'S',d:'il y a 4 h',m:'Chez ma grand-mère, quatorze personnes dans un salon de vingt mètres carrés. Elle ne comprenait rien au foot. Au deuxième but elle s’est levée en criant. C’est ce souvenir-là d’elle qui me revient en premier, à chaque fois.'},
+    {n:'ManuTaz',a:'M',d:'il y a 6 h',m:'J’avais 9 ans, on est descendus dans la rue avec des casseroles. Mon père pleurait. Je ne l’avais jamais vu pleurer, et je ne l’ai jamais revu pleurer depuis.'},
+    {n:'kevin_du_92',a:'K',d:'hier',m:'En colo. Une télé cathodique posée sur une table de ping-pong, dehors. <em>Le meilleur écran géant de ma vie.</em>'}]},
+   {t:'Prouve que t’étais là',p:[
+    {n:'Vhs_Forever',a:'V',d:'il y a 2 h',m:'Question d’ouverture : décris le bruit exact que faisait le magnétoscope quand on mettait une cassette. Les vrais sauront.'},
+    {n:'Lolo1984',a:'L',d:'il y a 2 h',m:'Trop facile. La vraie question : qu’est-ce qui se passait quand on appuyait sur les quatre boutons du Bic 4 couleurs en même temps ?'},
+    {n:'Bruno_Ordi',a:'B',d:'il y a 1 h',m:'La mienne : combien de temps durait la connexion du modem avant le silence ? Ceux qui répondent « ça dépendait des soirs » y étaient vraiment.'}]},
+   {t:'Le Grenier — un objet, une photo, une phrase',p:[
+    {n:'Marion_K7',a:'M',d:'il y a 3 h',m:'Retrouvé la boîte à chaussures : 46 POGS, un slammer en métal, et un ticket de cinéma de 1997. Trente-deux francs, la séance.'},
+    {n:'PapaOurs',a:'P',d:'hier',m:'Mon Game Boy marche encore. Quatre piles neuves, démarrage du premier coup après vingt-cinq ans. Ils ne font plus rien comme ça.'}]},
+   {t:'Le Tribunal : l’opercule du yaourt, on le lèche ?',p:[
+    {n:'JusticeSucrée',a:'J',d:'il y a 5 h',m:'Oui, et le débat est clos depuis 1994. C’est même la meilleure partie du yaourt.'},
+    {n:'Anti_Opercule',a:'A',d:'il y a 4 h',m:'Non. C’est le pot qu’on racle. L’opercule, c’est de la gourmandise sans structure.'},
+    {n:'kevin_du_92',a:'K',d:'il y a 3 h',m:'Troisième voie : on lèche l’opercule <em>et</em> on racle le pot. Vous manquez d’ambition.'}]},
+   {t:'La Petite Annonce : je cherche le nom d’un dessin animé…',p:[
+    {n:'Perdue_En_92',a:'P',d:'il y a 8 h',m:'Un robot bleu, une fille en combinaison rouge, un générique qui parlait d’étoiles. Diffusé vers 1993, le matin. Ça me hante depuis trente ans.'},
+    {n:'ArchivisteFou',a:'A',d:'il y a 7 h',m:'On a résolu 41 annonces sur 47 dans ce fil. Donne la chaîne et l’heure approximative : on le retrouve toujours.'}]}
+  ];
+  const COLS=['#FF2E87','#23E5DE','#FFD23F','#FF7A2F','#9BF04D','#B57BFF'];
+  let LIVE={}; // messages partagés, par fil
+  function drawForum(){
+    $('#forum').innerHTML=THREADS.map((t,ti)=>`
+     <div class="thread">
+      <div class="thread-h">${t.t}<span>${t.p.length+(LIVE[ti]||[]).length} messages</span></div>
+      ${t.p.map((p,i)=>`<div class="post"><div class="who"><div class="av" style="--a:${COLS[(i+ti)%6]}">${p.a}</div><div><b>${p.n}</b>${p.d}</div></div>
+        <div class="msg">${p.m}</div></div>`).join('')}
+      ${(LIVE[ti]||[]).map(p=>`<div class="post"><div class="who"><div class="av" style="--a:var(--yel)">${esc(p.a)}</div>
+        <div><b>${esc(p.n)}</b>${p.d}</div></div><div class="msg">${esc(p.m)}</div></div>`).join('')}
+      <div class="post" style="grid-template-columns:1fr"><div class="reply">
+        <textarea class="field" rows="2" placeholder="Répondre à ce sujet…" data-t="${ti}"></textarea>
+        <div><button class="btn sm" data-post="${ti}">Envoyer</button></div>
+      </div></div>
+     </div>`).join('');
+    $$('#forum [data-post]').forEach(b=>b.onclick=async()=>{
+      const ta=b.closest('.reply').querySelector('textarea'),v=ta.value.trim();
+      if(v.length<3){toast('ÉCRIS QUELQUE CHOSE');return}
+      try{
+        await sbPost('forum_posts',{thread:+b.dataset.post,pseudo:S.pseudo||'visiteur',avatar:S.avatar||'?',body:v.slice(0,800)});
+        toast('MESSAGE POSTÉ POUR TOUT LE MONDE');
+      }catch(e){
+        S.posts.push({t:+b.dataset.post,m:v.slice(0,600)});save();
+        toast('POSTÉ EN LOCAL (HORS LIGNE)');
+      }
+      blip(700,.08);await loadForum();drawCard();
+    });
+  }
+  async function loadForum(){
+    try{
+      const rows=await sbGet('/forum_posts?order=created_at.asc&limit=300');
+      LIVE={};
+      rows.forEach(r=>{(LIVE[r.thread]=LIVE[r.thread]||[]).push({n:r.pseudo,a:r.avatar,m:r.body,d:r.created_at.slice(0,10)})});
+    }catch(e){
+      LIVE={};
+      S.posts.forEach(p=>{(LIVE[p.t]=LIVE[p.t]||[]).push({n:S.pseudo||'toi',a:S.avatar||'R',m:p.m,d:'hors ligne'})});
+    }
+    drawForum();
+  }
+  // inscription au Club
+  $('#mPseudo').value=S.pseudo||'';
+  $('#mGo').onclick=async()=>{
+    const ps=$('#mPseudo').value.trim(),em=$('#mEmail').value.trim();
+    if(ps.length<2){$('#mMsg').textContent='IL FAUT UN PSEUDO (2 CARACTÈRES MINIMUM).';return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){$('#mMsg').textContent='CET EMAIL A L\'AIR BANCAL — VÉRIFIE-LE.';return}
+    try{
+      await sbPost('members',{pseudo:ps.slice(0,22),email:em.toLowerCase()});
+      S.pseudo=S.pseudo||ps.slice(0,22);save();
+      $('#mMsg').textContent='BIENVENUE AU CLUB ! TU ES SUR LA LISTE.';
+      toast('INSCRIT AU CLUB, '+ps.toUpperCase());blip(660,.08);setTimeout(()=>blip(990,.14),120);
+      drawCard();
+    }catch(e){
+      $('#mMsg').textContent=String(e).includes('409')?'CET EMAIL EST DÉJÀ MEMBRE DU CLUB.':'IMPOSSIBLE POUR L\'INSTANT — RÉESSAIE PLUS TARD.';
+    }
+  };
+  // courrier des téléspectateurs
+  $('#cGo').onclick=async()=>{
+    const body=$('#cBody').value.trim();
+    if(body.length<5){$('#cMsg').textContent='ÉCRIS AU MOINS UNE PHRASE.';return}
+    try{
+      await sbPost('contact_messages',{name:$('#cNom').value.trim()||null,email:$('#cEmail').value.trim()||null,body:body.slice(0,2000)});
+      $('#cBody').value='';$('#cMsg').textContent='COURRIER ENVOYÉ. ON LE LIT, PROMIS.';
+      toast('COURRIER ENVOYÉ');blip(700,.08);
+    }catch(e){$('#cMsg').textContent='ENVOI IMPOSSIBLE POUR L\'INSTANT — RÉESSAIE PLUS TARD.'}
+  };
+  drawCard();loadForum();
+}
+</script>
+</body>
+</html>
