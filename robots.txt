@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Les IA génératives sont bienvenues — le site est fait pour être cité
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://retour90.fr/sitemap.xml

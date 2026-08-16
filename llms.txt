@@ -1,0 +1,28 @@
+# RETOUR90.FR
+
+> Site hommage français aux années 90. Archives vidéo d'époque (génériques TV, publicités, clips, journaux télévisés, sport), photographies d'objets cultes, jeux d'arcade jouables, et une communauté de souvenirs (le Club). En français, gratuit, sans compte obligatoire.
+
+RETOUR90 rassemble et contextualise la culture populaire française de 1990 à 1999 : télévision (Club Dorothée, Fort Boyard, les Guignols de l'Info), dessins animés et manga diffusés en France, musique (eurodance, rap français, French touch), cinéma, publicités, jeux vidéo (Mega Drive, Super Nintendo, PlayStation), objets (Tamagotchi, Minitel, POGS, Nokia 3210), goûters et grands moments d'actualité et de sport (France 98).
+
+Les vidéos sont lues via le lecteur YouTube officiel depuis les chaînes qui les publient (INA, chaînes officielles d'artistes et de studios, archives publicitaires). Les photographies proviennent de Wikimedia Commons sous licences libres, créditées. Les textes, anecdotes et dossiers sont originaux.
+
+## Pages principales
+
+- [Accueil](https://retour90.fr/) : le zapping du jour, la madeleine du jour, les 12 canaux
+- [Télé](https://retour90.fr/tele.html) : génériques et rituels de la télévision française des années 90
+- [Manga](https://retour90.fr/manga.html) : les génériques VF du Club Dorothée et l'arrivée du manga en France
+- [Musique](https://retour90.fr/musique.html) : clips officiels en playlists — eurodance, rap FR, French touch, slows
+- [Ciné](https://retour90.fr/cine.html) : bandes-annonces d'époque et culture vidéoclub
+- [Jeux vidéo](https://retour90.fr/jeux.html) : pubs de consoles françaises et intros cultes
+- [Pubs](https://retour90.fr/pub.html) : les spots publicitaires français des années 90
+- [Sport](https://retour90.fr/sport.html) : France 98, OM 93, Pérec, la Dream Team
+- [Actu](https://retour90.fr/actu.html) : les journaux télévisés d'époque (archives INA)
+- [Objets](https://retour90.fr/objets.html) : Tamagotchi, Minitel, POGS — photos et reportages d'époque
+- [Miam](https://retour90.fr/food.html) : le goûter des années 90, rayon par rayon
+- [Arcade](https://retour90.fr/arcade.html) : 7 jeux jouables dans le navigateur
+- [Le Club](https://retour90.fr/club.html) : inscription, forum des souvenirs, contact
+
+## Contact
+
+- Éditeur : Altoria Digital (France)
+- Email : contact@retour90.fr
