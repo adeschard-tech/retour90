@@ -19,7 +19,11 @@ const PAGES = {
   'food.html':   { path: '/food.html',   crumb: 'Miam' },
   'arcade.html': { path: '/arcade.html', crumb: 'Arcade' },
   'club.html':   { path: '/club.html',   crumb: 'Le Club' },
+  'audimat.html':{ path: '/audimat.html',crumb: 'Audimat' },
 };
+
+// Jeton de validation Google Search Console (propriété https://retour90.fr)
+const GSC = 'qmZRJoSet8yvj8fdIOK2M21uvVmefJyHzOUb_djfb_4';
 
 const FAQ = [
   ["C'est quoi, RETOUR90 ?",
@@ -59,7 +63,8 @@ for (const [file, cfg] of Object.entries(PAGES)) {
       { '@type':'ListItem', position:2, name:cfg.crumb, item:url } ] });
   }
 
-  const block = `<!--SEO-->
+  const block = `<!--SEO-->${GSC && file === 'index.html' ? `
+<meta name="google-site-verification" content="${GSC}">` : ''}
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RETOUR90.FR">
@@ -77,7 +82,7 @@ for (const [file, cfg] of Object.entries(PAGES)) {
 ${ld.map(o => '<script type="application/ld+json">' + JSON.stringify(o) + '</scr' + 'ipt>').join('\n')}
 <!--/SEO-->`;
 
-  html = html.replace(/<!--SEO-->[\s\S]*?<!--\/SEO-->\n?/, '');
+  html = html.replace(/\s*<!--SEO-->[\s\S]*?<!--\/SEO-->\s*/, '\n');
   html = html.replace('</head>', block + '\n</head>');
   fs.writeFileSync(file, html);
   console.log('SEO →', file);

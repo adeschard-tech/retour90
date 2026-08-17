@@ -505,3 +505,34 @@ textarea.field{resize:vertical}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .tv-idle .snow{animation:none}
 }
+
+/* ================= AUDIMAT ================= */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.audi-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin:18px 0 6px}
+.audi-kpi{background:rgba(255,255,255,.035);border:1px solid var(--line);border-left:3px solid var(--c);
+  border-radius:14px;padding:18px 20px}
+.audi-kpi b{display:block;font-family:var(--display);font-size:42px;line-height:1;
+  color:var(--c);letter-spacing:.02em}
+.audi-kpi span{display:block;margin-top:7px;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.09em}
+.audi-days{display:flex;align-items:flex-end;gap:4px;height:190px;padding:14px 14px 0;margin:14px 0 4px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.audi-day{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:6px;cursor:default}
+.audi-day i{display:block;width:100%;border-radius:3px 3px 0 0;
+  background:linear-gradient(to top,#FF2E87,#B57BFF);opacity:.82;transition:opacity .15s}
+.audi-day:hover i{opacity:1}
+.audi-day u{font-family:var(--mono);font-size:9px;color:var(--dim);text-decoration:none;padding-bottom:8px}
+.audi-bars{display:flex;flex-direction:column;gap:7px;margin:14px 0}
+.audi-row{display:grid;grid-template-columns:auto minmax(90px,132px) 1fr auto;align-items:center;gap:11px;
+  padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px}
+.audi-row .rk{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.audi-row .lb{font-size:13px;color:var(--phos);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.audi-row a.lb:hover{color:var(--c)}
+.audi-row i{display:block;height:9px;min-width:3px;border-radius:5px;background:var(--c);opacity:.8}
+.audi-row b{font-family:var(--mono);font-size:12px;color:var(--c);min-width:44px;text-align:right}
+@media (max-width:760px){
+  .grid2{grid-template-columns:1fr;gap:8px}
+  .audi-days{height:140px}
+  .audi-day u{display:none}
+  .audi-row{grid-template-columns:auto minmax(72px,1fr) auto;gap:9px}
+  .audi-row i{display:none}
+}

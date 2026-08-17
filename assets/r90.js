@@ -67,7 +67,8 @@ function shell(){
       tout ce qu'on a vécu entre 1990 et 1999, réuni au même endroit pour un grand bol de nostalgie.</p></div>
     <div><h5>Les canaux</h5>${PAGES.slice(1,8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}</div>
     <div><h5>Et aussi</h5>${PAGES.slice(8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}
-      <a href="club.html">S'inscrire au Club</a></div>
+      <a href="club.html">S'inscrire au Club</a>
+      <a href="audimat.html">L'Audimat du site</a></div>
    </div>
    <div class="footer-bottom">RETOUR90.FR · SITE HOMMAGE · LES VIDÉOS SONT LUES DEPUIS YOUTUBE (INA, CHAÎNES OFFICIELLES) · FAIT AVEC ❤ ET UN MAGNÉTOSCOPE</div>`;
   document.body.appendChild(ft);
@@ -95,6 +96,25 @@ async function sbGet(path){
 async function sbPost(table,body){
   const r=await fetch(SB_URL+'/'+table,{method:'POST',headers:SB_H,body:JSON.stringify(body),signal:AbortSignal.timeout(8000)});
   if(!r.ok)throw new Error('sb '+r.status);
+}
+
+/* ---------- audimat : mesure d'audience anonyme (ni cookie, ni IP, ni traceur) ---------- */
+function track(){
+  try{
+    if(!/(^|\.)retour90\.fr$/i.test(location.hostname))return;   // rien en local ni en preview
+    if(navigator.webdriver)return;
+    const neuf=!sessionStorage.getItem('r90.vu');
+    if(neuf)sessionStorage.setItem('r90.vu','1');
+    let ref=null;
+    if(document.referrer){
+      try{const h=new URL(document.referrer).hostname.replace(/^www\./,'');
+        if(!/retour90\.fr$/i.test(h))ref=h.slice(0,80);}catch(e){}
+    }
+    const vw=Math.round(innerWidth||0);
+    fetch(SB_URL+'/hits',{method:'POST',headers:SB_H,keepalive:true,body:JSON.stringify({
+      page:HERE.slice(0,40),ref,neuf,vw:(vw>=100&&vw<=9999)?vw:null
+    })}).catch(()=>{});
+  }catch(e){}
 }
 
 /* ---------- photos réelles dans les fiches ---------- */
@@ -502,10 +522,73 @@ addEventListener('keydown',e=>{
     setTimeout(()=>document.body.style.filter='',2500);toast('CODE KONAMI · 30 VIES');blip(880,.09);setTimeout(()=>blip(1320,.12),110)}
 });
 
+/* ---------- la page Audimat ---------- */
+const PLABEL=Object.fromEntries(PAGES.map(p=>[p[0],p[1]]));
+PLABEL.audimat='Audimat';
+const nf=n=>String(n||0).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const jourFR=s=>new Date(s+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
+
+async function renderAudimat(){
+  const box=$('#audimat'); if(!box)return;
+  box.innerHTML='<p class="lede" style="text-align:center">Lecture de la bande…</p>';
+  let T,J,P,S,E;
+  try{
+    [T,J,P,S,E]=await Promise.all([
+      sbGet('/stats_total?select=*'),
+      sbGet('/stats_jours?select=*&order=jour.desc&limit=30'),
+      sbGet('/stats_pages?select=*&order=vues.desc&limit=14'),
+      sbGet('/stats_sources?select=*&order=visites.desc&limit=10'),
+      sbGet('/stats_ecrans?select=*')
+    ]);
+  }catch(e){
+    box.innerHTML='<div class="box"><p style="margin:0">Le magnétoscope n’arrive pas à lire la bande pour le moment. Reviens dans un instant.</p></div>';
+    return;
+  }
+  const t=T[0]||{};
+  const jours=J.slice().reverse();
+  const maxJ=Math.max(1,...jours.map(j=>+j.vues));
+  const maxP=Math.max(1,...P.map(p=>+p.vues));
+  const maxS=Math.max(1,...S.map(s=>+s.visites));
+  const totE=E.reduce((a,x)=>a+ +x.vues,0)||1;
+
+  box.innerHTML=`
+  <div class="audi-kpis">
+    ${[['Visites (7 jours)',t.visites_7j,'#FF2E87'],['Pages vues (7 jours)',t.vues_7j,'#23E5DE'],
+       ['Pages vues (24 h)',t.vues_24h,'#FFD23F'],['Visites depuis l’ouverture',t.visites,'#9BF04D']]
+      .map(([l,v,c])=>`<div class="audi-kpi" style="--c:${c}"><b>${nf(v)}</b><span>${l}</span></div>`).join('')}
+  </div>
+
+  <h3 class="sub">La courbe des 30 derniers jours</h3>
+  <div class="audi-days">${jours.map(j=>
+    `<div class="audi-day" title="${jourFR(j.jour)} · ${j.vues} pages vues, ${j.visites} visites">
+       <i style="height:${Math.max(3,Math.round(j.vues/maxJ*100))}%"></i><u>${jourFR(j.jour).replace(/\s.*/,'')}</u></div>`).join('')
+    ||'<p class="lede">La bande est encore vierge.</p>'}</div>
+
+  <h3 class="sub">Le classement des canaux <span class="cnt">30 derniers jours</span></h3>
+  <div class="audi-bars">${P.map((p,i)=>
+    `<div class="audi-row" style="--c:${cc(i)}"><span class="rk">${String(i+1).padStart(2,'0')}</span>
+      <a class="lb" href="${p.page}.html">${esc(PLABEL[p.page]||p.page)}</a>
+      <i style="width:${Math.round(p.vues/maxP*100)}%"></i><b>${nf(p.vues)}</b></div>`).join('')
+    ||'<p class="lede">Aucun canal mesuré pour l’instant.</p>'}</div>
+
+  <div class="grid2">
+    <div><h3 class="sub">D’où viennent les visiteurs</h3>
+      <div class="audi-bars">${S.map((s,i)=>
+        `<div class="audi-row" style="--c:${cc(i+2)}"><a class="lb" style="pointer-events:none">${esc(s.source)}</a>
+          <i style="width:${Math.round(s.visites/maxS*100)}%"></i><b>${nf(s.visites)}</b></div>`).join('')
+        ||'<p class="lede">Rien à signaler.</p>'}</div></div>
+    <div><h3 class="sub">Sur quel écran</h3>
+      <div class="audi-bars">${E.map((x,i)=>
+        `<div class="audi-row" style="--c:${cc(i+4)}"><a class="lb" style="pointer-events:none">${esc(x.ecran)}</a>
+          <i style="width:${Math.round(x.vues/totE*100)}%"></i><b>${Math.round(x.vues/totE*100)}&nbsp;%</b></div>`).join('')
+        ||'<p class="lede">Rien à signaler.</p>'}</div></div>
+  </div>`;
+}
+
 /* ---------- boot ---------- */
 shell();
 document.addEventListener('DOMContentLoaded',()=>{
   tvMount();renderWalls();renderK7();renderHero();renderMadeleine();renderSearch();
-  WK.mount();docMount();renderPhotos();
+  WK.mount();docMount();renderPhotos();renderAudimat();track();
   if(window.R90PAGE)try{R90PAGE()}catch(e){console.error(e)}
 });
