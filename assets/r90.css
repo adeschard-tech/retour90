@@ -520,6 +520,7 @@ textarea.field{resize:vertical}
 .audi-day i{display:block;width:100%;border-radius:3px 3px 0 0;
   background:linear-gradient(to top,#FF2E87,#B57BFF);opacity:.82;transition:opacity .15s}
 .audi-day:hover i{opacity:1}
+.audi-day.vide i{background:var(--line);opacity:.5}
 .audi-day u{font-family:var(--mono);font-size:9px;color:var(--dim);text-decoration:none;padding-bottom:8px}
 .audi-bars{display:flex;flex-direction:column;gap:7px;margin:14px 0}
 .audi-row{display:grid;grid-template-columns:auto minmax(90px,132px) 1fr auto;align-items:center;gap:11px;

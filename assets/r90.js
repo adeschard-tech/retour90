@@ -545,7 +545,14 @@ async function renderAudimat(){
     return;
   }
   const t=T[0]||{};
-  const jours=J.slice().reverse();
+  // 30 créneaux fixes : les jours sans passage restent visibles, à zéro
+  const vus=Object.fromEntries(J.map(j=>[j.jour,j]));
+  const auj=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Paris'}));
+  const jours=Array.from({length:30},(_,i)=>{
+    const d=new Date(auj); d.setDate(d.getDate()-(29-i));
+    const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    return vus[k]||{jour:k,vues:0,visites:0};
+  });
   const maxJ=Math.max(1,...jours.map(j=>+j.vues));
   const maxP=Math.max(1,...P.map(p=>+p.vues));
   const maxS=Math.max(1,...S.map(s=>+s.visites));
@@ -560,9 +567,8 @@ async function renderAudimat(){
 
   <h3 class="sub">La courbe des 30 derniers jours</h3>
   <div class="audi-days">${jours.map(j=>
-    `<div class="audi-day" title="${jourFR(j.jour)} · ${j.vues} pages vues, ${j.visites} visites">
-       <i style="height:${Math.max(3,Math.round(j.vues/maxJ*100))}%"></i><u>${jourFR(j.jour).replace(/\s.*/,'')}</u></div>`).join('')
-    ||'<p class="lede">La bande est encore vierge.</p>'}</div>
+    `<div class="audi-day${+j.vues?'':' vide'}" title="${jourFR(j.jour)} · ${j.vues} pages vues, ${j.visites} visites">
+       <i style="height:${j.vues?Math.max(4,Math.round(j.vues/maxJ*100)):2}%"></i><u>${jourFR(j.jour).replace(/\s.*/,'')}</u></div>`).join('')}</div>
 
   <h3 class="sub">Le classement des canaux <span class="cnt">30 derniers jours</span></h3>
   <div class="audi-bars">${P.map((p,i)=>
