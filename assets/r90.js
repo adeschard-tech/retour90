@@ -143,7 +143,7 @@ function chargerAPI(cb){
 }
 
 /* ---------- LA TV (lecteur de page) ---------- */
-let tvEl=null,tvLecteur=null,tvPret=false,tvEnAttente=null;
+let tvEl=null,tvLecteur=null,tvPret=false,tvEnAttente=null,tvGuet=null;
 function tvMount(){
   tvEl=$('#tv');if(!tvEl)return;
   tvEl.innerHTML=`<div class="tv-shell">
@@ -214,7 +214,7 @@ function tvPlay(id,title,card){
   else if(tvLecteur){tvEnAttente=id}          // l'API finit de s'initialiser
   else{
     $('.tv-screen',tvEl).innerHTML='<div id="tvscreen"></div>';
-    chargerAPI(()=>{
+    const creer=()=>{
       if(tvLecteur)return;
       tvLecteur=new YT.Player('tvscreen',{
         videoId:id,
@@ -229,10 +229,23 @@ function tvPlay(id,title,card){
             else if(e.data===0)tvEtat('■ FIN DE BANDE','');
           }
         }});
-    });
+    };
+    /* Sur iPhone, l'autorisation de lecture donnée par le doigt ne se transmet
+       qu'à une iframe créée PENDANT le geste. Si l'API est déjà chargée, on
+       crée donc le lecteur tout de suite, sans rappel différé qui romprait la
+       chaîne. L'API est préchargée au démarrage précisément pour ça. */
+    if(window.YT&&window.YT.Player)creer();else chargerAPI(creer);
   }
   /* On ne recadre que si la TV n'est pas déjà bien en vue : sinon, enchaîner
      les molettes ferait sauter l'écran sous le doigt à chaque chaîne. */
+  /* Si le navigateur refuse malgré tout de démarrer, on ne laisse pas le
+     visiteur devant une image figée sans explication : le bandeau le dit. */
+  clearTimeout(tvGuet);
+  tvGuet=setTimeout(()=>{
+    try{if(tvLecteur&&tvPret){const s=tvLecteur.getPlayerState();
+      if(s===-1||s===5)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)')}}catch(e){}
+  },2500);
+
   const r=tvEl.getBoundingClientRect();
   if(r.top<60||r.top>window.innerHeight*.5)
     window.scrollTo({top:r.top+window.scrollY-70,behavior:'smooth'});
@@ -310,7 +323,7 @@ const WK=(function(){
     REGIE.antenne('k7');
     st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼';
     $('#wkhold').style.display='none';
-    loadAPI(()=>{
+    const creer=()=>{
       if(player&&ready){player.loadVideoById({videoId:list[st.idx],startSeconds:st.t||0});return}
       if(player)return; // API en cours d'init
       player=new YT.Player('wkscreen',{
@@ -324,7 +337,9 @@ const WK=(function(){
             if(e.data===0)skip(1); // fin de piste → suivante
           }
         }});
-    });
+    };
+    // même raison que pour la TV : sur iPhone, l'iframe doit naître dans le geste
+    if(window.YT&&window.YT.Player)creer();else loadAPI(creer);
     st.playing=true;saveW();paint();
     if(user)blip(660,.06);
   }
@@ -597,7 +612,7 @@ function docJouer(id){
   else if(docLecteur){docEnAttente=id}
   else{
     p.innerHTML='<div id="docscreen"></div>';
-    chargerAPI(()=>{
+    const creer=()=>{
       if(docLecteur)return;
       docLecteur=new YT.Player('docscreen',{
         videoId:id,
@@ -606,7 +621,8 @@ function docJouer(id){
           if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}
           else docLecteur.playVideo()}}
       });
-    });
+    };
+    if(window.YT&&window.YT.Player)creer();else chargerAPI(creer);   // cf. la TV : iPhone
   }
   p.scrollIntoView({behavior:'smooth',block:'center'});blip(520,.05);
 }
@@ -695,5 +711,10 @@ shell();
 document.addEventListener('DOMContentLoaded',()=>{
   tvMount();renderWalls();renderK7();renderHero();renderMadeleine();renderSearch();
   WK.mount();docMount();renderPhotos();renderAudimat();track();
+  /* On précharge l'API YouTube sans rien lire : quand le visiteur touchera
+     une vignette, le lecteur pourra naître dans la seconde du geste, seule
+     façon pour iOS d'autoriser la lecture. Sans ce préchargement, le premier
+     appui ne lance rien et il faut toucher une deuxième fois. */
+  chargerAPI(()=>{});
   if(window.R90PAGE)try{R90PAGE()}catch(e){console.error(e)}
 });
