@@ -542,3 +542,16 @@ textarea.field{resize:vertical}
 .tv-bar .play{cursor:pointer;user-select:none;border-radius:4px;padding:2px 6px;margin-left:-6px;
   transition:background .15s}
 .tv-bar .play:hover{background:rgba(255,255,255,.09)}
+
+/* ---------- confort tactile ----------
+   Sur un écran sans survol, on vise au doigt et pas au pixel. Les
+   commandes du poste et du baladeur étaient dessinées pour la souris :
+   on leur donne de quoi être touchées sans se tromper de bouton. */
+@media (hover:none){
+  .tv-bar{gap:8px}
+  .tv-bar .play,.tv-bar .close{min-height:44px;display:inline-flex;align-items:center;padding:0 12px}
+  .tv-bar .play{margin-left:-12px}
+  .tv-knob{width:42px;height:42px}
+  #wkk7s button{min-height:38px}
+  #wkpp,#wkprev,#wknext{min-height:44px}
+}
