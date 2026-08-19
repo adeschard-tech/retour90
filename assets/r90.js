@@ -148,7 +148,7 @@ function tvMount(){
     </div>
     <div class="tv-bar"><span class="play">■ STOP</span><span class="title">—</span>
       <button class="close" hidden>⏏ ÉJECTER</button></div></div>`;
-  $('.close',tvEl).onclick=tvStop;
+  $('.close',tvEl).onclick=()=>tvStop();
   $$('.tv-knob',tvEl).forEach(k=>k.onclick=()=>{
     k.classList.remove('turn');void k.offsetWidth;k.classList.add('turn');
     tvStep(+k.dataset.dir);
@@ -173,6 +173,7 @@ function tvPlay(id,title,card){
   const scr=$('.tv-screen',tvEl);
   scr.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
     title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  REGIE.antenne('tv');
   $('.tv-shell',tvEl).classList.add('on');
   $('.play',tvEl).textContent='▶ PLAY';$('.play',tvEl).style.color='var(--lime)';
   $('.title',tvEl).textContent=title;
@@ -186,10 +187,10 @@ function tvPlay(id,title,card){
     window.scrollTo({top:r.top+window.scrollY-70,behavior:'smooth'});
   blip(520,.05);
 }
-function tvStop(){
+function tvStop(titre,note){
   if(!tvEl)return;
   $('.tv-screen',tvEl).innerHTML=`<div class="tv-idle"><div class="snow"></div>
-    <p><b>FIN DE LA CASSETTE</b>choisis une autre vidéo dans le mur</p></div>`;
+    <p><b>${esc(titre||'FIN DE LA CASSETTE')}</b>${esc(note||'choisis une autre vidéo dans le mur')}</p></div>`;
   $('.tv-shell',tvEl).classList.remove('on');
   $('.play',tvEl).textContent='■ STOP';$('.title',tvEl).textContent='—';
   $('.close',tvEl).hidden=true;
@@ -242,7 +243,7 @@ const WK=(function(){
     $('#wknext').onclick=()=>skip(1);
     $('#wkpp').onclick=()=>{if(!player||!ready){$('#wkgo').click();return}
       const s=player.getPlayerState();
-      if(s===1){player.pauseVideo()}else{player.playVideo()}};
+      if(s===1){player.pauseVideo()}else{REGIE.antenne('k7');player.playVideo()}};
     paint();
   }
   function loadAPI(cb){
@@ -254,6 +255,7 @@ const WK=(function(){
   }
   function start(user){
     const list=ids();if(!list.length)return;
+    REGIE.antenne('k7');
     st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼';
     $('#wkhold').style.display='none';
     loadAPI(()=>{
@@ -293,7 +295,34 @@ const WK=(function(){
   },4000);
   return {mount,start,
     startGenre(g){st.g=g;st.idx=0;st.t=0;start(true)},
-    open(){if(!el)return;st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼'}
+    open(){if(!el)return;st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼'},
+    /* la régie a besoin de pouvoir couper la K7 sans toucher au reste */
+    pause(){try{if(player&&ready)player.pauseVideo()}catch(e){}}
+  };
+})();
+
+/* ---------- LA RÉGIE — une seule source à l'antenne ----------
+   Trois lecteurs cohabitent sur le site : la télé de la page, le baladeur
+   flottant, et celui qui s'ouvre dans les dossiers. Deux sons en même temps,
+   c'est le bruit d'une chaîne mal réglée. Dès qu'un lecteur démarre, il
+   prend l'antenne et les autres se taisent. On met en pause plutôt que
+   d'arrêter : la vidéo reste là où on l'avait laissée. */
+const REGIE=(function(){
+  return {
+    antenne(qui){
+      // la K7 se met en pause : elle reprendra où on l'avait laissée
+      if(qui!=='k7')try{WK.pause()}catch(e){}
+      // la télé et le lecteur des dossiers sont de simples iframes, qu'on ne
+      // peut pas piloter de l'extérieur de façon fiable. On coupe donc net,
+      // en le disant clairement à l'écran plutôt que de laisser un doute.
+      if(qui!=='tv'&&$('#tv .tv-screen iframe'))
+        tvStop('ANTENNE PRISE', qui==='k7'?'la K7 tourne, relance quand tu veux'
+                                          :'un dossier est ouvert, relance quand tu veux');
+      if(qui!=='doc'){
+        const p=$('#doc .doc-player');
+        if(p&&$('iframe',p)){p.innerHTML='';p.classList.remove('on')}
+      }
+    }
   };
 })();
 
@@ -479,6 +508,7 @@ function openDoc(o){
     const p=$('.doc-player',d);p.classList.add('on');
     p.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1&rel=0"
       allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    REGIE.antenne('doc');
     p.scrollIntoView({behavior:'smooth',block:'center'});blip(520,.05)});
   drawCmts();
   $('.doc-as',d).textContent=S.pseudo?('tu postes en tant que '+S.pseudo):'sans pseudo, tu postes en visiteur — crée ta carte au Club';
