@@ -537,3 +537,8 @@ textarea.field{resize:vertical}
   .audi-row{grid-template-columns:auto minmax(72px,1fr) auto;gap:9px}
   .audi-row i{display:none}
 }
+
+/* le voyant du bandeau TV sert aussi de bouton lecture/pause */
+.tv-bar .play{cursor:pointer;user-select:none;border-radius:4px;padding:2px 6px;margin-left:-6px;
+  transition:background .15s}
+.tv-bar .play:hover{background:rgba(255,255,255,.09)}

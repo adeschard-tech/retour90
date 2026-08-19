@@ -130,8 +130,20 @@ function renderPhotos(){
   });
 }
 
+/* ---------- l'API YouTube, chargée une seule fois pour tout le site ----------
+   Trois lecteurs s'en servent : la télé, le baladeur et celui des dossiers.
+   Le script ne doit partir qu'une fois, et chacun doit être rappelé quand
+   il est prêt : d'où la chaîne de rappels. */
+function chargerAPI(cb){
+  if(window.YT&&window.YT.Player)return cb();
+  const prec=window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady=()=>{if(prec)prec();cb()};
+  if(!$('#ytapi')){const s=document.createElement('script');s.id='ytapi';
+    s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)}
+}
+
 /* ---------- LA TV (lecteur de page) ---------- */
-let tvEl=null;
+let tvEl=null,tvLecteur=null,tvPret=false,tvEnAttente=null;
 function tvMount(){
   tvEl=$('#tv');if(!tvEl)return;
   tvEl.innerHTML=`<div class="tv-shell">
@@ -149,6 +161,20 @@ function tvMount(){
     <div class="tv-bar"><span class="play">■ STOP</span><span class="title">—</span>
       <button class="close" hidden>⏏ ÉJECTER</button></div></div>`;
   $('.close',tvEl).onclick=()=>tvStop();
+  /* Le voyant du bandeau fait aussi office de bouton lecture/pause : quand
+     une autre source prend l'antenne, il faut pouvoir relancer le poste
+     sans aller chercher le bouton de YouTube au milieu de l'image. */
+  const voyant=$('.play',tvEl);
+  voyant.setAttribute('role','button');voyant.tabIndex=0;
+  voyant.title='Lecture ou pause';
+  const bascule=()=>{
+    if(!tvLecteur||!tvPret)return;
+    if(tvLecteur.getPlayerState()===1){tvLecteur.pauseVideo()}
+    else{REGIE.antenne('tv');tvLecteur.playVideo()}
+    blip(520,.04);
+  };
+  voyant.onclick=bascule;
+  voyant.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule()}};
   $$('.tv-knob',tvEl).forEach(k=>k.onclick=()=>{
     k.classList.remove('turn');void k.offsetWidth;k.classList.add('turn');
     tvStep(+k.dataset.dir);
@@ -168,18 +194,43 @@ function tvStep(dir){
   const b=vids[next];
   tvPlay(b.dataset.id,b.dataset.t,b);
 }
+const tvEtat=(txt,couleur)=>{const p=tvEl&&$('.play',tvEl);
+  if(p){p.textContent=txt;p.style.color=couleur||''}};
+
 function tvPlay(id,title,card){
   if(!tvEl)return;
-  const scr=$('.tv-screen',tvEl);
-  scr.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
-    title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
   REGIE.antenne('tv');
   $('.tv-shell',tvEl).classList.add('on');
-  $('.play',tvEl).textContent='▶ PLAY';$('.play',tvEl).style.color='var(--lime)';
+  tvEtat('▶ PLAY','var(--lime)');
   $('.title',tvEl).textContent=title;
   $('.close',tvEl).hidden=false;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
   if(card)card.classList.add('now');
+
+  /* Le poste est piloté par l'API YouTube et non par une simple iframe :
+     c'est ce qui permet de le mettre vraiment en pause quand une autre
+     source prend l'antenne, et de le retrouver là où on l'avait laissé. */
+  if(tvLecteur&&tvPret){tvLecteur.loadVideoById(id)}
+  else if(tvLecteur){tvEnAttente=id}          // l'API finit de s'initialiser
+  else{
+    $('.tv-screen',tvEl).innerHTML='<div id="tvscreen"></div>';
+    chargerAPI(()=>{
+      if(tvLecteur)return;
+      tvLecteur=new YT.Player('tvscreen',{
+        videoId:id,
+        playerVars:{autoplay:1,rel:0,playsinline:1},
+        events:{
+          onReady:()=>{tvPret=true;
+            if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}
+            else tvLecteur.playVideo()},
+          onStateChange:e=>{
+            if(e.data===1)tvEtat('▶ PLAY','var(--lime)');
+            else if(e.data===2)tvEtat('⏸ PAUSE','var(--yel)');
+            else if(e.data===0)tvEtat('■ FIN DE BANDE','');
+          }
+        }});
+    });
+  }
   /* On ne recadre que si la TV n'est pas déjà bien en vue : sinon, enchaîner
      les molettes ferait sauter l'écran sous le doigt à chaque chaîne. */
   const r=tvEl.getBoundingClientRect();
@@ -187,12 +238,19 @@ function tvPlay(id,title,card){
     window.scrollTo({top:r.top+window.scrollY-70,behavior:'smooth'});
   blip(520,.05);
 }
-function tvStop(titre,note){
+
+/* la régie met le poste en pause : l'image reste, la position aussi */
+function tvPause(){try{if(tvLecteur&&tvPret)tvLecteur.pauseVideo()}catch(e){}}
+
+/* ⏏ ÉJECTER : là seulement, on éteint pour de bon */
+function tvStop(){
   if(!tvEl)return;
+  try{if(tvLecteur)tvLecteur.destroy()}catch(e){}
+  tvLecteur=null;tvPret=false;tvEnAttente=null;
   $('.tv-screen',tvEl).innerHTML=`<div class="tv-idle"><div class="snow"></div>
-    <p><b>${esc(titre||'FIN DE LA CASSETTE')}</b>${esc(note||'choisis une autre vidéo dans le mur')}</p></div>`;
+    <p><b>${esc(tvEl.dataset.idle||'CHOISIS UNE VIDÉO')}</b>clique sur une vignette — elle passe à l'antenne ici</p></div>`;
   $('.tv-shell',tvEl).classList.remove('on');
-  $('.play',tvEl).textContent='■ STOP';$('.title',tvEl).textContent='—';
+  tvEtat('■ STOP','');$('.title',tvEl).textContent='—';
   $('.close',tvEl).hidden=true;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
 }
@@ -246,13 +304,7 @@ const WK=(function(){
       if(s===1){player.pauseVideo()}else{REGIE.antenne('k7');player.playVideo()}};
     paint();
   }
-  function loadAPI(cb){
-    if(window.YT&&window.YT.Player)return cb();
-    const prev=window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady=()=>{if(prev)prev();cb()};
-    if(!$('#ytapi')){const s=document.createElement('script');s.id='ytapi';
-      s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)}
-  }
+  const loadAPI=chargerAPI;   // le chargeur est partagé avec la télé et les dossiers
   function start(user){
     const list=ids();if(!list.length)return;
     REGIE.antenne('k7');
@@ -307,24 +359,15 @@ const WK=(function(){
    c'est le bruit d'une chaîne mal réglée. Dès qu'un lecteur démarre, il
    prend l'antenne et les autres se taisent. On met en pause plutôt que
    d'arrêter : la vidéo reste là où on l'avait laissée. */
-const REGIE=(function(){
-  return {
-    antenne(qui){
-      // la K7 se met en pause : elle reprendra où on l'avait laissée
-      if(qui!=='k7')try{WK.pause()}catch(e){}
-      // la télé et le lecteur des dossiers sont de simples iframes, qu'on ne
-      // peut pas piloter de l'extérieur de façon fiable. On coupe donc net,
-      // en le disant clairement à l'écran plutôt que de laisser un doute.
-      if(qui!=='tv'&&$('#tv .tv-screen iframe'))
-        tvStop('ANTENNE PRISE', qui==='k7'?'la K7 tourne, relance quand tu veux'
-                                          :'un dossier est ouvert, relance quand tu veux');
-      if(qui!=='doc'){
-        const p=$('#doc .doc-player');
-        if(p&&$('iframe',p)){p.innerHTML='';p.classList.remove('on')}
-      }
-    }
-  };
-})();
+const REGIE={
+  antenne(qui){
+    // les trois lecteurs passent par l'API YouTube : on les met en pause,
+    // jamais on ne les coupe. Chacun repart où il en était.
+    if(qui!=='k7')try{WK.pause()}catch(e){}
+    if(qui!=='tv')tvPause();
+    if(qui!=='doc')docPause();
+  }
+};
 
 /* ---------- MURS DE VIDÉOS ---------- */
 function card(v,i){
@@ -500,16 +543,11 @@ function openDoc(o){
     const hay=(v.title+' '+(v.channel||'')).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
     return {v,s:terms.filter(t=>hay.includes(t)).length};
   }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4).map(x=>x.v);
-  $('.doc-player',d).classList.remove('on');$('.doc-player',d).innerHTML='';
+  docEteindre();
   $('.doc-vids',d).innerHTML=hits.length?hits.map(v=>
     `<button class="doc-vid" data-id="${v.id}"><img loading="lazy" src="${thumb(v.id)}" alt=""><b>${esc(v.title)}</b></button>`).join('')
     :'<span class="doc-empty">RIEN DANS LES ARCHIVES POUR L\'INSTANT — LES DOCUMENTALISTES CHERCHENT.</span>';
-  $$('.doc-vid',d).forEach(b=>b.onclick=()=>{
-    const p=$('.doc-player',d);p.classList.add('on');
-    p.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1&rel=0"
-      allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-    REGIE.antenne('doc');
-    p.scrollIntoView({behavior:'smooth',block:'center'});blip(520,.05)});
+  $$('.doc-vid',d).forEach(b=>b.onclick=()=>docJouer(b.dataset.id));
   drawCmts();
   $('.doc-as',d).textContent=S.pseudo?('tu postes en tant que '+S.pseudo):'sans pseudo, tu postes en visiteur — crée ta carte au Club';
   $('.doc-post',d).onclick=async()=>{
@@ -540,7 +578,38 @@ async function drawCmts(){
     paint(rows.map(r=>({n:r.pseudo,a:r.avatar,m:r.body,d:r.created_at.slice(0,10)})));
   }catch(e){/* hors ligne : la version locale reste affichée */}
 }
-function docClose(){$('#doc').classList.remove('open');$('#doc .doc-player').innerHTML='';document.body.style.overflow=''}
+function docClose(){$('#doc').classList.remove('open');docEteindre();document.body.style.overflow=''}
+
+/* ---------- le lecteur des dossiers, lui aussi piloté par l'API ---------- */
+let docLecteur=null,docPret=false,docEnAttente=null;
+function docPause(){try{if(docLecteur&&docPret)docLecteur.pauseVideo()}catch(e){}}
+function docEteindre(){
+  try{if(docLecteur)docLecteur.destroy()}catch(e){}
+  docLecteur=null;docPret=false;docEnAttente=null;
+  const p=$('#doc .doc-player');
+  if(p){p.innerHTML='';p.classList.remove('on')}
+}
+function docJouer(id){
+  const p=$('#doc .doc-player');if(!p)return;
+  REGIE.antenne('doc');
+  p.classList.add('on');
+  if(docLecteur&&docPret){docLecteur.loadVideoById(id)}
+  else if(docLecteur){docEnAttente=id}
+  else{
+    p.innerHTML='<div id="docscreen"></div>';
+    chargerAPI(()=>{
+      if(docLecteur)return;
+      docLecteur=new YT.Player('docscreen',{
+        videoId:id,
+        playerVars:{autoplay:1,rel:0,playsinline:1},
+        events:{onReady:()=>{docPret=true;
+          if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}
+          else docLecteur.playVideo()}}
+      });
+    });
+  }
+  p.scrollIntoView({behavior:'smooth',block:'center'});blip(520,.05);
+}
 
 /* ---------- konami ---------- */
 const KON=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
