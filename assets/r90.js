@@ -130,6 +130,19 @@ function renderPhotos(){
   });
 }
 
+/* iOS interdit le départ automatique d'une vidéo avec le son, mais l'autorise
+   en silencieux. On part donc muet sur écran tactile, et l'on rétablit le son
+   dès que la lecture est réellement engagée : le visiteur voit sa vidéo
+   démarrer seule, comme sur ordinateur, et l'entend dans la foulée. */
+const TACTILE=matchMedia('(hover:none)').matches;
+const rendreLeSon=p=>{
+  if(!TACTILE)return;
+  const essai=()=>{try{if(p.isMuted&&p.isMuted()){p.unMute();p.setVolume(100)}}catch(e){}};
+  essai();                    // dès la première image lue
+  setTimeout(essai,120);      // et deux rattrapages, si Safari a avalé le premier ordre
+  setTimeout(essai,400);
+};
+
 /* ---------- l'API YouTube, chargée une seule fois pour tout le site ----------
    Trois lecteurs s'en servent : la télé, le baladeur et celui des dossiers.
    Le script ne doit partir qu'une fois, et chacun doit être rappelé quand
@@ -219,7 +232,7 @@ function tvPlay(id,title,card){
        Safari suit cet attribut plutôt que la feuille de style. */
     $('.tv-screen',tvEl).innerHTML=
       `<iframe id="tvscreen" title="${esc(title)}"
-        src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1"
+        src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1${TACTILE?'&mute=1':''}"
         allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     const creer=()=>{
       if(tvLecteur)return;
@@ -232,7 +245,7 @@ function tvPlay(id,title,card){
                C'est ce qui la rend juste au doigt : si le visiteur lance la
                vidéo par le bouton de YouTube, le baladeur se tait quand même,
                et s'il ne la lance pas, le baladeur continue tranquillement. */
-            if(e.data===1){REGIE.antenne('tv');tvEtat('▶ PLAY','var(--lime)')}
+            if(e.data===1){REGIE.antenne('tv');rendreLeSon(tvLecteur);tvEtat('▶ PLAY','var(--lime)')}
             else if(e.data===2)tvEtat('⏸ PAUSE','var(--yel)');
             else if(e.data===0)tvEtat('■ FIN DE BANDE','');
             /* si le navigateur refuse le départ, on le dit plutôt que de
@@ -615,7 +628,7 @@ function docJouer(id){
   else if(docLecteur){docEnAttente=id}
   else{
     p.innerHTML=`<iframe id="docscreen"
-      src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1"
+      src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1${TACTILE?'&mute=1':''}"
       allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     const creer=()=>{
       if(docLecteur)return;
@@ -623,7 +636,7 @@ function docJouer(id){
         events:{
           onReady:()=>{docPret=true;
             if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}},
-          onStateChange:e=>{if(e.data===1)REGIE.antenne('doc')}
+          onStateChange:e=>{if(e.data===1){REGIE.antenne('doc');rendreLeSon(docLecteur)}}
         }
       });
     };
