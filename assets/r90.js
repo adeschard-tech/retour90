@@ -130,6 +130,13 @@ function renderPhotos(){
   });
 }
 
+/* Sur un écran tactile, iOS refuse tout démarrage automatique. Si on le
+   réclame quand même, le lecteur YouTube reste coincé sans bouton et le
+   visiteur ne peut plus rien lancer. On ne le réclame donc pas : on met la
+   vidéo en attente et on laisse YouTube afficher son bouton de lecture. */
+const TACTILE=matchMedia('(hover:none)').matches;
+const poser=(p,id)=>{try{TACTILE?p.cueVideoById(id):p.loadVideoById(id)}catch(e){}};
+
 /* ---------- l'API YouTube, chargée une seule fois pour tout le site ----------
    Trois lecteurs s'en servent : la télé, le baladeur et celui des dossiers.
    Le script ne doit partir qu'une fois, et chacun doit être rappelé quand
@@ -143,7 +150,7 @@ function chargerAPI(cb){
 }
 
 /* ---------- LA TV (lecteur de page) ---------- */
-let tvEl=null,tvLecteur=null,tvPret=false,tvEnAttente=null,tvGuet=null;
+let tvEl=null,tvLecteur=null,tvPret=false,tvEnAttente=null;
 function tvMount(){
   tvEl=$('#tv');if(!tvEl)return;
   tvEl.innerHTML=`<div class="tv-shell">
@@ -170,7 +177,7 @@ function tvMount(){
   const bascule=()=>{
     if(!tvLecteur||!tvPret)return;
     if(tvLecteur.getPlayerState()===1){tvLecteur.pauseVideo()}
-    else{REGIE.antenne('tv');tvLecteur.playVideo()}
+    else{tvLecteur.playVideo()}   // la régie suivra, sur l'état réel du lecteur
     blip(520,.04);
   };
   voyant.onclick=bascule;
@@ -199,9 +206,8 @@ const tvEtat=(txt,couleur)=>{const p=tvEl&&$('.play',tvEl);
 
 function tvPlay(id,title,card){
   if(!tvEl)return;
-  REGIE.antenne('tv');
   $('.tv-shell',tvEl).classList.add('on');
-  tvEtat('▶ PLAY','var(--lime)');
+  tvEtat(TACTILE?'▶ TOUCHE L’ÉCRAN':'▶ PLAY',TACTILE?'var(--yel)':'var(--lime)');
   $('.title',tvEl).textContent=title;
   $('.close',tvEl).hidden=false;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
@@ -210,7 +216,7 @@ function tvPlay(id,title,card){
   /* Le poste est piloté par l'API YouTube et non par une simple iframe :
      c'est ce qui permet de le mettre vraiment en pause quand une autre
      source prend l'antenne, et de le retrouver là où on l'avait laissé. */
-  if(tvLecteur&&tvPret){tvLecteur.loadVideoById(id)}
+  if(tvLecteur&&tvPret){poser(tvLecteur,id)}
   else if(tvLecteur){tvEnAttente=id}          // l'API finit de s'initialiser
   else{
     $('.tv-screen',tvEl).innerHTML='<div id="tvscreen"></div>';
@@ -218,15 +224,20 @@ function tvPlay(id,title,card){
       if(tvLecteur)return;
       tvLecteur=new YT.Player('tvscreen',{
         videoId:id,
-        playerVars:{autoplay:1,rel:0,playsinline:1},
+        playerVars:{autoplay:TACTILE?0:1,rel:0,playsinline:1},
         events:{
           onReady:()=>{tvPret=true;
-            if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}
-            else tvLecteur.playVideo()},
+            if(tvEnAttente){poser(tvLecteur,tvEnAttente);tvEnAttente=null}
+            else if(!TACTILE)tvLecteur.playVideo()},
           onStateChange:e=>{
-            if(e.data===1)tvEtat('▶ PLAY','var(--lime)');
+            /* La régie se déclenche sur la lecture RÉELLE, pas sur l'intention.
+               C'est ce qui la rend juste au doigt : si le visiteur lance la
+               vidéo par le bouton de YouTube, le baladeur se tait quand même,
+               et s'il ne la lance pas, le baladeur continue tranquillement. */
+            if(e.data===1){REGIE.antenne('tv');tvEtat('▶ PLAY','var(--lime)')}
             else if(e.data===2)tvEtat('⏸ PAUSE','var(--yel)');
             else if(e.data===0)tvEtat('■ FIN DE BANDE','');
+            else if(e.data===5&&TACTILE)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)');
           }
         }});
     };
@@ -238,14 +249,6 @@ function tvPlay(id,title,card){
   }
   /* On ne recadre que si la TV n'est pas déjà bien en vue : sinon, enchaîner
      les molettes ferait sauter l'écran sous le doigt à chaque chaîne. */
-  /* Si le navigateur refuse malgré tout de démarrer, on ne laisse pas le
-     visiteur devant une image figée sans explication : le bandeau le dit. */
-  clearTimeout(tvGuet);
-  tvGuet=setTimeout(()=>{
-    try{if(tvLecteur&&tvPret){const s=tvLecteur.getPlayerState();
-      if(s===-1||s===5)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)')}}catch(e){}
-  },2500);
-
   const r=tvEl.getBoundingClientRect();
   if(r.top<60||r.top>window.innerHeight*.5)
     window.scrollTo({top:r.top+window.scrollY-70,behavior:'smooth'});
@@ -314,13 +317,12 @@ const WK=(function(){
     $('#wknext').onclick=()=>skip(1);
     $('#wkpp').onclick=()=>{if(!player||!ready){$('#wkgo').click();return}
       const s=player.getPlayerState();
-      if(s===1){player.pauseVideo()}else{REGIE.antenne('k7');player.playVideo()}};
+      if(s===1){player.pauseVideo()}else{player.playVideo()}};
     paint();
   }
   const loadAPI=chargerAPI;   // le chargeur est partagé avec la télé et les dossiers
   function start(user){
     const list=ids();if(!list.length)return;
-    REGIE.antenne('k7');
     st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼';
     $('#wkhold').style.display='none';
     const creer=()=>{
@@ -333,6 +335,7 @@ const WK=(function(){
           onReady:()=>{ready=true;player.playVideo()},
           onStateChange:e=>{
             st.playing=(e.data===1);
+            if(st.playing)REGIE.antenne('k7');   // la K7 tourne vraiment : les autres se taisent
             el.classList.toggle('playing',st.playing);saveW();paint();
             if(e.data===0)skip(1); // fin de piste → suivante
           }
@@ -606,9 +609,8 @@ function docEteindre(){
 }
 function docJouer(id){
   const p=$('#doc .doc-player');if(!p)return;
-  REGIE.antenne('doc');
   p.classList.add('on');
-  if(docLecteur&&docPret){docLecteur.loadVideoById(id)}
+  if(docLecteur&&docPret){poser(docLecteur,id)}
   else if(docLecteur){docEnAttente=id}
   else{
     p.innerHTML='<div id="docscreen"></div>';
@@ -616,10 +618,13 @@ function docJouer(id){
       if(docLecteur)return;
       docLecteur=new YT.Player('docscreen',{
         videoId:id,
-        playerVars:{autoplay:1,rel:0,playsinline:1},
-        events:{onReady:()=>{docPret=true;
-          if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}
-          else docLecteur.playVideo()}}
+        playerVars:{autoplay:TACTILE?0:1,rel:0,playsinline:1},
+        events:{
+          onReady:()=>{docPret=true;
+            if(docEnAttente){poser(docLecteur,docEnAttente);docEnAttente=null}
+            else if(!TACTILE)docLecteur.playVideo()},
+          onStateChange:e=>{if(e.data===1)REGIE.antenne('doc')}
+        }
       });
     };
     if(window.YT&&window.YT.Player)creer();else chargerAPI(creer);   // cf. la TV : iPhone
