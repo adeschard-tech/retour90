@@ -130,13 +130,6 @@ function renderPhotos(){
   });
 }
 
-/* Sur un écran tactile, iOS refuse tout démarrage automatique. Si on le
-   réclame quand même, le lecteur YouTube reste coincé sans bouton et le
-   visiteur ne peut plus rien lancer. On ne le réclame donc pas : on met la
-   vidéo en attente et on laisse YouTube afficher son bouton de lecture. */
-const TACTILE=matchMedia('(hover:none)').matches;
-const poser=(p,id)=>{try{TACTILE?p.cueVideoById(id):p.loadVideoById(id)}catch(e){}};
-
 /* ---------- l'API YouTube, chargée une seule fois pour tout le site ----------
    Trois lecteurs s'en servent : la télé, le baladeur et celui des dossiers.
    Le script ne doit partir qu'une fois, et chacun doit être rappelé quand
@@ -207,7 +200,7 @@ const tvEtat=(txt,couleur)=>{const p=tvEl&&$('.play',tvEl);
 function tvPlay(id,title,card){
   if(!tvEl)return;
   $('.tv-shell',tvEl).classList.add('on');
-  tvEtat(TACTILE?'▶ TOUCHE L’ÉCRAN':'▶ PLAY',TACTILE?'var(--yel)':'var(--lime)');
+  tvEtat('▶ PLAY','var(--lime)');
   $('.title',tvEl).textContent=title;
   $('.close',tvEl).hidden=false;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
@@ -216,19 +209,20 @@ function tvPlay(id,title,card){
   /* Le poste est piloté par l'API YouTube et non par une simple iframe :
      c'est ce qui permet de le mettre vraiment en pause quand une autre
      source prend l'antenne, et de le retrouver là où on l'avait laissé. */
-  if(tvLecteur&&tvPret){poser(tvLecteur,id)}
+  if(tvLecteur&&tvPret){tvLecteur.loadVideoById(id)}
   else if(tvLecteur){tvEnAttente=id}          // l'API finit de s'initialiser
   else{
     $('.tv-screen',tvEl).innerHTML='<div id="tvscreen"></div>';
     const creer=()=>{
       if(tvLecteur)return;
       tvLecteur=new YT.Player('tvscreen',{
-        videoId:id,
-        playerVars:{autoplay:TACTILE?0:1,rel:0,playsinline:1},
+        width:'100%',height:'100%',   // sinon l'API inscrit 640x390 dans l'iframe,
+        videoId:id,                   // et Safari suit l'attribut plutôt que le CSS
+        playerVars:{autoplay:1,rel:0,playsinline:1},
         events:{
           onReady:()=>{tvPret=true;
-            if(tvEnAttente){poser(tvLecteur,tvEnAttente);tvEnAttente=null}
-            else if(!TACTILE)tvLecteur.playVideo()},
+            if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}
+            else tvLecteur.playVideo()},
           onStateChange:e=>{
             /* La régie se déclenche sur la lecture RÉELLE, pas sur l'intention.
                C'est ce qui la rend juste au doigt : si le visiteur lance la
@@ -237,7 +231,9 @@ function tvPlay(id,title,card){
             if(e.data===1){REGIE.antenne('tv');tvEtat('▶ PLAY','var(--lime)')}
             else if(e.data===2)tvEtat('⏸ PAUSE','var(--yel)');
             else if(e.data===0)tvEtat('■ FIN DE BANDE','');
-            else if(e.data===5&&TACTILE)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)');
+            /* si le navigateur refuse le départ, on le dit plutôt que de
+               laisser croire à une panne : la vidéo attend un doigt */
+            else if(e.data===5||e.data===-1)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)');
           }
         }});
     };
@@ -329,6 +325,7 @@ const WK=(function(){
       if(player&&ready){player.loadVideoById({videoId:list[st.idx],startSeconds:st.t||0});return}
       if(player)return; // API en cours d'init
       player=new YT.Player('wkscreen',{
+        width:'100%',height:'100%',
         videoId:list[st.idx],
         playerVars:{autoplay:1,rel:0,start:Math.floor(st.t||0),playsinline:1},
         events:{
@@ -610,19 +607,20 @@ function docEteindre(){
 function docJouer(id){
   const p=$('#doc .doc-player');if(!p)return;
   p.classList.add('on');
-  if(docLecteur&&docPret){poser(docLecteur,id)}
+  if(docLecteur&&docPret){docLecteur.loadVideoById(id)}
   else if(docLecteur){docEnAttente=id}
   else{
     p.innerHTML='<div id="docscreen"></div>';
     const creer=()=>{
       if(docLecteur)return;
       docLecteur=new YT.Player('docscreen',{
+        width:'100%',height:'100%',
         videoId:id,
-        playerVars:{autoplay:TACTILE?0:1,rel:0,playsinline:1},
+        playerVars:{autoplay:1,rel:0,playsinline:1},
         events:{
           onReady:()=>{docPret=true;
-            if(docEnAttente){poser(docLecteur,docEnAttente);docEnAttente=null}
-            else if(!TACTILE)docLecteur.playVideo()},
+            if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}
+            else docLecteur.playVideo()},
           onStateChange:e=>{if(e.data===1)REGIE.antenne('doc')}
         }
       });
