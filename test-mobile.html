@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>RETOUR90 — mesures (page technique)</title>
-<link rel="stylesheet" href="assets/r90.css?v=df52b875">
+<link rel="stylesheet" href="assets/r90.css?v=e6df11b2">
 <style>
   body{padding:16px 12px 70px}
   h1{font-family:var(--display);font-size:28px;margin:0 0 4px}
@@ -51,6 +51,23 @@ image, ou seulement le caisson ?</p>
 </section>
 
 <section>
+  <h2>Le poste comme sur le site</h2>
+  <p class="intro" style="font-size:14px">Ici l'iframe n'est pas dans la page au départ : elle
+  est écrite au moment où tu touches le bouton, exactement comme sur retour90.fr. C'est ce
+  chemin-là qui débordait.</p>
+  <button class="copier" id="goSite" style="margin:0 0 12px">Lancer comme sur le site</button>
+  <div class="tv"><div class="tv-shell on" id="shell2">
+    <div class="tv-screen" id="ecran2"><div class="tv-idle"><div class="snow"></div>
+      <p><b>ALLUME LA TÉLÉ</b>touche le bouton au-dessus</p></div></div>
+    <div class="tv-side"><div class="tv-led"></div><div class="tv-speaker"></div>
+      <div class="tv-badge">RETOUR90 · CRT-2000</div></div>
+  </div></div>
+  <table id="mesures2"></table>
+  <div class="verdict"><button class="oui" data-t="site">Ça tient dans le cadre</button>
+    <button class="non" data-t="site">Ça déborde</button></div>
+</section>
+
+<section>
   <h2>Les mesures</h2>
   <table id="mesures"></table>
 </section>
@@ -90,6 +107,33 @@ addEventListener('load',()=>setTimeout(()=>{
   t.innerHTML=lignes.map(l=>'<tr><td>'+l[0]+'</td><td class="'+(l[2]===null?'':l[2]?'bon':'mauvais')+'">'
     +l[1]+(l[2]===null?'':l[2]?' ok':' zero')+'</td></tr>').join('');
 },1200));
+
+// reproduction exacte du chemin du site : iframe ecrite au doigt, API rattachee ensuite
+document.getElementById('goSite').onclick=()=>{
+  const av=document.getElementById('ecran2').getBoundingClientRect();
+  const avS=document.getElementById('shell2').getBoundingClientRect();
+  document.getElementById('ecran2').innerHTML=
+    '<iframe id="ecran2frame" src="https://www.youtube-nocookie.com/embed/Oth_GJYdzgs'+
+    '?rel=0&playsinline=1&autoplay=1&enablejsapi=1" '+
+    'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  if(window.YT&&YT.Player)new YT.Player('ecran2frame',{});
+  setTimeout(()=>{
+    const ap=document.getElementById('ecran2').getBoundingClientRect();
+    const apS=document.getElementById('shell2').getBoundingClientRect();
+    const f=document.getElementById('ecran2frame');
+    const fb=f?f.getBoundingClientRect():{width:0,height:0,right:0};
+    const l=[['ecran avant',Math.round(av.width)+' x '+Math.round(av.height),true],
+      ['ecran apres',Math.round(ap.width)+' x '+Math.round(ap.height),ap.width<=av.width+2],
+      ['caisson avant',Math.round(avS.width),true],
+      ['caisson apres',Math.round(apS.width),apS.width<=avS.width+2],
+      ['iframe',Math.round(fb.width)+' x '+Math.round(fb.height),fb.width<=ap.width+2],
+      ['attribut width',f?(f.getAttribute('width')||'aucun'):'?',!f||!f.getAttribute('width')],
+      ['deborde a droite',Math.round(fb.right-ap.right)+' px',fb.right<=ap.right+2]];
+    document.getElementById('mesures2').innerHTML=l.map(x=>
+      '<tr><td>'+x[0]+'</td><td class="'+(x[2]?'bon':'mauvais')+'">'+x[1]+(x[2]?' ok':' PROBLEME')+'</td></tr>').join('');
+    l.forEach(x=>dire('site, '+x[0],x[1]+(x[2]?'':'   <<< PROBLEME')));
+  },2500);
+};
 
 document.querySelectorAll('.verdict button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.verdict button').forEach(x=>x.classList.remove('pris'));

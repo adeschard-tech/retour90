@@ -581,3 +581,17 @@ textarea.field{resize:vertical}
 .tv-screen,#doc .doc-player,.wk-screenwrap{
   -webkit-mask-image:-webkit-radial-gradient(#fff,#000)}
 .tv-screen iframe,#doc .doc-player iframe,.wk-screenwrap iframe{max-width:100%;max-height:100%}
+
+/* ---------- le caisson ne doit jamais s'élargir ----------
+   Une colonne 1fr vaut minmax(auto,1fr) : elle grandit jusqu'à la taille
+   de son contenu. Quand l'iframe arrivait avec sa largeur propre, elle
+   poussait la colonne, et tout le poste débordait de l'écran, molettes
+   comprises. On borne donc la colonne à zéro en minimum, et on interdit
+   à l'écran comme au caisson de dépasser la place disponible. */
+.tv-shell{grid-template-columns:minmax(0,1fr) 92px;max-width:100%}
+.tv-screen{min-width:0;max-width:100%}
+.tv-screen>iframe{position:absolute;inset:0;width:100%;height:100%;
+  max-width:100%;max-height:100%;border:0}
+@media (max-width:760px){
+  .tv-shell{grid-template-columns:minmax(0,1fr)}
+}
