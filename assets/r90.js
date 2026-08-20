@@ -212,17 +212,21 @@ function tvPlay(id,title,card){
   if(tvLecteur&&tvPret){tvLecteur.loadVideoById(id)}
   else if(tvLecteur){tvEnAttente=id}          // l'API finit de s'initialiser
   else{
-    $('.tv-screen',tvEl).innerHTML='<div id="tvscreen"></div>';
+    /* On écrit l'iframe nous-mêmes, puis on y rattache l'API. C'est la seule
+       façon d'avoir les deux : une iframe dimensionnée par le CSS seul, que
+       Safari respecte, et le pilotage qui permet la pause et la reprise.
+       Quand l'API la fabrique elle-même, elle y inscrit width="640", et
+       Safari suit cet attribut plutôt que la feuille de style. */
+    $('.tv-screen',tvEl).innerHTML=
+      `<iframe id="tvscreen" title="${esc(title)}"
+        src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1"
+        allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     const creer=()=>{
       if(tvLecteur)return;
       tvLecteur=new YT.Player('tvscreen',{
-        width:'100%',height:'100%',   // sinon l'API inscrit 640x390 dans l'iframe,
-        videoId:id,                   // et Safari suit l'attribut plutôt que le CSS
-        playerVars:{autoplay:1,rel:0,playsinline:1},
         events:{
           onReady:()=>{tvPret=true;
-            if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}
-            else tvLecteur.playVideo()},
+            if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}},
           onStateChange:e=>{
             /* La régie se déclenche sur la lecture RÉELLE, pas sur l'intention.
                C'est ce qui la rend juste au doigt : si le visiteur lance la
@@ -610,17 +614,15 @@ function docJouer(id){
   if(docLecteur&&docPret){docLecteur.loadVideoById(id)}
   else if(docLecteur){docEnAttente=id}
   else{
-    p.innerHTML='<div id="docscreen"></div>';
+    p.innerHTML=`<iframe id="docscreen"
+      src="https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&autoplay=1&enablejsapi=1"
+      allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     const creer=()=>{
       if(docLecteur)return;
       docLecteur=new YT.Player('docscreen',{
-        width:'100%',height:'100%',
-        videoId:id,
-        playerVars:{autoplay:1,rel:0,playsinline:1},
         events:{
           onReady:()=>{docPret=true;
-            if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}
-            else docLecteur.playVideo()},
+            if(docEnAttente){docLecteur.loadVideoById(docEnAttente);docEnAttente=null}},
           onStateChange:e=>{if(e.data===1)REGIE.antenne('doc')}
         }
       });
