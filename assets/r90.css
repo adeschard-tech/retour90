@@ -555,3 +555,21 @@ textarea.field{resize:vertical}
   #wkk7s button{min-height:38px}
   #wkpp,#wkprev,#wknext{min-height:44px}
 }
+
+/* ---------- hauteurs qui ne dépendent plus d'aspect-ratio ----------
+   La dalle du poste est une case de grille étirée. Dans ce cas, Safari
+   privilégie l'étirement et ignore aspect-ratio : la hauteur tombait à
+   zéro et l'on voyait le caisson sans image, une radio en somme. On lui
+   interdit donc de s'étirer, et on lui donne sa hauteur par un cale
+   interne, technique qui ne demande rien au navigateur.
+   Le même filet est posé sur les autres boîtes du site dont la hauteur
+   ne vient que d'un rapport, au cas où aspect-ratio manquerait tout court. */
+.tv-screen{align-self:start}
+.tv-screen::before{content:"";display:block;padding-top:56.25%}
+
+@supports not (aspect-ratio:16/9){
+  .vid .th::before,.wk-screenwrap::before,#doc .doc-player::before,
+  .doc-vid::before{content:"";display:block;padding-top:56.25%}
+  .fiche .ph::before{content:"";display:block;padding-top:62.5%}
+  .pog::after,.simon button::after{content:"";display:block;padding-top:100%}
+}

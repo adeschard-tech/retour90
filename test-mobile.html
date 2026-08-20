@@ -4,146 +4,104 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>RETOUR90 — banc d'essai vidéo (page technique)</title>
+<title>RETOUR90 — mesures (page technique)</title>
+<link rel="stylesheet" href="assets/r90.css">
 <style>
-  :root{--mag:#FF2E87;--cyan:#23E5DE;--lime:#9BF04D;--yel:#FFD23F;--dim:#9E90C8}
-  *{box-sizing:border-box}
-  body{margin:0;background:#0D0918;color:#F5F1FF;font:16px/1.55 "Trebuchet MS",Verdana,sans-serif;
-    padding:18px 14px 60px}
-  h1{font-family:Impact,sans-serif;font-size:30px;letter-spacing:.02em;margin:0 0 4px}
+  body{padding:16px 12px 70px}
+  h1{font-family:var(--display);font-size:28px;margin:0 0 4px}
   h1 b{color:var(--mag)}
-  .intro{color:#DCD2F5;font-size:15px;margin:0 0 22px}
-  section{border:1px solid rgba(240,234,255,.14);border-radius:14px;padding:16px;margin:0 0 18px;
+  .intro{color:#DCD2F5;font-size:15px;margin:0 0 20px}
+  section{border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 16px;
     background:rgba(255,255,255,.03)}
-  h2{font-family:Impact,sans-serif;font-size:19px;letter-spacing:.04em;color:var(--cyan);margin:0 0 4px}
-  .quoi{font-size:14px;color:var(--dim);margin:0 0 12px}
-  .cadre{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden}
-  .cadre iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .verdict{display:flex;gap:8px;margin-top:12px}
-  .verdict button{flex:1;min-height:46px;border:0;border-radius:9px;font:700 15px/1 Arial,sans-serif;
-    cursor:pointer;color:#0D0918}
+  h2{font-family:var(--display);font-size:18px;letter-spacing:.04em;color:var(--cyan);margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font:13px/1.5 var(--mono)}
+  td{padding:7px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+  td:first-child{color:var(--dim)}
+  td:last-child{text-align:right;font-weight:bold}
+  .bon{color:var(--lime)} .mauvais{color:#FF6B6B}
+  .verdict{display:flex;gap:8px;margin-top:14px}
+  .verdict button{flex:1;min-height:46px;border:0;border-radius:9px;font:700 15px/1 Arial,sans-serif;color:#0D0918}
   .oui{background:var(--lime)} .non{background:#FF6B6B}
   .verdict button.pris{outline:3px solid #fff;outline-offset:2px}
-  a.gros{display:block;min-height:52px;background:var(--mag);color:#fff;text-decoration:none;
-    border-radius:10px;font:700 16px/52px Arial,sans-serif;text-align:center}
-  #rapport{width:100%;min-height:230px;background:#07050F;color:var(--lime);border:1px solid rgba(240,234,255,.2);
-    border-radius:10px;padding:12px;font:12px/1.5 "Courier New",monospace;white-space:pre}
+  #rapport{width:100%;min-height:200px;background:#07050F;color:var(--lime);border:1px solid var(--line);
+    border-radius:10px;padding:12px;font:12px/1.5 var(--mono);white-space:pre}
   .copier{width:100%;min-height:50px;margin-top:10px;background:var(--cyan);color:#062320;border:0;
     border-radius:10px;font:700 16px/1 Arial,sans-serif}
-  .note{font-size:13px;color:var(--dim);margin-top:10px}
 </style>
 </head>
 <body>
 
-<h1>RETOUR<b>90</b> · banc d'essai</h1>
-<p class="intro">Page technique, pas destinée aux visiteurs. Quatre façons de lire la même
-vidéo. Pour chacune, essaie de la lancer, puis dis si ça a marché. À la fin, copie le
-rapport et envoie-le moi.</p>
+<h1>RETOUR<b>90</b> · mesures</h1>
+<p class="intro">Cette page mesure la hauteur réelle des écrans sur ton téléphone. Si
+une hauteur vaut zéro, on tient le coupable. Regarde le poste ci-dessous : vois-tu une
+image, ou seulement le caisson ?</p>
 
 <section>
-  <h2>1. Le lecteur du site</h2>
-  <p class="quoi">C'est exactement ce qui tourne aujourd'hui sur retour90.fr : lecteur piloté par
-  l'API YouTube, domaine sans cookie.</p>
-  <div class="cadre"><div id="essai1"></div></div>
-  <div class="verdict"><button class="oui" data-t="1" data-v="marche">Ça marche</button>
-    <button class="non" data-t="1" data-v="rien">Ça ne marche pas</button></div>
+  <h2>Le poste, tel quel</h2>
+  <div class="tv"><div class="tv-shell on">
+    <div class="tv-screen">
+      <iframe src="https://www.youtube-nocookie.com/embed/Oth_GJYdzgs?rel=0&playsinline=1"
+        title="essai" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="tv-side"><div class="tv-led"></div><div class="tv-speaker"></div>
+      <div class="tv-badge">RETOUR90 · CRT-2000</div></div>
+  </div></div>
+  <div class="verdict"><button class="oui" data-t="image">Je vois l'image</button>
+    <button class="non" data-t="image">Je ne vois que le caisson</button></div>
 </section>
 
 <section>
-  <h2>2. Iframe simple, sans API, sans démarrage auto</h2>
-  <p class="quoi">Le plus basique : une iframe posée là, avec le gros bouton de YouTube à toucher.</p>
-  <div class="cadre">
-    <iframe src="https://www.youtube-nocookie.com/embed/Oth_GJYdzgs?rel=0&playsinline=1"
-      title="essai 2" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
-  <div class="verdict"><button class="oui" data-t="2" data-v="marche">Ça marche</button>
-    <button class="non" data-t="2" data-v="rien">Ça ne marche pas</button></div>
-</section>
-
-<section>
-  <h2>3. Iframe sur youtube.com, pas sur le domaine sans cookie</h2>
-  <p class="quoi">Même chose, mais sur le domaine principal. Certains blocages ne visent que
-  youtube-nocookie.</p>
-  <div class="cadre">
-    <iframe src="https://www.youtube.com/embed/Oth_GJYdzgs?rel=0&playsinline=1"
-      title="essai 3" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-  </div>
-  <div class="verdict"><button class="oui" data-t="3" data-v="marche">Ça marche</button>
-    <button class="non" data-t="3" data-v="rien">Ça ne marche pas</button></div>
-</section>
-
-<section>
-  <h2>4. Sortie vers le lecteur de YouTube</h2>
-  <p class="quoi">On quitte la page : iOS ouvre l'application YouTube, ou le lecteur de Safari.
-  C'est la solution de repli si aucune des trois précédentes ne passe. Reviens ensuite ici.</p>
-  <a class="gros" href="https://www.youtube.com/watch?v=Oth_GJYdzgs" target="_blank"
-     rel="noopener" id="sortie">Ouvrir dans YouTube</a>
-  <div class="verdict"><button class="oui" data-t="4" data-v="marche">Ça marche</button>
-    <button class="non" data-t="4" data-v="rien">Ça ne marche pas</button></div>
+  <h2>Les mesures</h2>
+  <table id="mesures"></table>
 </section>
 
 <section>
   <h2>Le rapport</h2>
-  <p class="quoi">Tout ce que la page a pu observer toute seule, plus tes réponses.</p>
   <textarea id="rapport" readonly></textarea>
   <button class="copier" id="copier">Copier le rapport</button>
-  <p class="note">Si la copie ne marche pas, une capture d'écran suffit.</p>
 </section>
 
 <script>
 const L=[];
-const dire=(k,v)=>{L.push(k+' : '+v);peindre()};
-const peindre=()=>{document.getElementById('rapport').value=L.join('\n')};
+const dire=(k,v)=>{L.push(k+' : '+v);document.getElementById('rapport').value=L.join('\n')};
 
-dire('date', new Date().toISOString());
-dire('navigateur', navigator.userAgent);
-dire('ecran', innerWidth+'x'+innerHeight+' dpr '+devicePixelRatio);
-dire('points tactiles', navigator.maxTouchPoints);
-dire('survol possible', matchMedia('(hover:hover)').matches ? 'oui' : 'non');
-dire('economie de donnees', (navigator.connection&&navigator.connection.saveData) ? 'ACTIVE' : 'non');
-dire('reseau', (navigator.connection&&navigator.connection.effectiveType) || 'inconnu');
+dire('date',new Date().toISOString());
+dire('navigateur',navigator.userAgent);
+dire('fenetre',innerWidth+'x'+innerHeight+' dpr '+devicePixelRatio);
+dire('aspect-ratio reconnu',CSS.supports('aspect-ratio','16/9')?'oui':'NON');
+dire('cale interne actif',CSS.supports('padding-top','56.25%')?'oui':'non');
 
-// l'API YouTube se charge-t-elle seulement ?
-let apiOK=false;
-const t0=Date.now();
-window.onYouTubeIframeAPIReady=()=>{apiOK=true;dire('API YouTube chargee','oui, en '+(Date.now()-t0)+' ms');lancerEssai1()};
-const s=document.createElement('script');
-s.src='https://www.youtube.com/iframe_api';
-s.onerror=()=>dire('API YouTube chargee','NON, le script est bloque');
-document.head.appendChild(s);
-setTimeout(()=>{if(!apiOK)dire('API YouTube chargee','NON, toujours rien apres 8 s')},8000);
-
-const ETATS={'-1':'non demarre','0':'terminee','1':'en lecture','2':'en pause','3':'mise en memoire','5':'prete'};
-const ERREURS={2:'identifiant refuse',5:'lecteur HTML5 en echec',
-  100:'video introuvable ou privee',101:'INTEGRATION INTERDITE par le proprietaire',
-  150:'INTEGRATION INTERDITE par le proprietaire'};
-
-function lancerEssai1(){
-  new YT.Player('essai1',{
-    videoId:'Oth_GJYdzgs',
-    playerVars:{rel:0,playsinline:1},
-    events:{
-      onReady:()=>dire('essai 1, lecteur','pret'),
-      onStateChange:e=>dire('essai 1, etat', (ETATS[e.data]||e.data)),
-      onError:e=>dire('essai 1, ERREUR', (ERREURS[e.data]||('code '+e.data)))
-    }
-  });
+const lignes=[];
+function mesurer(nom,sel,attendu){
+  const e=document.querySelector(sel);
+  if(!e){lignes.push([nom,'absent',null]);dire('hauteur '+nom,'element absent');return}
+  const b=e.getBoundingClientRect();
+  const h=Math.round(b.height),w=Math.round(b.width);
+  const ok=attendu?h>attendu:h>0;
+  lignes.push([nom,w+' x '+h,ok]);
+  dire('hauteur '+nom,w+'x'+h+(ok?' ok':'  <<< PROBLEME'));
 }
 
-document.querySelectorAll('.verdict button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.verdict button[data-t="'+b.dataset.t+'"]').forEach(x=>x.classList.remove('pris'));
-  b.classList.add('pris');
-  dire('VERDICT essai '+b.dataset.t, b.dataset.v==='marche'?'ça marche':'ça ne marche pas');
-});
+addEventListener('load',()=>setTimeout(()=>{
+  mesurer('ecran du poste','.tv-screen',40);
+  mesurer('iframe du poste','.tv-screen iframe',40);
+  mesurer('caisson','.tv-shell',60);
+  const t=document.getElementById('mesures');
+  t.innerHTML=lignes.map(l=>'<tr><td>'+l[0]+'</td><td class="'+(l[2]===null?'':l[2]?'bon':'mauvais')+'">'
+    +l[1]+(l[2]===null?'':l[2]?' ok':' zero')+'</td></tr>').join('');
+},1200));
 
-document.getElementById('sortie').addEventListener('click',()=>dire('essai 4','lien ouvert'));
+document.querySelectorAll('.verdict button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.verdict button').forEach(x=>x.classList.remove('pris'));
+  b.classList.add('pris');
+  dire('VERDICT visuel',b.classList.contains('oui')?'image visible':'caisson seul, pas d image');
+});
 
 document.getElementById('copier').onclick=async()=>{
   const t=document.getElementById('rapport');
-  try{await navigator.clipboard.writeText(t.value);document.getElementById('copier').textContent='Copié'}
-  catch(e){t.select();document.execCommand('copy');document.getElementById('copier').textContent='Copié'}
+  try{await navigator.clipboard.writeText(t.value)}catch(e){t.select();document.execCommand('copy')}
+  document.getElementById('copier').textContent='Copié';
 };
-peindre();
 </script>
 </body>
 </html>
