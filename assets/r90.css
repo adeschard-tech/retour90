@@ -595,3 +595,17 @@ textarea.field{resize:vertical}
 @media (max-width:760px){
   .tv-shell{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ---------- les dossiers longs : sections titrées et fiche technique ---------- */
+.doc-h{font-family:var(--display);font-size:clamp(17px,3vw,21px);letter-spacing:.05em;
+  text-transform:uppercase;color:var(--yel);margin:28px 0 10px}
+.doc-art p{margin:0 0 13px;color:#DCD2F5;line-height:1.68}
+.doc-art p:last-child{margin-bottom:0}
+.doc-specs dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:12px 0 0;
+  font-family:var(--mono);font-size:13px;line-height:1.5}
+.doc-specs dt{color:var(--dim);white-space:nowrap}
+.doc-specs dd{margin:0;color:var(--phos)}
+@media (max-width:520px){
+  .doc-specs dl{grid-template-columns:1fr;gap:2px}
+  .doc-specs dd{margin:0 0 10px;color:var(--cyan)}
+}

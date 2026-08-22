@@ -532,7 +532,9 @@ function docMount(){
     <div class="doc-eyebrow">DOSSIER D'ARCHIVE</div>
     <h3 class="doc-t"></h3><div class="doc-meta"></div>
     <figure class="doc-photo" hidden><img alt=""><figcaption></figcaption></figure>
-    <p class="doc-desc"></p><ul class="doc-anec"></ul>
+    <p class="doc-desc"></p>
+    <div class="doc-art"></div><div class="doc-specs"></div>
+    <ul class="doc-anec"></ul>
     <div class="doc-sub">Dans les archives vidéo</div>
     <div class="doc-player"></div><div class="doc-vids"></div>
     <div class="doc-sub">Le Club en parle</div>
@@ -567,6 +569,15 @@ function openDoc(o){
   fig.hidden=!ph;
   if(ph){$('img',fig).src=ph.f;$('img',fig).alt=ph.t;$('figcaption',fig).textContent='Photo : '+ph.c}
   $('.doc-desc',d).textContent=o.desc;
+  /* Certains dossiers méritent mieux qu'une liste d'anecdotes : on accepte
+     un article en sections titrées, et une fiche technique en regard. */
+  $('.doc-art',d).innerHTML=(X.art||[]).map(s=>
+    (s.t?`<h4 class="doc-h">${esc(s.t)}</h4>`:'')+
+    (s.p||[]).map(p=>`<p>${esc(p)}</p>`).join('')).join('');
+  $('.doc-specs',d).innerHTML=X.specs
+    ? `<h4 class="doc-h">${esc(X.specs.t||'La fiche technique')}</h4><dl>`+
+      X.specs.l.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')+'</dl>'
+    : '';
   $('.doc-anec',d).innerHTML=(X.plus||[]).map(a=>`<li>${esc(a)}</li>`).join('');
   // vidéos liées : mots-clés du dossier, sinon les mots du titre
   const terms=(X.q||o.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
