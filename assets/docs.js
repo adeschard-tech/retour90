@@ -1,29 +1,130 @@
-/* RETOUR90 — les dossiers : anecdotes et mots-clés vidéo par fiche.
-   Clé = slug du titre de la fiche. Toute fiche sans entrée ici reçoit
-   quand même un dossier générique (texte + vidéos trouvées + commentaires). */
+/* RETOUR90 - dossiers d'archive : article, fiche technique, anecdotes */
 window.DOCS={
-
-/* ---------- OBJETS ---------- */
-'tamagotchi':{q:'tamagotchi',plus:[
- 'Lancé au Japon fin 1996, arrivé en France au printemps 1997 : 40 millions d’exemplaires vendus dans le monde en deux ans.',
- 'Des écoles françaises l’ont interdit dès la rentrée 1997 — trop d’élèves le nourrissaient sous la table. Certains parents le gardaient en vie pendant les heures de classe.',
- 'Il existait un cimetière virtuel en ligne pour Tamagotchi décédés. Des gens y laissaient de vrais messages de deuil.']},
-'furby':{q:'furby',plus:[
- 'Le Furby parlait d’abord « furbish », puis apprenait progressivement des mots de français. Beaucoup ont juré l’avoir entendu parler la nuit.',
- 'En 1999, la NSA a interdit les Furby dans ses locaux, craignant qu’ils enregistrent des conversations. Ils n’enregistraient rien — mais le mythe était trop beau.']},
-'le-walkman':{q:'walkman sony baladeur',plus:[
- 'Le premier Walkman date de 1979, mais c’est dans les années 90 qu’il devient universel, avec l’anti-choc et l’autoreverse — plus besoin de retourner la cassette.',
- 'L’autonomie se comptait en piles AA. On les rechargeait au congélateur, ce qui ne marchait pas, mais tout le monde le faisait quand même.']},
-'le-minitel':{q:'minitel',plus:[
- 'Distribué gratuitement par France Télécom dès 1982 pour remplacer l’annuaire papier. Au sommet, 25 000 services et des milliards de francs de chiffre d’affaires.',
- 'Le 3615 coûtait environ 1 franc la minute. La ligne de la facture « services télématiques » a provoqué des milliers de conversations familiales tendues.',
- 'Le Minitel n’a été éteint qu’en juin 2012 — il a survécu treize ans à l’an 2000.']},
-'le-bi-bop':{q:'bi-bop bibop',plus:[
- 'Lancé à Paris en 1993 : le téléphone ne marchait qu’à moins de 300 mètres d’une borne, signalée par un autocollant bleu-blanc sur les poteaux.',
+'tamagotchi':{q:'tamagotchi bandai jouet',
+art:[
+ {p:['Un œuf en plastique, trois boutons, un écran de la taille d’un timbre. Et pourtant, pendant deux ans, des millions d’enfants ont organisé leur vie autour de lui.',
+     'Bandai le lance au Japon en novembre 1996, l’Europe suit en 1997. Le principe tient en une phrase : une créature naît, elle a faim, elle s’ennuie, elle fait ses besoins, et si tu ne t’en occupes pas, elle meurt.']},
+ {t:'La grande hécatombe des cours de maths',
+  p:['C’est là que tout s’est joué. Le Tamagotchi réclamait de l’attention toutes les deux ou trois heures, y compris pendant les cours. Les professeurs ont confisqué par centaines, et les créatures sont mortes dans les tiroirs du bureau.',
+     'Certains établissements les ont interdits purement et simplement. D’autres ont vu naître un service de garde clandestin : tu confiais le tien à un copain qui n’avait pas cours à la même heure.']},
+ {t:'Pourquoi ça marchait aussi bien',
+  p:['Parce que c’était le premier objet qui te réclamait quelque chose. Une console attend sagement qu’on l’allume. Le Tamagotchi, lui, sonnait tout seul et te faisait culpabiliser.',
+     'Il a inventé une mécanique qu’on retrouve partout aujourd’hui, dans les applications qui comptent tes jours consécutifs et t’envoient une notification quand tu manques à l’appel. On a appris la fidélisation à dix ans, sur un porte-clés.']}],
+specs:{t:'La bête, en chiffres', l:[
+ ['Sortie Japon','23 novembre 1996'],
+ ['Sortie Europe','1997'],
+ ['Écran','monochrome, 32 × 16 pixels'],
+ ['Commandes','trois boutons, pas un de plus'],
+ ['Espérance de vie','quelques jours, avec de la chance'],
+ ['Cause de décès la plus courante','un cours de mathématiques']]},
+plus:[
+ 'Plus de 80 millions d’exemplaires vendus dans le monde depuis le lancement.',
+ 'Une astuce circulait dans toutes les cours : régler l’horloge en arrière pour rembobiner le vieillissement. Ça marchait, et ça gâchait un peu le plaisir.',
+ 'Les contrefaçons envahissaient les marchés du samedi sous des noms approximatifs, Dinkie Dino et compagnie, souvent plus exigeantes que l’original.',
+ 'Il a existé un cimetière virtuel en ligne pour Tamagotchi décédés. Des gens y laissaient de vrais messages de condoléances, et ce n’était pas toujours au second degré.']},
+'furby':{q:'furby tiger jouet',
+art:[
+ {p:['Il te regardait. C’est ce que tout le monde retient. Le Furby avait des yeux qui s’ouvraient et se fermaient, et il parlait tout seul dans le noir.',
+     'Tiger Electronics le sort fin 1998. Il arrive en France pour les fêtes, et devient instantanément le cadeau qu’on ne trouve plus en rayon.']},
+ {t:'Le furbish, cette langue inventée',
+  p:['Le Furby démarrait en parlant furbish, un charabia maison, puis glissait progressivement vers le français au fil des jours. Il donnait l’illusion d’apprendre.',
+     'En réalité il n’apprenait rien du tout : le vocabulaire était déjà là, et se débloquait avec le temps de jeu. Une illusion parfaitement réglée, et parfaitement efficace.']},
+ {t:'Le jouet qui a inquiété la NSA',
+  p:['En 1999, la National Security Agency américaine a interdit les Furby dans ses locaux, craignant qu’ils enregistrent et répètent des conversations. Ils n’en étaient pas capables, mais la légende était trop belle.',
+     'Le vrai problème, à la maison, était plus prosaïque : il se réveillait au moindre bruit, la nuit, et personne ne savait comment l’éteindre. Retirer les piles était la seule solution connue.']}],
+specs:{t:'La créature, en chiffres', l:[
+ ['Sortie','automne 1998'],
+ ['Vendus la première année','environ 27 millions'],
+ ['Langue de naissance','le furbish'],
+ ['Capteurs','lumière, son, toucher, position'],
+ ['Bouton d’arrêt','aucun'],
+ ['Solution de secours','retirer les piles']]},
+plus:[
+ 'Plus de 40 millions d’exemplaires écoulés sur la durée de vie du jouet.',
+ 'Le mode « réveil dans la nuit » a traumatisé une génération de parents autant que d’enfants.',
+ 'Deux Furby posés côte à côte finissaient par se parler entre eux. Personne n’avait demandé ça.']},
+'le-walkman':{q:'walkman sony cassette',
+art:[
+ {p:['Avant lui, la musique était un lieu. Le salon, la chambre, la voiture. Après lui, la musique est devenue un bagage.',
+     'Sony lance le premier Walkman en 1979, mais c’est dans les années 90 qu’il devient l’objet de tout le monde, à portée d’argent de poche, décliné en cent modèles.']},
+ {t:'La bande-son personnelle',
+  p:['Le Walkman a inventé quelque chose qui nous paraît banal aujourd’hui : marcher dans la rue avec sa propre musique dans la tête, et voir le monde défiler comme un film dont on aurait choisi la bande originale.',
+     'Le trajet du collège, le bus, la salle d’attente : autant de moments morts que la cassette transformait.']},
+ {t:'Les gestes qu’on a oubliés',
+  p:['Rembobiner en comptant dans sa tête. Retourner la cassette au milieu de l’album. Rattraper une bande mangée par le lecteur en tournant la bobine avec un stylo Bic, dont le capuchon avait exactement le bon diamètre.',
+     'Et surtout la compilation, enregistrée depuis la radio, doigt sur pause pour couper la voix de l’animateur. Chaque cassette était un objet unique, offert ou gardé.']}],
+specs:{t:'Le baladeur, en pratique', l:[
+ ['Premier modèle','Sony TPS-L2, 1979'],
+ ['Support','cassette audio, 60 ou 90 minutes'],
+ ['Autonomie','deux piles bâton, une semaine environ'],
+ ['Fonction de luxe','l’autoreverse, qui évitait de retourner la K7'],
+ ['Outil de réparation','un stylo Bic'],
+ ['Nombre de titres emportés','une vingtaine, et il fallait choisir']]},
+plus:[
+ 'Toutes générations confondues, la gamme Walkman a dépassé les 400 millions d’exemplaires.',
+ 'La compilation enregistrée pour quelqu’un était une déclaration à part entière. L’ordre des morceaux comptait autant que les morceaux.',
+ 'Le passage au Discman a tout changé, sauf un détail : il sautait au moindre pas de course. On est revenu à la cassette pour aller au sport.']},
+'le-minitel':{q:'minitel france telecom 3615',
+art:[
+ {p:['La France a eu Internet avant Internet. Elle l’a même eu chez elle, gratuitement, dix ans avant tout le monde.',
+     'Le Minitel est déployé à partir de 1982, distribué sans frais aux abonnés du téléphone. Un terminal brun, un clavier, un modem, et un annuaire électronique qui remplaçait l’annuaire papier.']},
+ {t:'3615 et compagnie',
+  p:['On composait un numéro, puis un code, et on tombait dans un service. Les billets de train, la banque, les résultats du bac, les petites annonces, la météo, les jeux, les messageries.',
+     'La facturation se faisait à la minute et arrivait directement sur la facture de téléphone. C’est ce détail, invisible pour l’utilisateur, qui a créé toute une économie et quelques factures mémorables.']},
+ {t:'Une fin lente et digne',
+  p:['Le Minitel a survécu très longtemps à l’arrivée du web, porté par les habitudes et par les professionnels. Le service a définitivement fermé le 30 juin 2012.',
+     'Il reste le plus grand succès français de l’informatique grand public, et le seul réseau national que des millions de gens ont su utiliser sans jamais avoir appris.']}],
+specs:{t:'Le terminal, en pratique', l:[
+ ['Déploiement','à partir de 1982'],
+ ['Prix du terminal','gratuit, prêté par France Télécom'],
+ ['Écran','monochrome, texte et semi-graphique'],
+ ['Débit','1 200 bits par seconde en réception'],
+ ['Services accessibles','environ 25 000 au sommet'],
+ ['Terminaux en service au sommet','environ 9 millions'],
+ ['Fermeture','30 juin 2012']]},
+plus:[
+ 'La touche Envoi valait clic de souris, quinze ans avant que les souris entrent dans les foyers.',
+ 'Les messageries roses ont financé une bonne partie de l’écosystème, et alimenté un nombre considérable de disputes familiales à la réception de la facture.',
+ 'Le bruit de connexion du Minitel n’a rien à voir avec celui du modem 56k. C’était plus court, plus sec, et ça sentait déjà l’administration.',
+ 'Au sommet, environ 25 000 services étaient accessibles, du plus utile au plus improbable. La communication coûtait autour d’un franc la minute.']},
+'le-bi-bop':{q:'bibop france telecom telephone',
+art:[
+ {p:['Le Bi-Bop est l’ancêtre du portable, et un magnifique raté. France Télécom le lance à Paris en 1993 : un téléphone sans fil, mais qui ne fonctionnait qu’à proximité d’une borne.',
+     'Ces bornes étaient signalées par un autocollant bleu et blanc collé sur les lampadaires et les vitrines. Il fallait se placer dessous pour appeler.']},
+ {t:'Téléphoner sous un lampadaire',
+  p:['On voyait donc des gens debout dans la rue, immobiles au pied d’un poteau, en pleine conversation. La scène est restée dans les mémoires parisiennes.',
+     'Et il y avait une limite absurde : on pouvait appeler, mais pas toujours être appelé. Le service a été arrêté en 1997, quand le GSM a rendu l’idée obsolète.']}],
+specs:{t:'L’objet, en pratique', l:[
+ ['Lancement','1993, Paris et quelques villes'],
+ ['Portée','quelques dizaines de mètres autour d’une borne'],
+ ['Signal des bornes','un autocollant bleu et blanc'],
+ ['Abonnés au maximum','environ 100 000'],
+ ['Arrêt du service','1997']]},
+plus:[
+ 'Le Bi-Bop repose sur la norme CT2, une technologie qui n’a jamais vraiment décollé nulle part.',
+ 'Il a échoué pour une raison simple : il demandait à l’utilisateur de s’adapter au réseau, alors que le GSM faisait l’inverse.',
+ 'Sa vraie postérité est involontaire : il a habitué les Français à l’idée qu’on pouvait téléphoner dehors.',
  'On ne pouvait pas recevoir d’appel en marchant — seulement en appeler. Les Parisiens s’agglutinaient sous les bornes comme des fumeurs sous un auvent.']},
-'le-tatoo':{q:'tatoo france telecom',plus:[
- 'Le Tatoo affichait des messages numériques ou du texte court. Le rituel : recevoir un « bip », trouver une cabine, rappeler. La conversation avait donc toujours un temps de retard.',
- 'Son concurrent chez SFR s’appelait le Tam-Tam. La guerre des bippers a duré trois ans, puis le portable a tout balayé.']},
+'le-tatoo':{q:'tatoo bipper message',
+art:[
+ {p:['Avant le SMS, il y a eu le bip. Le Tatoo, lancé par France Télécom en 1996, tenait dans une poche et ne savait faire qu’une chose : recevoir.',
+     'Un correspondant appelait un numéro, dictait ou tapait un message, et ton boîtier sonnait. À toi de trouver une cabine pour rappeler.']},
+ {t:'Une conversation avec un temps de retard',
+  p:['Le rituel était immuable. Le bip, la fouille dans les poches pour la télécarte, la cabine, la file d’attente devant la cabine.',
+     'Cette lenteur créait un suspense qu’on a complètement perdu. Recevoir un message sans savoir de qui il venait pouvait occuper une demi-heure d’imagination.']},
+ {t:'La guerre des bippers',
+  p:['SFR a répondu avec le Tam-Tam, Kobby et quelques autres ont suivi. La bataille a duré trois ans à peine.',
+     'Puis les forfaits mobiles sont devenus abordables, et tout ce petit monde a disparu d’un coup. Le bipper est l’exemple parfait d’une technologie tuée par la suivante avant d’avoir eu le temps de vieillir.']}],
+specs:{t:'Le boîtier, en pratique', l:[
+ ['Lancement','1996'],
+ ['Sens de communication','réception uniquement'],
+ ['Message','numérique ou texte court'],
+ ['Pour répondre','trouver une cabine'],
+ ['Durée de vie du marché','trois ans environ']]},
+plus:[
+ 'Le Tatoo se portait à la ceinture, ce qui était alors considéré comme élégant.',
+ 'Certains s’envoyaient des codes chiffrés convenus à l’avance, faute de pouvoir écrire. Le 1 4 3 signifiait « je t’aime », par le nombre de lettres de chaque mot.',
+ 'Recevoir un bip en classe était moins grave qu’un Tamagotchi : ça ne faisait qu’un bruit, et on pouvait faire semblant de ne pas avoir entendu.']},
 'nokia-3210':{q:'nokia snake',
 art:[
  {p:['Pour beaucoup, c’est le premier téléphone portable. Et il est difficile de faire plus fin de siècle que ça.',
@@ -43,7 +144,7 @@ art:[
  {t:'Le chiffre complètement fou',
   p:['Environ cent soixante millions de Nokia 3210 ont été vendus dans le monde.',
      'Le plus drôle, c’est qu’il en aurait donc écoulé davantage que le mythique 3310, crédité d’environ cent vingt-six millions d’exemplaires. Le 3310 a gagné la bataille des mèmes. Le 3210 avait gagné celle des ventes.']}],
-specs:{t:'Quelques souvenirs très 3210',l:[
+specs:{t:'Quelques souvenirs très 3210', l:[
  ['Écran','monochrome, 84 × 48 pixels'],
  ['Poids','151 grammes'],
  ['Appareil photo','absolument pas'],
@@ -57,92 +158,300 @@ plus:[
  'Réussir à taper un SMS en T9 sans regarder le clavier était officiellement une compétence technologique de très haut niveau.',
  'Les coques interchangeables ont créé tout un marché de contrefaçons sur les marchés du samedi matin.',
  'Le 3210 est probablement l’instant où le téléphone est passé de l’outil de communication à l’objet personnel. Design, personnalisation, jeux, messages, sonneries : tout ce qui allait définir notre relation au téléphone était déjà là, en miniature.']},
-'la-disquette-3-5':{q:'disquette ordinateur windows',plus:[
- '1,44 Mo : une seule photo de smartphone actuel ne tiendrait pas dessus. On y mettait pourtant l’exposé, trois jeux shareware et le CV des parents.',
- 'Le loquet de protection en écriture — la petite languette qu’on faisait coulisser — était le premier geste de sécurité informatique d’une génération.']},
-'le-cd-rom-aol':{q:'aol internet en ligne',plus:[
- 'AOL a pressé plus d’un milliard de CD promotionnels dans le monde. À un moment, la moitié des CD produits sur Terre étaient des CD AOL.',
- 'Les « 100 heures gratuites » exigeaient un numéro de carte bancaire. Beaucoup de familles ont découvert l’abonnement reconduit sur la facture, trois mois plus tard.']},
-'l-appareil-photo-jetable':{q:'kodak pellicule photo',plus:[
- 'Le jetable, c’était 27 poses — parfois 24. On cadrait dans un viseur minuscule, sans mise au point, et le flash se chargeait avec un sifflement strident.',
- 'Le développement en une heure au centre commercial était un luxe. Le standard, c’était trois jours à une semaine — et l’enveloppe des tirages s’ouvrait toujours dans la voiture.']},
-'la-telecarte':{q:'telecarte cabine telephonique france telecom',plus:[
- 'La France comptait environ 300 000 cabines au milieu des années 90. La télécarte à puce, invention française, s’est vendue à des centaines de millions d’exemplaires.',
- 'Les télécartes publicitaires sont devenues des objets de collection cotés, avec argus, salons et vitrines dédiées.']},
-'le-magnetoscope':{q:'magnetoscope vhs philips',plus:[
- 'Programmer un enregistrement demandait de comprendre le ShowView, un code numérique publié dans les programmes télé. Peu y sont arrivés du premier coup.',
- 'La bataille VHS contre Betamax et V2000 était déjà gagnée en 1990 — mais les cassettes V2000 des familles pionnières traînent encore dans des cartons, illisibles.']},
-'les-pogs':{q:'pog',plus:[
- 'Le jeu vient d’Hawaï : des capsules de jus de fruit Passion-Orange-Goyave — P.O.G. En France, l’explosion date de 1995, via les paquets de chips et les fast-foods.',
- 'La règle officielle se jouait « pour de vrai » : les POGS retournés étaient gagnés définitivement. C’est cette règle qui a fait interdire le jeu dans les écoles — c’était du jeu d’argent en carton.']},
-'les-panini-france-98':{q:'france 98 coupe du monde',plus:[
- 'L’album France 98 comptait 561 vignettes. Les doubles s’échangeaient à la récré selon un cours du jour parfaitement connu de tous.',
- 'La légende de la « vignette introuvable » était vraie : certaines étaient imprimées en quantités moindres. Panini ne l’a jamais officiellement confirmé pour 98.']},
-'les-cartes-pokemon':{q:'pokemon france',plus:[
- 'Le jeu de cartes arrive en France fin 1999, après la Game Boy et le dessin animé. En quelques mois, des écoles l’interdisent — rackets et échanges en larmes à la clé.',
- 'Le Dracaufeu première édition, introuvable alors, se vend aujourd’hui plusieurs dizaines de milliers d’euros aux enchères.']},
-'les-billes':{q:'billes recreation',plus:[
- 'La hiérarchie officielle : la bille simple, l’œil-de-chat, l’agate, le calot (gros), le boulard (énorme). Les taux de change variaient d’une cour à l’autre, comme des monnaies locales.',
- 'Le « pot » — creuser un trou et y faire rouler les billes — était interdit dans la moitié des écoles pour cause de trous dans la cour.']},
-'le-yo-yo-a-roulement':{q:'yo-yo jouet noel',plus:[
+'la-disquette-3-5':{q:'disquette ordinateur windows',
+art:[
+ {p:['Un carré de plastique rigide, un volet métallique qui coulisse, une étiquette griffonnée au feutre. La disquette 3,5 pouces a transporté tout ce que la décennie a produit sur ordinateur.',
+     'Elle contenait 1,44 mégaoctet. Une seule photo prise avec un téléphone d’aujourd’hui n’y tiendrait pas.']},
+ {t:'Ce qu’on y mettait quand même',
+  p:['L’exposé de géographie, trois jeux récupérés chez un copain, le CV des parents, et une sauvegarde de partie que personne n’osait effacer.',
+     'On compressait, on découpait un fichier sur plusieurs disquettes, on numérotait au feutre. Perdre la disquette 2 sur 3 était une catastrophe complète.']},
+ {t:'Sa fragilité légendaire',
+  p:['Un aimant, une poche arrière, un radiateur, un trajet en bus : tout pouvait la tuer. Le message « secteur introuvable » a fait pleurer des générations d’élèves la veille d’un rendu.',
+     'C’est aussi pour ça qu’elle survit encore aujourd’hui, dessinée en tout petit, comme icône du bouton Enregistrer. Des gens s’en servent chaque jour sans avoir jamais vu l’objet.']}],
+specs:{t:'Le support, en chiffres', l:[
+ ['Capacité','1,44 mégaoctet'],
+ ['Format','3,5 pouces, coque rigide'],
+ ['Ennemis','les aimants, la chaleur, le fond de cartable'],
+ ['Étiquetage','au feutre, souvent raturé'],
+ ['Postérité','l’icône du bouton Enregistrer']]},
+plus:[
+ 'Le petit onglet à pousser dans le coin servait à protéger la disquette contre l’écriture. On le poussait toujours après avoir effacé quelque chose par erreur.',
+ 'La disquette 5 pouces un quart, souple et plus grande, l’avait précédée. Elle se pliait vraiment, ce qui explique son surnom de disquette molle.',
+ 'Copier une disquette prenait assez de temps pour aller chercher un goûter et revenir.']},
+'le-cd-rom-aol':{q:'aol internet cd rom',
+art:[
+ {p:['Ils arrivaient partout. Dans la boîte aux lettres, dans les magazines, dans les paquets de céréales, à la caisse du supermarché. Les CD-ROM AOL ont été distribués par centaines de millions.',
+     'Chacun promettait des heures de connexion gratuites, et chacun servait surtout à convertir un foyer de plus à Internet.']},
+ {t:'La plus grande campagne de l’histoire du disque',
+  p:['AOL a dépensé des sommes considérables pour inonder les foyers occidentaux. L’entreprise a reconnu que ce plan représentait une part énorme de son budget marketing, et qu’il fonctionnait.',
+     'En France, les concurrents ont suivi : Wanadoo, Club-Internet, Infonie. Le tiroir du meuble de télévision se remplissait de galettes qu’on gardait « au cas où ».']},
+ {t:'Ce que ça a vraiment fait',
+  p:['Ces disques ont installé Internet dans des maisons qui ne l’auraient jamais demandé. Le parent qui essaie « juste pour voir » est le vrai point de bascule de la décennie.',
+     'Ils ont aussi servi de sous-verres, de disques à lancer, et de décorations pour effrayer les oiseaux dans les jardins. Rien ne se perdait.']}],
+specs:{t:'La galette, en chiffres', l:[
+ ['Distribution','boîtes aux lettres, magazines, magasins'],
+ ['Promesse habituelle','plusieurs dizaines d’heures gratuites'],
+ ['Concurrents français','Wanadoo, Club-Internet, Infonie'],
+ ['Second usage courant','sous-verre'],
+ ['Troisième usage','épouvantail à oiseaux']]},
+plus:[
+ 'On estime à plusieurs centaines de millions le nombre de disques envoyés au fil de la campagne.',
+ 'Les heures gratuites finissaient toujours par coûter cher : la connexion était facturée à la minute par le téléphone.',
+ 'Installer AOL monopolisait la ligne. Impossible d’appeler pendant que quelqu’un naviguait, ce qui a réglé beaucoup de conflits familiaux à l’avantage du plus rapide.',
+ 'AOL a pressé plus d’un milliard de CD promotionnels dans le monde. À un moment, la moitié des CD produits sur Terre étaient des CD AOL.']},
+'l-appareil-photo-jetable':{q:'appareil photo kodak jetable',
+art:[
+ {p:['Vingt-sept poses. Pas une de plus. C’est tout ce que tu avais pour ramener des souvenirs d’une colonie, d’un mariage ou d’un voyage scolaire.',
+     'L’appareil jetable coûtait le prix d’un repas, se glissait dans un sac, et se rendait entier au développement.']},
+ {t:'L’économie du déclic',
+  p:['Chaque photo comptait, donc chaque photo se méritait. On ne mitraillait pas, on attendait le bon moment, on cadrait vraiment.',
+     'Puis venait la molette à faire tourner avec le pouce, ce petit cliquetis qui armait la photo suivante, et le compteur qui descendait inexorablement.']},
+ {t:'Trois semaines de suspense',
+  p:['On déposait la pellicule chez le photographe ou au supermarché, et on attendait. Une semaine, parfois trois.',
+     'La pochette rendue contenait toujours des ratés : des doigts devant l’objectif, des photos toutes noires, quelqu’un qui cligne des yeux. On les gardait quand même, parce qu’il n’y avait pas de deuxième chance.']}],
+specs:{t:'La boîte, en pratique', l:[
+ ['Nombre de poses','27, parfois 24 ou 36'],
+ ['Flash','en option, et il fallait le charger'],
+ ['Écran de contrôle','aucun'],
+ ['Délai avant de voir le résultat','une à trois semaines'],
+ ['Taux de photos ratées','honorable, et assumé']]},
+plus:[
+ 'Le flash se chargeait avec un petit bouton et sifflait en montant en tension. Ce sifflement suffisait à faire poser tout le monde.',
+ 'Les appareils étaient réellement recyclés : les fabricants récupéraient le corps et remettaient une pellicule.',
+ 'On confiait souvent l’appareil aux enfants pendant les fêtes. Les meilleures photos de famille des années 90 sont prises à hauteur de un mètre vingt.']},
+'la-telecarte':{q:'telecarte cabine france telecom',
+art:[
+ {p:['Une carte plastifiée à puce dorée, achetée au bureau de tabac, et qui donnait droit à cinquante ou cent vingt unités. C’était la monnaie du téléphone public.',
+     'Les cabines à pièces ont disparu au profit de la carte au tournant des années 90, notamment parce qu’on ne pouvait plus les fracturer.']},
+ {t:'Le compteur qui descend',
+  p:['L’écran affichait les unités restantes, et elles filaient plus vite qu’on ne parlait. Les conversations importantes se faisaient l’œil rivé sur le compteur.',
+     'Il fallait annoncer l’essentiel dans les premières secondes, quitte à raccrocher au milieu d’une phrase quand la carte rendait l’âme.']},
+ {t:'Une collection nationale',
+  p:['Les télécartes étaient illustrées, souvent joliment, parfois par des marques ou des campagnes. Elles sont devenues un objet de collection à part entière, avec ses catalogues et ses bourses d’échange.',
+     'La télécartophilie a eu ses passionnés et ses raretés. C’est probablement le seul moyen de paiement français à être entré dans les albums.']}],
+specs:{t:'La carte, en pratique', l:[
+ ['Valeurs courantes','50 ou 120 unités'],
+ ['Achat','bureau de tabac, poste, kiosque'],
+ ['Affichage','unités restantes, en direct'],
+ ['Fin de vie','conservée, offerte ou collectionnée'],
+ ['Nom des collectionneurs','télécartophiles']]},
+plus:[
+ 'Les cabines françaises ont été retirées du service public à partir de 2015, faute d’usage.',
+ 'On glissait sa télécarte dans son portefeuille comme une carte bancaire, et on la comptait dans son budget de la semaine.',
+ 'Les séries limitées liées à des événements ou à des films valent aujourd’hui bien plus que leur valeur d’usage.',
+ 'La France comptait à peu près 300 000 cabines au milieu de la décennie. La carte à puce, invention française, les a toutes équipées.']},
+'le-magnetoscope':{q:'magnetoscope vhs cassette video',
+art:[
+ {p:['Le magnétoscope a fait quelque chose d’énorme et qu’on a oublié : il a rendu la télévision désobéissante. Avant lui, on regardait quand la chaîne décidait.',
+     'Avec lui, on enregistrait, on gardait, on revoyait. Le programme du samedi soir pouvait devenir le mercredi après-midi.']},
+ {t:'La programmation, ce sport de haut niveau',
+  p:['Régler un enregistrement demandait de comprendre une notice, de connaître l’heure exacte et de croire très fort. On ratait le début, on coupait la fin, on enregistrait la chaîne d’à côté.',
+     'Le ShowView, ce code numérique publié dans les magazines de télévision, était censé tout simplifier. Il a surtout ajouté une occasion supplémentaire de se tromper.']},
+ {t:'La bande, cet objet vivant',
+  p:['Une cassette VHS s’usait. Elle sautait, elle neigeait, elle finissait par avaler la bande. On rembobinait avec un crayon, on nettoyait les têtes avec une cassette prévue pour ça.',
+     'Et il y avait la règle sacrée du vidéoclub, imprimée sur l’étiquette : merci de rembobiner. Personne ne le faisait, tout le monde s’en plaignait.']}],
+specs:{t:'L’appareil, en pratique', l:[
+ ['Format dominant','VHS, victorieux du Betamax'],
+ ['Durée d’une cassette','180 minutes en standard, 240 en longue durée'],
+ ['Qualité en longue durée','discutable, mais on acceptait'],
+ ['Horloge','clignotant sur 00:00 dans la moitié des foyers'],
+ ['Règle non écrite','rembobiner avant de rendre']]},
+plus:[
+ 'La cassette de mariage ou de communion était systématiquement enregistrée en longue durée, ce qui explique la qualité douteuse des archives familiales.',
+ 'On effaçait par-dessus une vieille cassette pour économiser, et on retrouvait vingt ans plus tard trois minutes du film précédent à la fin de la bande.',
+ 'Le compteur à quatre chiffres servait de sommaire. On notait les positions au stylo sur la jaquette.',
+ 'Programmer un enregistrement demandait de comprendre le ShowView, un code numérique publié dans les programmes télé. Peu y sont arrivés du premier coup.']},
+'les-pogs':{q:'pogs jeu cour recreation',
+art:[
+ {p:['Des disques de carton, un slammer plus lourd pour taper dessus, et une règle simple : ce qui se retourne t’appartient.',
+     'Le jeu débarque en France en 1995 et prend la cour de récréation en quelques semaines. Les marques, les dessins animés et les fast-foods s’y engouffrent aussitôt.']},
+ {t:'Un jeu d’argent déguisé',
+  p:['C’est exactement là qu’est le problème. On jouait ses pogs, on en gagnait, on en perdait, parfois les plus rares. Les brimades et les échanges déséquilibrés ont suivi.',
+     'Résultat, beaucoup d’écoles françaises les ont interdits en moins d’un an. Le phénomène s’est éteint presque aussi vite qu’il était né.']},
+ {t:'La hiérarchie des trésors',
+  p:['Le pog en carton ordinaire ne valait rien. Le brillant valait quelque chose. Le slammer en métal valait une négociation entière.',
+     'On les rangeait dans des tubes en plastique transparent, classés par valeur, et on les sortait avec la lenteur d’un joueur de poker.']}],
+specs:{t:'Le jeu, en pratique', l:[
+ ['Origine','un jeu hawaïen, repris et industrialisé'],
+ ['Arrivée en France','1995'],
+ ['Matériel','des pogs en carton, un slammer'],
+ ['Règle','ce qui se retourne est gagné'],
+ ['Durée du phénomène','moins de deux ans'],
+ ['Fin','interdiction dans de nombreuses écoles']]},
+plus:[
+ 'Le nom vient d’une boisson hawaïenne, Passion Orange Guava, dont on utilisait les capsules cartonnées comme jetons.',
+ 'Le slammer en métal était souvent interdit avant les pogs eux-mêmes, parce qu’il abîmait les disques des autres.',
+ 'Les séries liées aux films et aux dessins animés ont créé les premières vraies raretés de cour de récréation, avant les cartes Pokémon.']},
+'les-panini-france-98':{q:'panini france 98 coupe du monde vignettes',
+art:[
+ {p:['L’album Panini de la Coupe du monde 1998 est probablement l’objet le plus partagé de la décennie en France. Tout le monde en avait un, y compris ceux qui ne regardaient pas le football.',
+     'Le principe n’a pas changé depuis : un album à remplir, des pochettes vendues à l’unité, et l’implacable loi des doublons.']},
+ {t:'La cour de récréation devient une bourse',
+  p:['On arrivait avec sa pile, on annonçait ses doubles, et le marché s’ouvrait. Certaines vignettes valaient trois autres, parfois cinq.',
+     'Les brillants des écussons étaient la vraie monnaie forte. Un écusson du Brésil ne se négociait pas, il se cédait à contrecœur.']},
+ {t:'L’été où la France a gagné',
+  p:['Et puis il y a eu le 12 juillet. L’album a cessé d’être une collection pour devenir un souvenir daté, rangé avec le maillot et les photos.',
+     'Beaucoup d’albums de 1998 existent encore dans les greniers français, incomplets, avec toujours les mêmes cases vides.']}],
+specs:{t:'La collection, en pratique', l:[
+ ['Vignettes à coller','561'],
+ ['Compétition','Coupe du monde 1998, en France'],
+ ['Contenu d’une pochette','quelques vignettes, jamais celle qu’il faut'],
+ ['Monnaie d’échange','les écussons brillants'],
+ ['Taux de complétion','faible, et c’est le principe'],
+ ['Lieu de stockage actuel','un grenier']]},
+plus:[
+ 'La règle non écrite voulait qu’on ne colle jamais une vignette avant d’être certain de ne pas pouvoir l’échanger.',
+ 'Panini colle des vignettes depuis 1961 et publie un album de Coupe du monde depuis 1970. La mécanique n’a pas bougé d’un pouce.',
+ 'Les albums complets de 1998 se négocient aujourd’hui à des prix sans rapport avec le coût des pochettes de l’époque.',
+ 'L’album comptait 561 vignettes. Personne, dans aucune cour de France, n’a jamais rencontré quelqu’un qui l’ait terminé sans en commander à Panini.']},
+'les-cartes-pokemon':{q:'pokemon cartes collection',
+art:[
+ {p:['Pokémon arrive en France en 1999 et s’installe partout à la fois : la télévision, la Game Boy, et surtout les cartes.',
+     'Le jeu de cartes à collectionner avait ses règles, mais l’immense majorité des enfants ne les a jamais apprises. On collectionnait, on échangeait, on comparait.']},
+ {t:'La brillante et les autres',
+  p:['Toute la valeur tenait en un mot : brillante. Une carte holographique changeait ton statut dans la cour pour la journée.',
+     'Le Dracaufeu de la première série était l’objet de convoitise absolu. Les négociations autour d’un seul exemplaire pouvaient occuper une récréation entière.']},
+ {t:'Interdit à l’école, comme les POGS',
+  p:['La suite était écrite. Échanges déséquilibrés entre grands et petits, larmes, vols, et interdiction dans un grand nombre d’établissements dès 2000.',
+     'À la différence des POGS, Pokémon a survécu à l’interdiction, et se porte très bien vingt-cinq ans plus tard. Les cartes de 1999 en bon état valent aujourd’hui des sommes considérables.']}],
+specs:{t:'La collection, en pratique', l:[
+ ['Arrivée en France','1999'],
+ ['Diffusion du dessin animé','TF1'],
+ ['Carte la plus convoitée','Dracaufeu holographique'],
+ ['Règles du jeu','connues de très peu de joueurs'],
+ ['Sort scolaire','interdiction fréquente dès 2000'],
+ ['Valeur aujourd’hui','sans commune mesure avec l’époque']]},
+plus:[
+ 'Le premier jeu Game Boy est sorti au Japon en 1996, mais la France a tout découvert en même temps trois ans plus tard.',
+ 'On protégeait les cartes rares dans des pochettes plastiques, puis dans des classeurs, avec un sérieux d’archiviste.',
+ 'La question « tu me la échanges ? » a probablement été prononcée plus souvent que n’importe quelle phrase de cour de récréation dans les années 1999 et 2000.',
+ 'Un Dracaufeu de première édition en parfait état se négocie aujourd’hui plusieurs dizaines de milliers d’euros. Il dormait alors dans un classeur, entre deux cartes sans valeur.']},
+'les-billes':{q:'billes jeu cour recreation',
+art:[
+ {p:['Le plus vieux jeu de la cour, et le seul qui ait traversé toute la décennie sans jamais être à la mode ni jamais disparaître.',
+     'Une bille se gagne, se perd, se troque. Un sac en tissu, un creux dans la terre, et une partie commence.']},
+ {t:'La monnaie de la cour',
+  p:['La bille ordinaire valait une unité. L’œil-de-chat en valait deux. Le boulard, plus gros, en valait cinq ou dix selon l’humeur du marché.',
+     'Certains arrivaient à l’école avec un sac lourd et repartaient les poches vides. D’autres faisaient fortune. Le tout sans qu’aucun adulte ne comprenne jamais le système de change.']},
+ {t:'Les jeux, les vrais',
+  p:['Le pot, où il fallait faire entrer sa bille dans un trou. La poursuite, où on tirait sur la bille de l’autre. Le triangle tracé à la craie, où l’on plaçait sa mise.',
+     'Chaque école avait ses variantes, ses règles maison et son arbitre officieux. Personne ne les avait écrites, tout le monde les connaissait.']}],
+specs:{t:'Le trésor, en pratique', l:[
+ ['Contenant','un sac en tissu, cordon coulissant'],
+ ['Unité de base','la bille en verre ordinaire'],
+ ['Valeur haute','le boulard, ou l’œil-de-chat'],
+ ['Terrain','un creux dans la terre, un triangle à la craie'],
+ ['Arbitrage','coutumier, et discuté']]},
+plus:[
+ 'Les billes en agate, plus lourdes et plus régulières, étaient jugées déloyales dans beaucoup d’écoles.',
+ 'Le sac de billes se cachait avant de rentrer à la maison quand la journée avait mal tourné.',
+ 'C’est l’un des rares jeux d’argent tolérés par les adultes, à condition que personne ne prononce le mot argent.',
+ 'La hiérarchie complète allait de la bille simple à l’œil-de-chat, puis l’agate, le calot et enfin le boulard. Chaque école avait son propre taux de change.']},
+'le-yo-yo-a-roulement':{q:'yoyo jeu',
+art:[
+ {p:['Le yo-yo revient à la mode par vagues depuis un siècle. Celle de la fin des années 90 est la plus spectaculaire, parce que l’objet avait vraiment changé.',
+     'Le roulement à billes dans l’axe permettait au yo-yo de « dormir » plusieurs secondes en bas de la ficelle. C’est ce détail mécanique qui a tout déclenché.']},
+ {t:'Des figures devenues possibles',
+  p:['Avec un yo-yo classique, on montait et on descendait. Avec un yo-yo qui dort, on pouvait enchaîner : la promenade du chien, le tour du monde, la balançoire.',
+     'Les marques ont accompagné le mouvement avec des démonstrateurs qui passaient dans les cours d’école et les centres commerciaux. Voir un adulte réussir un trapèze suffisait à vider un rayon.']}],
+specs:{t:'L’objet, en pratique', l:[
+ ['Nouveauté décisive','le roulement à billes dans l’axe'],
+ ['Effet obtenu','le yo-yo « dort » en bas de la ficelle'],
+ ['Figures de base','la promenade du chien, le tour du monde'],
+ ['Consommable','la ficelle, qui cassait souvent'],
+ ['Blessure classique','le doigt violet, serré trop fort']]},
+plus:[
+ 'La ficelle se remplaçait, et son usure changeait complètement le comportement du yo-yo. Les joueurs sérieux en avaient d’avance.',
+ 'Régler la tension de la ficelle en la faisant tourner à vide était le premier geste de tout possesseur de yo-yo.',
+ 'La mode est retombée aussi vite qu’elle était montée, laissant des milliers de yo-yo au fond des tiroirs, ficelle emmêlée.',
  'Le grand retour du yo-yo (1998) venait des modèles à roulement à billes capables de « dormir » en bas du fil — la condition de toutes les figures.',
  '« La promenade du chien », « la tour Eiffel », « le berceau » : un répertoire complet de figures circulait par démonstration, de cour en cour.']},
-'le-scoubidou':{q:'scoubidou recreation',plus:[
- 'Les fils plastiques se vendaient en mercerie et en papeterie. Deux fils pour apprendre, quatre pour frimer, huit pour les virtuoses des colonies de vacances.',
- 'Le mot vient de la chanson de Sacha Distel (1958) — la mode des années 90 était déjà un revival de celle des années 60.']},
-
-/* ---------- MIAM ---------- */
-'malabar':{q:'malabar pub',plus:[
+'le-scoubidou':{q:'scoubidou jeu',
+art:[
+ {p:['Deux ou quatre fils de plastique creux, des couleurs criardes, et une technique qui se transmettait de main en main pendant les récréations.',
+     'Le scoubidou est un phénomène ancien, relancé en France à la fin des années 90 avec une intensité rare. On en trouvait dans les bureaux de tabac et les rayons de supermarché.']},
+ {t:'Une technique qui se transmet',
+  p:['Le point carré, le point rond, la torsade. Aucune notice, aucun tutoriel : quelqu’un te montrait, tu ratais, tu recommençais.',
+     'Le premier scoubidou réussi ressemblait rarement à quelque chose, mais on le portait quand même au poignet ou accroché au cartable.']},
+ {t:'L’économie du cadeau',
+  p:['On en offrait. Beaucoup. À la maîtresse, aux parents, aux copains, à des gens qui n’avaient rien demandé.',
+     'C’est probablement le premier objet que beaucoup d’enfants ont fabriqué eux-mêmes de bout en bout, et c’est ce qui explique qu’on s’en souvienne aussi bien.']}],
+specs:{t:'La technique, en pratique', l:[
+ ['Matière','fil de plastique creux, très souple'],
+ ['Nombre de fils','deux pour débuter, quatre pour frimer'],
+ ['Points de base','carré et rond'],
+ ['Apprentissage','oral, de main en main'],
+ ['Destinataire habituel','la maîtresse']]},
+plus:[
+ 'Le nom vient de la chanson de Sacha Distel de 1958, qui a donné son surnom à l’objet bien avant la vague des années 90.',
+ 'Les fils se vendaient à l’unité, ce qui a fait des scoubidous une monnaie d’échange à part entière.',
+ 'Terminer un scoubidou proprement, avec une boucle et un nœud net, demandait plus de patience que la plupart des devoirs de la semaine.']},
+'malabar':{q:'malabar pub',
+plus:[
  'Le personnage jaune musclé s’appelle simplement « Monsieur Malabar ». Les tatouages à l’eau sont apparus dans les années 70 et ont survécu jusqu’aux années 2000.',
  'Technique officielle de cour de récré : lécher le bras, appliquer, appuyer dix secondes, retirer lentement. Taux d’échec : 40 %, toujours au moment du retrait.']},
-'carambar':{q:'carambar pub',plus:[
+'carambar':{q:'carambar pub',
+plus:[
  'Né en 1954 d’une machine mal réglée qui produisait des barres trop longues — la légende officielle de la marque, parfaitement invérifiable et parfaitement adoptée.',
  'Les blagues apparaissent en 1969. « Blague Carambar » est depuis passé dans la langue comme catégorie officielle de l’humour français.']},
-'pitch-contre-choco-bn':{q:'bn biscuit pub gouter',plus:[
+'pitch-contre-choco-bn':{q:'bn biscuit pub gouter',
+plus:[
  'Le BN au chocolat et son visage découpé datent de 1993 — les yeux et le sourire troués dans le biscuit, qu’on mangeait toujours en premier.',
  'Le Pitch de Pasquier a gagné la guerre du cartable sur un argument simple : il ne s’émiettait pas. Le BN, lui, laissait des indices au fond du sac.']},
-'tang-nesquik':{q:'nesquik pub',plus:[
+'tang-nesquik':{q:'nesquik pub',
+plus:[
  'Le Tang se préparait censément dans un litre d’eau. Dans la pratique, la poudre se mangeait au doigt, directement au pot, en surveillant la porte de la cuisine.',
  'Quik est devenu Nesquik en 1999. Le lapin, lui, n’a jamais changé de métier.']},
-'champomy':{q:'champomy pub',plus:[
+'champomy':{q:'champomy pub',
+plus:[
  'Lancé en 1990 : du pur jus de pomme gazéifié dans une bouteille de champagne, bouchon qui saute compris. Le nom est un mot-valise devenu générique.',
  'C’était la première expérience de « trinquer comme les grands » — la sociologie du repas de fête française en 75 cl sans alcool.']},
-'chocapic-frosties-tresor':{q:'chocapic frosties cereales pub',plus:[
+'chocapic-frosties-tresor':{q:'chocapic frosties cereales pub',
+plus:[
  'Pico le chien arrive sur les boîtes de Chocapic au début des années 90. Tony le Tigre, lui, rugissait déjà depuis 1952 aux États-Unis.',
  'Le vrai débat du mercredi : verser les céréales avant ou après le lait. Les « après » étaient minoritaires mais organisés.']},
-'yop-danette-flanby':{q:'yop danette flanby pub',plus:[
+'yop-danette-flanby':{q:'yop danette flanby pub',
+plus:[
  'Le Yop se buvait au goulot en secouant d’abord — le geste faisait partie du produit. La pub des années 90 en a fait un marqueur d’adolescence.',
  'Le coup sec du Flanby retourné — d’un seul geste, caramel dessus — se transmettait de parent à enfant comme un savoir-faire artisanal.']},
-'kiri-babybel-ficello':{q:'kiri babybel pub fromage',plus:[
+'kiri-babybel-ficello':{q:'kiri babybel pub fromage',
+plus:[
  'La cire rouge du Babybel était officiellement un emballage. Officieusement : une pâte à modeler fournie avec le goûter, roulée en boule sur tous les bureaux de France.',
  'Le Ficello s’effilochait en rubans — le manger d’un coup était considéré comme un gâchis pur et simple.']},
-'mystere-calippo-pouss-pouss':{q:'glace pub miko',plus:[
+'mystere-calippo-pouss-pouss':{q:'glace pub miko',
+plus:[
  'Le Mystère — vanille, cœur meringue, éclats de noisette — doit son nom au fait qu’on ne savait pas ce qu’il y avait au centre. Le marketing le plus honnête de la décennie.',
  'Le Calippo se poussait par en dessous, et le dernier tiers se buvait fondu, directement au tube. C’était prévu par le fabricant, et c’était le meilleur moment.']},
-'pom-potes':{q:'pompotes compote pub',plus:[
+'pom-potes':{q:'pompotes compote pub',
+plus:[
  'Lancées en 1997 par Materne : la compote en gourde, à boire debout, en marchant, sans cuillère. Une petite révolution logistique du goûter.',
  'Le geste final — écraser la gourde pour aspirer la dernière goutte — produisait un bruit reconnu par toute une génération.']},
-'le-mcdo-du-samedi':{q:'mcdonald pub france',plus:[
+'le-mcdo-du-samedi':{q:'mcdonald pub france',
+plus:[
  'Le premier McDonald’s français ouvre à Strasbourg en 1979, mais l’explosion date des années 90 : plus de 500 restaurants ouverts dans la décennie.',
  'Le Happy Meal et son jouet sous licence — Disney surtout — a transformé le repas en événement à collectionner. La piscine à balles a fait le reste.']},
-'le-ketchup-du-vendredi':{q:'cantine ecole reportage',plus:[
+'le-ketchup-du-vendredi':{q:'cantine ecole reportage',
+plus:[
  'Le menu de cantine des années 90 avait ses classiques absolus : frites du vendredi, épinards redoutés, et le carré de chocolat glissé dans le pain à 16h.',
  'Le lait aromatisé à la fraise teintait tout en rose, y compris les souvenirs.']},
-
-/* ---------- QUELQUES DOSSIERS PHARES AILLEURS ---------- */
-'club-dorothee':{q:'club dorothee',plus:[
+'club-dorothee':{q:'club dorothee',
+plus:[
  'Jusqu’à 30 heures d’antenne par semaine au début des années 90 — un record absolu pour une émission jeunesse européenne.',
  'L’arrêt en août 1997 s’est fait sans véritable adieu à l’antenne. Le procès en violence fait aux dessins animés japonais y a beaucoup contribué.']},
-'fort-boyard':{q:'fort boyard',plus:[
+'fort-boyard':{q:'fort boyard',
+plus:[
  'Le fort, au large de La Rochelle, a été acheté par le département en 1988 pour un franc symbolique. L’émission est aujourd’hui vendue dans plus de 30 pays.',
  'Le Père Fouras s’appelle ainsi à cause de la ville de Fouras, en face du fort. Ses énigmes sont écrites par une équipe dédiée depuis 1990.']},
-'mega-drive':{q:'sega mega drive',plus:[
+'mega-drive':{q:'sega mega drive',
+plus:[
  '« SEGA, c’est plus fort que toi » est signé de l’agence française de SEGA en 1992. Le slogan a survécu à la console, à la marque, et à la décennie.',
  'Sonic a été conçu explicitement pour battre Mario en vitesse — le personnage devait être compréhensible en une image : bleu, piquant, pressé.']},
-'game-boy':{q:'game boy nintendo',plus:[
+'game-boy':{q:'game boy nintendo',
+plus:[
  'L’écran n’était même pas rétroéclairé, l’autonomie atteignait 30 heures. C’est exactement ce compromis qui a écrasé ses concurrentes en couleur.',
  'Tetris était vendu avec la console en Europe : le meilleur bundle de l’histoire du jeu vidéo, et la raison pour laquelle tout le monde y a joué, parents compris.']},
-'playstation':{q:'playstation sony pub',plus:[
+'playstation':{q:'playstation sony pub',
+plus:[
  'La PlayStation est née d’un divorce : Sony développait un lecteur CD pour Nintendo, qui a rompu l’accord en public. Sony a transformé l’humiliation en console.',
  'En France, la pub de lancement et le « Comité Anti-PlayStation » ont fait scandale et parlé d’eux — exactement comme prévu.']}
 };
