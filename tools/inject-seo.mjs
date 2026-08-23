@@ -52,7 +52,13 @@ for (const [file, cfg] of Object.entries(PAGES)) {
       url:SITE, description:desc, inLanguage:'fr-FR' });
     ld.push({ '@context':'https://schema.org','@type':'Organization', name:'RETOUR90.FR', url:SITE,
       logo:OG, email:'contact@retour90.fr',
-      description:"Site hommage français aux années 90 — archives d'époque, jeux et communauté." });
+      description:"Site hommage français aux années 90 — archives d'époque, jeux et communauté.",
+      // sameAs rattache officiellement les comptes au site pour les moteurs
+      sameAs:[
+        'https://www.instagram.com/retour_90/',
+        'https://www.facebook.com/profile.php?id=61593567744258',
+        'https://www.linkedin.com/company/retour90/'
+      ] });
     ld.push({ '@context':'https://schema.org','@type':'FAQPage',
       mainEntity: FAQ.map(([q,a]) => ({ '@type':'Question', name:q, acceptedAnswer:{ '@type':'Answer', text:a } })) });
   } else {

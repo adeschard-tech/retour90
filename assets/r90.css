@@ -609,3 +609,16 @@ textarea.field{resize:vertical}
   .doc-specs dl{grid-template-columns:1fr;gap:2px}
   .doc-specs dd{margin:0 0 10px;color:var(--cyan)}
 }
+
+/* ---------- les comptes du site, dans le pied de page ---------- */
+.sociaux{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.sociaux-t{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);margin-right:4px}
+.sociaux a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--line);border-radius:10px;color:var(--dim);
+  transition:color .15s,border-color .15s,transform .15s,background .15s}
+.sociaux a svg{width:19px;height:19px;fill:currentColor;display:block}
+.sociaux a:hover{color:#fff;background:var(--mag);border-color:var(--mag);transform:translateY(-2px)}
+@media (hover:none){
+  .sociaux a{width:46px;height:46px}
+}

@@ -44,6 +44,22 @@ const PAGES=[
 ];
 const HERE=(location.pathname.split('/').pop()||'index.html').replace('.html','')||'index';
 
+/* ---------- les comptes du site ----------
+   Une seule source pour les trois liens : le pied de page les affiche, et
+   inject-seo les recopie dans les données structurées pour que les moteurs
+   rattachent bien ces comptes à retour90.fr. */
+const RESEAUX=[
+ ['Instagram','https://www.instagram.com/retour_90/',
+  'M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.9-11.1a1.55 1.55 0 1 1-1.55-1.55A1.55 1.55 0 0 1 18.9 5.2z'],
+ ['Facebook','https://www.facebook.com/profile.php?id=61593567744258',
+  'M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12z'],
+ ['LinkedIn','https://www.linkedin.com/company/retour90/',
+  'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.07 2.07 0 1 1 2.06-2.07 2.07 2.07 0 0 1-2.06 2.07zM7.12 20.45H3.55V9h3.57zM22.22 0H1.77A1.76 1.76 0 0 0 0 1.73v20.54A1.76 1.76 0 0 0 1.77 24h20.45A1.76 1.76 0 0 0 24 22.27V1.73A1.76 1.76 0 0 0 22.22 0z']
+];
+const sociaux=()=>`<div class="sociaux"><span class="sociaux-t">Suis la chaîne</span>
+  ${RESEAUX.map(([n,u,d])=>`<a href="${u}" target="_blank" rel="noopener" title="${n}" aria-label="${n}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg></a>`).join('')}</div>`;
+
 function shell(){
   // topbar
   const tb=document.createElement('header');tb.className='topbar';
@@ -64,7 +80,8 @@ function shell(){
   ft.innerHTML=`<div class="footer-in">
     <div><div class="logo">RETOUR<b style="color:var(--mag)">90</b><i style="font-style:normal;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.2em">.FR</i></div>
       <p>Le site hommage aux années 90. Génériques, pubs, clips, buts, consoles, goûters :
-      tout ce qu'on a vécu entre 1990 et 1999, réuni au même endroit pour un grand bol de nostalgie.</p></div>
+      tout ce qu'on a vécu entre 1990 et 1999, réuni au même endroit pour un grand bol de nostalgie.</p>
+      ${sociaux()}</div>
     <div><h5>Les canaux</h5>${PAGES.slice(1,8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}</div>
     <div><h5>Et aussi</h5>${PAGES.slice(8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}
       <a href="club.html">S'inscrire au Club</a>
