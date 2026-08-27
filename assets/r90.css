@@ -622,3 +622,37 @@ textarea.field{resize:vertical}
 @media (hover:none){
   .sociaux a{width:46px;height:46px}
 }
+
+/* ---------- LA RECHERCHE, dans la barre du haut ---------- */
+.rech{position:relative;flex:0 0 auto;margin-left:12px}
+.rech input{width:210px;background:rgba(255,255,255,.06);border:1px solid var(--line);
+  border-radius:8px;padding:9px 12px;color:var(--phos);font-family:var(--mono);font-size:12px;
+  letter-spacing:.06em;transition:width .2s,border-color .15s,background .15s}
+.rech input::placeholder{color:var(--dim)}
+.rech input:focus{outline:none;width:300px;border-color:var(--mag);background:rgba(255,255,255,.1)}
+.rech-out{position:absolute;top:calc(100% + 8px);right:0;width:min(400px,92vw);max-height:70vh;
+  overflow-y:auto;background:#120D22;border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 30px 60px -20px #000;padding:6px;z-index:95}
+.rech-t{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);padding:10px 10px 6px}
+.rech-i{display:grid;grid-template-columns:auto 1fr;grid-template-areas:'v b' 'v s';
+  gap:1px 10px;align-items:center;padding:8px 10px;border-radius:8px;text-decoration:none}
+.rech-i img{grid-area:v;width:62px;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
+.rech-i b{grid-area:b;font-family:var(--body);font-size:14px;font-weight:normal;color:var(--phos);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rech-i span{grid-area:s;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.rech-i:hover,.rech-i.on{background:var(--mag)}
+.rech-i:hover b,.rech-i.on b,.rech-i:hover span,.rech-i.on span{color:#fff}
+.rech-vide{margin:0;padding:16px 12px;font-size:13px;color:var(--dim)}
+@media (max-width:860px){
+  .rech{order:3;width:100%;margin:6px 0 0}
+  .rech input,.rech input:focus{width:100%}
+  .rech-out{width:100%;left:0;right:auto}
+}
+@media (hover:none){
+  /* iOS agrandit la page dès qu'un champ descend sous 16px, et le doigt
+     réclame plus de hauteur que la souris. */
+  .rech input{font-size:16px;padding:11px 12px}
+  .rech-i{min-height:48px}
+  .rech-out{max-height:60vh;-webkit-overflow-scrolling:touch}
+}

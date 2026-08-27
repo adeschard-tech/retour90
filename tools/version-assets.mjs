@@ -11,7 +11,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 
 const ACTIFS = ['assets/r90.css', 'assets/r90.js', 'assets/data.js',
-                'assets/docs.js', 'assets/photos.js', 'assets/arcade.js'];
+                'assets/docs.js', 'assets/recherche.js', 'assets/photos.js', 'assets/arcade.js'];
 
 const empreinte = f => fs.existsSync(f)
   ? crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 8)

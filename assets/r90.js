@@ -67,7 +67,12 @@ function shell(){
     <a class="logo" href="index.html">RETOUR<b>90</b><i>.FR</i></a>
     <nav class="nav" aria-label="Canaux">${PAGES.filter(p=>p[0]!=='index').map(p=>
       `<a href="${p[0]}.html" ${HERE===p[0]?'aria-current="page"':''}><span class="n">${p[2]}</span>${p[1]}</a>`).join('')}
-    </nav></div>`;
+    </nav>
+    <div class="rech" role="search">
+      <input id="rech" type="search" autocomplete="off" placeholder="Chercher dans les archives…"
+        aria-label="Chercher dans les archives" aria-expanded="false" aria-controls="rechout">
+      <div id="rechout" class="rech-out" role="listbox" hidden></div>
+    </div></div>`;
   document.body.prepend(tb);
   // OSD
   const osd=document.createElement('div');osd.className='osd';
@@ -523,16 +528,96 @@ function renderMadeleine(){
 }
 
 /* ---------- recherche ---------- */
+/* ---------- LA RECHERCHE ----------
+   Elle cherche dans deux fonds à la fois : les dossiers du site, via l'index
+   construit à partir des pages, et les archives vidéo. Un résultat de dossier
+   ouvre directement la fiche sur sa page, un résultat vidéo la met à l'antenne
+   sur la page du canal concerné. */
+const sansAccent=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const CANAL={tele:'tele.html',manga:'manga.html',musique:'musique.html',cine:'cine.html',
+  jeux:'jeux.html',pub:'pub.html',sport:'sport.html',actu:'actu.html',objets:'objets.html',food:'food.html'};
+
+function chercher(q){
+  const m=sansAccent(q).split(/\s+/).filter(Boolean);
+  if(!m.length)return{docs:[],vids:[]};
+  const colle=(txt,poids)=>{const h=sansAccent(txt);
+    return m.every(x=>h.includes(x)) ? poids+(h.startsWith(m[0])?5:0) : 0};
+
+  const docs=(window.RECHERCHE||[]).map(e=>{
+    const s=e.k==='page' ? colle(e.t,10)
+      : (colle(e.t,10)||colle((e.g||'')+' '+(e.y||''),4)||colle(e.d||'',2));
+    return s?{e,s}:null;
+  }).filter(Boolean).sort((a,b)=>b.s-a.s).slice(0,6).map(x=>x.e);
+
+  const vids=R90.map(v=>{
+    const s=colle(v.title,10)||colle((v.channel||'')+' '+(v.year||''),4);
+    return s?{v,s}:null;
+  }).filter(Boolean).sort((a,b)=>b.s-a.s).slice(0,6).map(x=>x.v);
+
+  return{docs,vids};
+}
+
 function renderSearch(){
-  const inp=$('#search');if(!inp)return;
-  const out=$('#searchout');
-  inp.addEventListener('input',()=>{
-    const q=inp.value.trim().toLowerCase();
-    if(q.length<2){out.innerHTML='';return}
-    const hits=R90.filter(v=>(v.title+' '+(v.channel||'')+' '+(v.year||'')).toLowerCase().includes(q)).slice(0,12);
-    out.innerHTML=hits.length?`<div class="wall compact" style="margin-top:14px">${hits.map(card).join('')}</div>`
-      :`<p class="mini" style="margin-top:12px">RIEN DANS LES ARCHIVES POUR « ${esc(q).toUpperCase()} ». ESSAIE « DOROTHÉE », « SEGA », « ZIDANE »…</p>`;
+  const inp=$('#rech'),out=$('#rechout');if(!inp||!out)return;
+  let choix=-1;
+
+  const fermer=()=>{out.hidden=true;out.innerHTML='';inp.setAttribute('aria-expanded','false');choix=-1};
+
+  const peindre=q=>{
+    if(q.length<2){fermer();return}
+    const {docs,vids}=chercher(q);
+    if(!docs.length&&!vids.length){
+      out.innerHTML=`<p class="rech-vide">Rien pour « ${esc(q)} ». Essaie Dorothée, SEGA, Tamagotchi, Zidane.</p>`;
+      out.hidden=false;inp.setAttribute('aria-expanded','true');return;
+    }
+    out.innerHTML=
+      (docs.length?`<div class="rech-t">Les dossiers</div>`+docs.map(e=>
+        `<a class="rech-i" role="option" href="${e.k==='page'?e.p:e.p+'?doc='+e.s}">
+           <b>${esc(e.t)}</b><span>${esc(e.k==='page'?'la page':[e.y,e.g].filter(Boolean).join(' · '))}</span></a>`).join(''):'')+
+      (vids.length?`<div class="rech-t">Les archives vidéo</div>`+vids.map(v=>
+        `<a class="rech-i" role="option" href="${(CANAL[v.cat]||'index.html')+'?v='+v.id}">
+           <img loading="lazy" src="${thumbHQ(v.id)}" alt=""><b>${esc(v.title)}</b>
+           <span>${esc([v.year,v.channel].filter(Boolean).join(' · '))}</span></a>`).join(''):'');
+    out.hidden=false;inp.setAttribute('aria-expanded','true');choix=-1;
+  };
+
+  inp.addEventListener('input',()=>peindre(inp.value.trim()));
+  inp.addEventListener('focus',()=>{if(inp.value.trim().length>1)peindre(inp.value.trim())});
+  inp.addEventListener('keydown',e=>{
+    const items=$$('.rech-i',out);
+    if(e.key==='Escape'){fermer();inp.blur();return}
+    if(!items.length)return;
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+      e.preventDefault();
+      choix=(choix+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;
+      items.forEach((it,i)=>it.classList.toggle('on',i===choix));
+      items[choix].scrollIntoView({block:'nearest'});
+    }
+    if(e.key==='Enter'&&choix>=0){e.preventDefault();items[choix].click()}
   });
+  document.addEventListener('click',e=>{if(!e.target.closest('.rech'))fermer()});
+  /* le raccourci de tous les moteurs : une barre oblique met le curseur ici */
+  addEventListener('keydown',e=>{
+    if(e.key==='/'&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+      e.preventDefault();inp.focus();inp.select();
+    }
+  });
+}
+
+/* Arrivée depuis la recherche : on ouvre le dossier ou on lance la vidéo demandée. */
+function ouvrirDepuisURL(){
+  const p=new URLSearchParams(location.search);
+  const d=p.get('doc'),v=p.get('v');
+  if(d){
+    const f=$$('.fiche').find(x=>slugify(($('.h',x)||{}).textContent||'')===d);
+    if(f){f.scrollIntoView({block:'center'});setTimeout(()=>f.click(),350)}
+  }
+  if(v){
+    const carte=$$('.vid').find(x=>x.dataset.id===v);
+    const info=R90.find(x=>x.id===v);
+    if(carte)carte.click();
+    else if(info)tvPlay(info.id,info.title,null);
+  }
 }
 
 /* ---------- LE DOSSIER — toute fiche s'ouvre : infos, anecdotes,
@@ -763,4 +848,5 @@ document.addEventListener('DOMContentLoaded',()=>{
      appui ne lance rien et il faut toucher une deuxième fois. */
   chargerAPI(()=>{});
   if(window.R90PAGE)try{R90PAGE()}catch(e){console.error(e)}
+  ouvrirDepuisURL();
 });
