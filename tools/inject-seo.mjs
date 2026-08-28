@@ -57,7 +57,8 @@ for (const [file, cfg] of Object.entries(PAGES)) {
       sameAs:[
         'https://www.instagram.com/retour_90/',
         'https://www.facebook.com/profile.php?id=61593567744258',
-        'https://www.linkedin.com/company/retour90/'
+        'https://www.linkedin.com/company/retour90/',
+        'https://www.youtube.com/channel/UC15widwIHJ5M9-5A1JSxqtw'
       ] });
     ld.push({ '@context':'https://schema.org','@type':'FAQPage',
       mainEntity: FAQ.map(([q,a]) => ({ '@type':'Question', name:q, acceptedAnswer:{ '@type':'Answer', text:a } })) });
