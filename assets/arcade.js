@@ -71,7 +71,7 @@ function minesInit(){
     box.innerHTML=grid.map((v,i)=>{
       const o=open.has(i),f=flag.has(i);
       const boom=done&&v===-1;
-      return `<button data-i="${i}" style="aspect-ratio:1;border-radius:3px;font-family:var(--mono);font-size:12px;font-weight:bold;
+      return `<button data-i="${i}" aria-label="Ligne ${Math.floor(i/N)+1}, colonne ${i%N+1} : ${boom?'mine':f?'drapeau':o?v+' mines voisines':'case fermée'}" style="aspect-ratio:1;border-radius:3px;font-family:var(--mono);font-size:12px;font-weight:bold;
         display:grid;place-items:center;padding:0;border:1px solid ${o?'rgba(255,255,255,.08)':'rgba(255,255,255,.22)'};
         background:${o?'#0D0918':boom?'#FF2E87':'#241C3B'};color:${v>0?NC[v]:'#fff'}">
         ${boom?'✸':f?'🚩':o&&v>0?v:''}</button>`}).join('');

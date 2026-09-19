@@ -1,17 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://retour90.fr/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://retour90.fr/tele.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://retour90.fr/manga.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://retour90.fr/musique.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://retour90.fr/cine.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://retour90.fr/jeux.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://retour90.fr/pub.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://retour90.fr/sport.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://retour90.fr/actu.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://retour90.fr/objets.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://retour90.fr/food.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://retour90.fr/arcade.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://retour90.fr/club.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://retour90.fr/audimat.html</loc><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://retour90.fr/a-propos.html</loc></url>
+<url><loc>https://retour90.fr/actu.html</loc></url>
+<url><loc>https://retour90.fr/arcade.html</loc></url>
+<url><loc>https://retour90.fr/audimat.html</loc></url>
+<url><loc>https://retour90.fr/cine.html</loc></url>
+<url><loc>https://retour90.fr/club.html</loc></url>
+<url><loc>https://retour90.fr/collections.html</loc></url>
+<url><loc>https://retour90.fr/credits.html</loc></url>
+<url><loc>https://retour90.fr/dossiers.html</loc></url>
+<url><loc>https://retour90.fr/food.html</loc></url>
+<url><loc>https://retour90.fr/</loc></url>
+<url><loc>https://retour90.fr/jeux.html</loc></url>
+<url><loc>https://retour90.fr/manga.html</loc></url>
+<url><loc>https://retour90.fr/musique.html</loc></url>
+<url><loc>https://retour90.fr/objets.html</loc></url>
+<url><loc>https://retour90.fr/pub.html</loc></url>
+<url><loc>https://retour90.fr/reseaux.html</loc></url>
+<url><loc>https://retour90.fr/souvenirs.html</loc></url>
+<url><loc>https://retour90.fr/sport.html</loc></url>
+<url><loc>https://retour90.fr/tele.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/club-dorothee.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/fort-boyard.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-guignols-de-l-info.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/helene-et-les-garcons.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-fin-de-la-cinq.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-trilogie-du-samedi.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-minikeums.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-juste-prix.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/dragon-ball-z.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-chevaliers-du-zodiaque.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/nicky-larson.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/ken-le-survivant.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/sailor-moon.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/olive-et-tom.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/glenat-publie-akira.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/pokemon.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/l-eurodance.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-rap-francais.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-french-touch.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-grunge.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-boys-bands.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-k7-et-le-doigt-sur-rec.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-jaquette-fait-le-film.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/rembobiner-avant-de-rendre.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-film-deja-loue.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-dimanche-20h45.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/mega-drive.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/super-nintendo.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/game-boy.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/playstation.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/nintendo-64.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-fierte-francaise.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/pas-d-echappatoire.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/de-vrais-petits-films.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-musique-d-abord.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-rendez-vous.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/c-est-quoi-internet.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/caramail.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/minitel-contre-internet.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-56k-et-napster.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/tamagotchi.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/furby.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-walkman.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-minitel.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-bi-bop.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-tatoo.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/nokia-3210.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-disquette-3-5.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-cd-rom-aol.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/l-appareil-photo-jetable.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/la-telecarte.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-magnetoscope.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-pogs.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-panini-france-98.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-cartes-pokemon.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/les-billes.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-yo-yo-a-roulement.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-scoubidou.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/malabar.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/carambar.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/pitch-contre-choco-bn.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/tang-nesquik.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/champomy.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/chocapic-frosties-tresor.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/yop-danette-flanby.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/kiri-babybel-ficello.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/mystere-calippo-pouss-pouss.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/pom-potes.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-mcdo-du-samedi.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/le-ketchup-du-vendredi.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/jurassic-park.html</loc></url>
+<url><loc>https://retour90.fr/dossiers/retour-vers-le-futur.html</loc></url>
+<url><loc>https://retour90.fr/collections/le-mercredi-apres-midi.html</loc></url>
+<url><loc>https://retour90.fr/collections/la-soiree-video-club.html</loc></url>
+<url><loc>https://retour90.fr/collections/le-gouter-de-16h30.html</loc></url>
 </urlset>

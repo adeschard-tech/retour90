@@ -1,28 +1,82 @@
 # RETOUR90.FR
 
-> Site hommage français aux années 90. Archives vidéo d'époque (génériques TV, publicités, clips, journaux télévisés, sport), photographies d'objets cultes, jeux d'arcade jouables, et une communauté de souvenirs (le Club). En français, gratuit, sans compte obligatoire.
+Site hommage aux années 90 en France : archives, dossiers, jeux et souvenirs.
 
-RETOUR90 rassemble et contextualise la culture populaire française de 1990 à 1999 : télévision (Club Dorothée, Fort Boyard, les Guignols de l'Info), dessins animés et manga diffusés en France, musique (eurodance, rap français, French touch), cinéma, publicités, jeux vidéo (Mega Drive, Super Nintendo, PlayStation), objets (Tamagotchi, Minitel, POGS, Nokia 3210), goûters et grands moments d'actualité et de sport (France 98).
+## Entrées
+- [Les dossiers](https://retour90.fr/dossiers.html)
+- [Les collections](https://retour90.fr/collections.html)
+- [La méthode](https://retour90.fr/a-propos.html)
 
-Les vidéos sont lues via le lecteur YouTube officiel depuis les chaînes qui les publient (INA, chaînes officielles d'artistes et de studios, archives publicitaires). Les photographies proviennent de Wikimedia Commons sous licences libres, créditées. Les textes, anecdotes et dossiers sont originaux.
-
-## Pages principales
-
-- [Accueil](https://retour90.fr/) : le zapping du jour, la madeleine du jour, les 12 canaux
-- [Télé](https://retour90.fr/tele.html) : génériques et rituels de la télévision française des années 90
-- [Manga](https://retour90.fr/manga.html) : les génériques VF du Club Dorothée et l'arrivée du manga en France
-- [Musique](https://retour90.fr/musique.html) : clips officiels en playlists — eurodance, rap FR, French touch, slows
-- [Ciné](https://retour90.fr/cine.html) : bandes-annonces d'époque et culture vidéoclub
-- [Jeux vidéo](https://retour90.fr/jeux.html) : pubs de consoles françaises et intros cultes
-- [Pubs](https://retour90.fr/pub.html) : les spots publicitaires français des années 90
-- [Sport](https://retour90.fr/sport.html) : France 98, OM 93, Pérec, la Dream Team
-- [Actu](https://retour90.fr/actu.html) : les journaux télévisés d'époque (archives INA)
-- [Objets](https://retour90.fr/objets.html) : Tamagotchi, Minitel, POGS — photos et reportages d'époque
-- [Miam](https://retour90.fr/food.html) : le goûter des années 90, rayon par rayon
-- [Arcade](https://retour90.fr/arcade.html) : 7 jeux jouables dans le navigateur
-- [Le Club](https://retour90.fr/club.html) : inscription, forum des souvenirs, contact
-
-## Contact
-
-- Éditeur : Altoria Digital (France)
-- Email : contact@retour90.fr
+## Dossiers
+- [Club Dorothée](https://retour90.fr/dossiers/club-dorothee.html)
+- [Fort Boyard](https://retour90.fr/dossiers/fort-boyard.html)
+- [Les Guignols de l'Info](https://retour90.fr/dossiers/les-guignols-de-l-info.html)
+- [Hélène et les Garçons](https://retour90.fr/dossiers/helene-et-les-garcons.html)
+- [La fin de La Cinq](https://retour90.fr/dossiers/la-fin-de-la-cinq.html)
+- [La Trilogie du samedi](https://retour90.fr/dossiers/la-trilogie-du-samedi.html)
+- [Les Minikeums](https://retour90.fr/dossiers/les-minikeums.html)
+- [Le Juste Prix](https://retour90.fr/dossiers/le-juste-prix.html)
+- [Dragon Ball Z](https://retour90.fr/dossiers/dragon-ball-z.html)
+- [Les Chevaliers du Zodiaque](https://retour90.fr/dossiers/les-chevaliers-du-zodiaque.html)
+- [Nicky Larson](https://retour90.fr/dossiers/nicky-larson.html)
+- [Ken le Survivant](https://retour90.fr/dossiers/ken-le-survivant.html)
+- [Sailor Moon](https://retour90.fr/dossiers/sailor-moon.html)
+- [Olive et Tom](https://retour90.fr/dossiers/olive-et-tom.html)
+- [Glénat publie Akira](https://retour90.fr/dossiers/glenat-publie-akira.html)
+- [Pokémon](https://retour90.fr/dossiers/pokemon.html)
+- [L'eurodance](https://retour90.fr/dossiers/l-eurodance.html)
+- [Le rap français](https://retour90.fr/dossiers/le-rap-francais.html)
+- [La French touch](https://retour90.fr/dossiers/la-french-touch.html)
+- [Le grunge](https://retour90.fr/dossiers/le-grunge.html)
+- [Les boys bands](https://retour90.fr/dossiers/les-boys-bands.html)
+- [La K7 et le doigt sur REC](https://retour90.fr/dossiers/la-k7-et-le-doigt-sur-rec.html)
+- [La jaquette fait le film](https://retour90.fr/dossiers/la-jaquette-fait-le-film.html)
+- [Rembobiner avant de rendre](https://retour90.fr/dossiers/rembobiner-avant-de-rendre.html)
+- [Le film déjà loué](https://retour90.fr/dossiers/le-film-deja-loue.html)
+- [Le dimanche 20h45](https://retour90.fr/dossiers/le-dimanche-20h45.html)
+- [Mega Drive](https://retour90.fr/dossiers/mega-drive.html)
+- [Super Nintendo](https://retour90.fr/dossiers/super-nintendo.html)
+- [Game Boy](https://retour90.fr/dossiers/game-boy.html)
+- [PlayStation](https://retour90.fr/dossiers/playstation.html)
+- [Nintendo 64](https://retour90.fr/dossiers/nintendo-64.html)
+- [La fierté française](https://retour90.fr/dossiers/la-fierte-francaise.html)
+- [Pas d'échappatoire](https://retour90.fr/dossiers/pas-d-echappatoire.html)
+- [De vrais petits films](https://retour90.fr/dossiers/de-vrais-petits-films.html)
+- [La musique d'abord](https://retour90.fr/dossiers/la-musique-d-abord.html)
+- [Le rendez-vous](https://retour90.fr/dossiers/le-rendez-vous.html)
+- [« C'est quoi, Internet ? »](https://retour90.fr/dossiers/c-est-quoi-internet.html)
+- [Caramail](https://retour90.fr/dossiers/caramail.html)
+- [Minitel contre Internet](https://retour90.fr/dossiers/minitel-contre-internet.html)
+- [Le 56k et Napster](https://retour90.fr/dossiers/le-56k-et-napster.html)
+- [Tamagotchi](https://retour90.fr/dossiers/tamagotchi.html)
+- [Furby](https://retour90.fr/dossiers/furby.html)
+- [Le walkman](https://retour90.fr/dossiers/le-walkman.html)
+- [Le Minitel](https://retour90.fr/dossiers/le-minitel.html)
+- [Le Bi-Bop](https://retour90.fr/dossiers/le-bi-bop.html)
+- [Le Tatoo](https://retour90.fr/dossiers/le-tatoo.html)
+- [Nokia 3210](https://retour90.fr/dossiers/nokia-3210.html)
+- [La disquette 3,5″](https://retour90.fr/dossiers/la-disquette-3-5.html)
+- [Le CD-ROM AOL](https://retour90.fr/dossiers/le-cd-rom-aol.html)
+- [L'appareil photo jetable](https://retour90.fr/dossiers/l-appareil-photo-jetable.html)
+- [La télécarte](https://retour90.fr/dossiers/la-telecarte.html)
+- [Le magnétoscope](https://retour90.fr/dossiers/le-magnetoscope.html)
+- [Les POGS](https://retour90.fr/dossiers/les-pogs.html)
+- [Les Panini France 98](https://retour90.fr/dossiers/les-panini-france-98.html)
+- [Les cartes Pokémon](https://retour90.fr/dossiers/les-cartes-pokemon.html)
+- [Les billes](https://retour90.fr/dossiers/les-billes.html)
+- [Le yo-yo à roulement](https://retour90.fr/dossiers/le-yo-yo-a-roulement.html)
+- [Le scoubidou](https://retour90.fr/dossiers/le-scoubidou.html)
+- [Malabar](https://retour90.fr/dossiers/malabar.html)
+- [Carambar](https://retour90.fr/dossiers/carambar.html)
+- [Pitch contre Choco BN](https://retour90.fr/dossiers/pitch-contre-choco-bn.html)
+- [Tang & Nesquik](https://retour90.fr/dossiers/tang-nesquik.html)
+- [Champomy](https://retour90.fr/dossiers/champomy.html)
+- [Chocapic, Frosties, Trésor](https://retour90.fr/dossiers/chocapic-frosties-tresor.html)
+- [Yop, Danette, Flanby](https://retour90.fr/dossiers/yop-danette-flanby.html)
+- [Kiri, Babybel, Ficello](https://retour90.fr/dossiers/kiri-babybel-ficello.html)
+- [Mystère, Calippo, Pouss'Pouss'](https://retour90.fr/dossiers/mystere-calippo-pouss-pouss.html)
+- [Pom'Potes](https://retour90.fr/dossiers/pom-potes.html)
+- [Le McDo du samedi](https://retour90.fr/dossiers/le-mcdo-du-samedi.html)
+- [Le ketchup du vendredi](https://retour90.fr/dossiers/le-ketchup-du-vendredi.html)
+- [Jurassic Park](https://retour90.fr/dossiers/jurassic-park.html)
+- [Retour vers le futur](https://retour90.fr/dossiers/retour-vers-le-futur.html)

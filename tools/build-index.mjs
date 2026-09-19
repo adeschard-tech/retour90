@@ -7,6 +7,7 @@
 //
 // À lancer après toute modification des pages : node tools/build-index.mjs
 import fs from 'fs';
+import {EDITORIAL} from '../content/editorial.mjs';
 
 const PAGES = {
   'index.html':  'Accueil',      'tele.html':   'Télé',      'manga.html':  'Manga',
@@ -43,6 +44,11 @@ for (const f of Object.keys(PAGES)) {
     });
   }
 }
+
+
+const catalogue=fs.existsSync('content/catalogue.json')?JSON.parse(fs.readFileSync('content/catalogue.json','utf8')):[];
+for(const item of catalogue){let e=entrees.find(x=>x.s===item.slug);const extra=EDITORIAL[item.slug];if(!e){e={k:'doc',s:item.slug,t:item.title,p:item.category+'.html',d:extra?.d||'',y:extra?.y||'Années 90',g:item.category};entrees.push(e)}e.u=item.url;if(extra?.d)e.d=extra.d;}
+for(const [p,t] of [['dossiers.html','Tous les dossiers'],['collections.html','Collections'],['reseaux.html','Nos réseaux'],['souvenirs.html','Ma boîte à souvenirs'],['a-propos.html','À propos']])entrees.push({k:'page',p,t});
 
 const sortie = '/* RETOUR90 - index de recherche, genere par tools/build-index.mjs */\n' +
   'window.RECHERCHE=' + JSON.stringify(entrees) + ';\n';
