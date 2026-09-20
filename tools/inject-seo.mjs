@@ -1,4 +1,4 @@
-// RETOUR90 — injection SEO/AEO : canonical, Open Graph, Twitter Cards, JSON-LD
+// RETOUR90 , injection SEO/AEO : canonical, Open Graph, Twitter Cards, JSON-LD
 // Idempotent : le bloc entre <!--SEO--> et <!--/SEO--> est remplacé à chaque exécution.
 import fs from 'fs';
 
@@ -35,13 +35,15 @@ const FAQ = [
   ["Comment rejoindre le Club RETOUR90 ?",
    "Sur la page Le Club : choisis un pseudo, laisse ton email, et tu reçois un email de bienvenue. Tu peux ensuite poster tes souvenirs sur le forum et commenter chaque dossier du site."],
   ["Puis-je proposer un souvenir ou une vidéo ?",
-   "Oui — chaque page a des dossiers commentables, et le formulaire « Écrire à la chaîne » permet d'envoyer une idée, un objet pour le Grenier ou une vidéo introuvable. Chaque message est lu."],
+   "Oui , chaque page a des dossiers commentables, et le formulaire « Écrire à la chaîne » permet d'envoyer une idée, un objet pour le Grenier ou une vidéo introuvable. Chaque message est lu."],
 ];
 
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 for (const [file, cfg] of Object.entries(PAGES)) {
   let html = fs.readFileSync(file, 'utf8');
+  // Les pages éditoriales portent leurs métadonnées dans leur source de publication.
+  if(!html.includes('<!--SEO-->'))continue;
   const title = (html.match(/<title>([^<]+)<\/title>/) || [,''])[1];
   const desc  = (html.match(/<meta name="description" content="([^"]+)"/) || [,''])[1];
   const url   = SITE + cfg.path;
@@ -52,10 +54,11 @@ for (const [file, cfg] of Object.entries(PAGES)) {
       url:SITE, description:desc, inLanguage:'fr-FR' });
     ld.push({ '@context':'https://schema.org','@type':'Organization', name:'RETOUR90.FR', url:SITE,
       logo:OG, email:'contact@retour90.fr',
-      description:"Site hommage français aux années 90 — archives d'époque, jeux et communauté.",
+      description:"Site hommage français aux années 90 , archives d'époque, jeux et communauté.",
       // sameAs rattache officiellement les comptes au site pour les moteurs
       sameAs:[
         'https://www.instagram.com/retour_90/',
+        'https://x.com/R90_fr',
         'https://www.facebook.com/profile.php?id=61593567744258',
         'https://www.linkedin.com/company/retour90/',
         'https://www.youtube.com/channel/UC15widwIHJ5M9-5A1JSxqtw'

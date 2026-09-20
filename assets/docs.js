@@ -66,7 +66,7 @@ plus:[
  'Le passage au Discman a tout changé, sauf un détail : il sautait au moindre pas de course. On est revenu à la cassette pour aller au sport.']},
 'le-minitel':{q:'minitel france telecom 3615',
 art:[
- {p:['La France a eu Internet avant Internet. Elle l’a même eu chez elle, gratuitement, dix ans avant tout le monde.',
+ {p:['Le Minitel a fait entrer les services télématiques dans de nombreux foyers français, avant la diffusion du Web. Il ne se confond pas avec Internet : son terminal donne accès à un réseau et à des services spécifiques.',
      'Le Minitel est déployé à partir de 1982, distribué sans frais aux abonnés du téléphone. Un terminal brun, un clavier, un modem, et un annuaire électronique qui remplaçait l’annuaire papier.']},
  {t:'3615 et compagnie',
   p:['On composait un numéro, puis un code, et on tombait dans un service. Les billets de train, la banque, les résultats du bac, les petites annonces, la météo, les jeux, les messageries.',

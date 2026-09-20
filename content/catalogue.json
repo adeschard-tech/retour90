@@ -1,0 +1,756 @@
+[
+  {
+    "slug": "club-dorothee",
+    "title": "Club Dorothée",
+    "url": "dossiers/club-dorothee.html",
+    "category": "tele",
+    "sourced": true,
+    "words": 451,
+    "videos": [
+      "LtMN2srjDe4",
+      "yavbm-siX_4"
+    ]
+  },
+  {
+    "slug": "fort-boyard",
+    "title": "Fort Boyard",
+    "url": "dossiers/fort-boyard.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 256,
+    "videos": [
+      "x593L8cSu1o"
+    ]
+  },
+  {
+    "slug": "les-guignols-de-l-info",
+    "title": "Les Guignols de l'Info",
+    "url": "dossiers/les-guignols-de-l-info.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 243,
+    "videos": [
+      "zKulywGQYLg"
+    ]
+  },
+  {
+    "slug": "helene-et-les-garcons",
+    "title": "Hélène et les Garçons",
+    "url": "dossiers/helene-et-les-garcons.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 256,
+    "videos": [
+      "uEobMNGI2pU"
+    ]
+  },
+  {
+    "slug": "la-fin-de-la-cinq",
+    "title": "La fin de La Cinq",
+    "url": "dossiers/la-fin-de-la-cinq.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 234,
+    "videos": [
+      "Zs6TKTnbEEM"
+    ]
+  },
+  {
+    "slug": "la-trilogie-du-samedi",
+    "title": "La Trilogie du samedi",
+    "url": "dossiers/la-trilogie-du-samedi.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 225,
+    "videos": []
+  },
+  {
+    "slug": "les-minikeums",
+    "title": "Les Minikeums",
+    "url": "dossiers/les-minikeums.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 198,
+    "videos": [
+      "m-_uAIbFQvU"
+    ]
+  },
+  {
+    "slug": "le-juste-prix",
+    "title": "Le Juste Prix",
+    "url": "dossiers/le-juste-prix.html",
+    "category": "tele",
+    "sourced": false,
+    "words": 213,
+    "videos": [
+      "Hnh8CAToJtk"
+    ]
+  },
+  {
+    "slug": "dragon-ball-z",
+    "title": "Dragon Ball Z",
+    "url": "dossiers/dragon-ball-z.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 228,
+    "videos": [
+      "usb0Gxh6QRo",
+      "KUBnnrvTC2o"
+    ]
+  },
+  {
+    "slug": "les-chevaliers-du-zodiaque",
+    "title": "Les Chevaliers du Zodiaque",
+    "url": "dossiers/les-chevaliers-du-zodiaque.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 219,
+    "videos": [
+      "234a0963oVw",
+      "d6nVizJkmx8"
+    ]
+  },
+  {
+    "slug": "nicky-larson",
+    "title": "Nicky Larson",
+    "url": "dossiers/nicky-larson.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 214,
+    "videos": [
+      "MDQ0g3-5878",
+      "latZgyVjW_Y"
+    ]
+  },
+  {
+    "slug": "ken-le-survivant",
+    "title": "Ken le Survivant",
+    "url": "dossiers/ken-le-survivant.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 232,
+    "videos": [
+      "WpLov0xYnqk"
+    ]
+  },
+  {
+    "slug": "sailor-moon",
+    "title": "Sailor Moon",
+    "url": "dossiers/sailor-moon.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 216,
+    "videos": [
+      "EFSt0B5SoBw"
+    ]
+  },
+  {
+    "slug": "olive-et-tom",
+    "title": "Olive et Tom",
+    "url": "dossiers/olive-et-tom.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 217,
+    "videos": [
+      "juQl2UbcD7w"
+    ]
+  },
+  {
+    "slug": "glenat-publie-akira",
+    "title": "Glénat publie Akira",
+    "url": "dossiers/glenat-publie-akira.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 225,
+    "videos": []
+  },
+  {
+    "slug": "pokemon",
+    "title": "Pokémon",
+    "url": "dossiers/pokemon.html",
+    "category": "manga",
+    "sourced": false,
+    "words": 228,
+    "videos": [
+      "YhN4oAS3O4c"
+    ]
+  },
+  {
+    "slug": "l-eurodance",
+    "title": "L'eurodance",
+    "url": "dossiers/l-eurodance.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 255,
+    "videos": []
+  },
+  {
+    "slug": "le-rap-francais",
+    "title": "Le rap français",
+    "url": "dossiers/le-rap-francais.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 259,
+    "videos": []
+  },
+  {
+    "slug": "la-french-touch",
+    "title": "La French touch",
+    "url": "dossiers/la-french-touch.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 242,
+    "videos": []
+  },
+  {
+    "slug": "le-grunge",
+    "title": "Le grunge",
+    "url": "dossiers/le-grunge.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 250,
+    "videos": []
+  },
+  {
+    "slug": "les-boys-bands",
+    "title": "Les boys bands",
+    "url": "dossiers/les-boys-bands.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 232,
+    "videos": [
+      "6M6samPEMpM",
+      "llyiQ4I-mcQ"
+    ]
+  },
+  {
+    "slug": "la-k7-et-le-doigt-sur-rec",
+    "title": "La K7 et le doigt sur REC",
+    "url": "dossiers/la-k7-et-le-doigt-sur-rec.html",
+    "category": "musique",
+    "sourced": false,
+    "words": 240,
+    "videos": []
+  },
+  {
+    "slug": "la-jaquette-fait-le-film",
+    "title": "La jaquette fait le film",
+    "url": "dossiers/la-jaquette-fait-le-film.html",
+    "category": "cine",
+    "sourced": false,
+    "words": 195,
+    "videos": []
+  },
+  {
+    "slug": "rembobiner-avant-de-rendre",
+    "title": "Rembobiner avant de rendre",
+    "url": "dossiers/rembobiner-avant-de-rendre.html",
+    "category": "cine",
+    "sourced": false,
+    "words": 170,
+    "videos": []
+  },
+  {
+    "slug": "le-film-deja-loue",
+    "title": "Le film déjà loué",
+    "url": "dossiers/le-film-deja-loue.html",
+    "category": "cine",
+    "sourced": false,
+    "words": 185,
+    "videos": []
+  },
+  {
+    "slug": "le-dimanche-20h45",
+    "title": "Le dimanche 20h45",
+    "url": "dossiers/le-dimanche-20h45.html",
+    "category": "cine",
+    "sourced": false,
+    "words": 194,
+    "videos": []
+  },
+  {
+    "slug": "mega-drive",
+    "title": "Mega Drive",
+    "url": "dossiers/mega-drive.html",
+    "category": "jeux",
+    "sourced": true,
+    "words": 223,
+    "videos": [
+      "ScyRj5BikHw",
+      "UxoaN1Za3lQ"
+    ]
+  },
+  {
+    "slug": "super-nintendo",
+    "title": "Super Nintendo",
+    "url": "dossiers/super-nintendo.html",
+    "category": "jeux",
+    "sourced": true,
+    "words": 222,
+    "videos": [
+      "6U3OGqdJeFc"
+    ]
+  },
+  {
+    "slug": "game-boy",
+    "title": "Game Boy",
+    "url": "dossiers/game-boy.html",
+    "category": "jeux",
+    "sourced": true,
+    "words": 412,
+    "videos": [
+      "CMT3vE1XQrY"
+    ]
+  },
+  {
+    "slug": "playstation",
+    "title": "PlayStation",
+    "url": "dossiers/playstation.html",
+    "category": "jeux",
+    "sourced": true,
+    "words": 522,
+    "videos": [
+      "7D06o-UgBqE",
+      "u4Cpvz0BJ9Y",
+      "jG9C5SC4P1c"
+    ]
+  },
+  {
+    "slug": "nintendo-64",
+    "title": "Nintendo 64",
+    "url": "dossiers/nintendo-64.html",
+    "category": "jeux",
+    "sourced": true,
+    "words": 237,
+    "videos": [
+      "6U3OGqdJeFc"
+    ]
+  },
+  {
+    "slug": "la-fierte-francaise",
+    "title": "La fierté française",
+    "url": "dossiers/la-fierte-francaise.html",
+    "category": "jeux",
+    "sourced": false,
+    "words": 219,
+    "videos": []
+  },
+  {
+    "slug": "pas-d-echappatoire",
+    "title": "Pas d'échappatoire",
+    "url": "dossiers/pas-d-echappatoire.html",
+    "category": "pub",
+    "sourced": false,
+    "words": 173,
+    "videos": []
+  },
+  {
+    "slug": "de-vrais-petits-films",
+    "title": "De vrais petits films",
+    "url": "dossiers/de-vrais-petits-films.html",
+    "category": "pub",
+    "sourced": false,
+    "words": 180,
+    "videos": []
+  },
+  {
+    "slug": "la-musique-d-abord",
+    "title": "La musique d'abord",
+    "url": "dossiers/la-musique-d-abord.html",
+    "category": "pub",
+    "sourced": false,
+    "words": 177,
+    "videos": []
+  },
+  {
+    "slug": "le-rendez-vous",
+    "title": "Le rendez-vous",
+    "url": "dossiers/le-rendez-vous.html",
+    "category": "pub",
+    "sourced": false,
+    "words": 185,
+    "videos": [
+      "PIgmiOOzIjw"
+    ]
+  },
+  {
+    "slug": "c-est-quoi-internet",
+    "title": "« C'est quoi, Internet ? »",
+    "url": "dossiers/c-est-quoi-internet.html",
+    "category": "actu",
+    "sourced": false,
+    "words": 216,
+    "videos": [
+      "NmSEJq4Mfk0",
+      "aujh60Y_DJo"
+    ]
+  },
+  {
+    "slug": "caramail",
+    "title": "Caramail",
+    "url": "dossiers/caramail.html",
+    "category": "actu",
+    "sourced": false,
+    "words": 208,
+    "videos": []
+  },
+  {
+    "slug": "minitel-contre-internet",
+    "title": "Minitel contre Internet",
+    "url": "dossiers/minitel-contre-internet.html",
+    "category": "actu",
+    "sourced": false,
+    "words": 233,
+    "videos": [
+      "aujh60Y_DJo",
+      "NmSEJq4Mfk0"
+    ]
+  },
+  {
+    "slug": "le-56k-et-napster",
+    "title": "Le 56k et Napster",
+    "url": "dossiers/le-56k-et-napster.html",
+    "category": "actu",
+    "sourced": false,
+    "words": 243,
+    "videos": []
+  },
+  {
+    "slug": "tamagotchi",
+    "title": "Tamagotchi",
+    "url": "dossiers/tamagotchi.html",
+    "category": "objets",
+    "sourced": true,
+    "words": 529,
+    "videos": [
+      "2ND1nfJUxCo"
+    ]
+  },
+  {
+    "slug": "furby",
+    "title": "Furby",
+    "url": "dossiers/furby.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 237,
+    "videos": [
+      "WDN80u91eGU"
+    ]
+  },
+  {
+    "slug": "le-walkman",
+    "title": "Le walkman",
+    "url": "dossiers/le-walkman.html",
+    "category": "objets",
+    "sourced": true,
+    "words": 263,
+    "videos": []
+  },
+  {
+    "slug": "le-minitel",
+    "title": "Le Minitel",
+    "url": "dossiers/le-minitel.html",
+    "category": "objets",
+    "sourced": true,
+    "words": 308,
+    "videos": [
+      "ZnBNgby3-8k",
+      "UApvhYBDr9U"
+    ]
+  },
+  {
+    "slug": "le-bi-bop",
+    "title": "Le Bi-Bop",
+    "url": "dossiers/le-bi-bop.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 211,
+    "videos": [
+      "4w6-oVXueUA",
+      "7xNwYuHJIQ8",
+      "ATQzWgW1ENo"
+    ]
+  },
+  {
+    "slug": "le-tatoo",
+    "title": "Le Tatoo",
+    "url": "dossiers/le-tatoo.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 240,
+    "videos": [
+      "kEXtOymJQo0",
+      "1XBxIKljHak",
+      "NtBBxb2Z3ag"
+    ]
+  },
+  {
+    "slug": "nokia-3210",
+    "title": "Nokia 3210",
+    "url": "dossiers/nokia-3210.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 498,
+    "videos": [
+      "Zfur8lR6uhs"
+    ]
+  },
+  {
+    "slug": "la-disquette-3-5",
+    "title": "La disquette 3,5″",
+    "url": "dossiers/la-disquette-3-5.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 235,
+    "videos": []
+  },
+  {
+    "slug": "le-cd-rom-aol",
+    "title": "Le CD-ROM AOL",
+    "url": "dossiers/le-cd-rom-aol.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 271,
+    "videos": []
+  },
+  {
+    "slug": "l-appareil-photo-jetable",
+    "title": "L'appareil photo jetable",
+    "url": "dossiers/l-appareil-photo-jetable.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 230,
+    "videos": []
+  },
+  {
+    "slug": "la-telecarte",
+    "title": "La télécarte",
+    "url": "dossiers/la-telecarte.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 246,
+    "videos": []
+  },
+  {
+    "slug": "le-magnetoscope",
+    "title": "Le magnétoscope",
+    "url": "dossiers/le-magnetoscope.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 279,
+    "videos": []
+  },
+  {
+    "slug": "les-pogs",
+    "title": "Les POGS",
+    "url": "dossiers/les-pogs.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 229,
+    "videos": []
+  },
+  {
+    "slug": "les-panini-france-98",
+    "title": "Les Panini France 98",
+    "url": "dossiers/les-panini-france-98.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 263,
+    "videos": []
+  },
+  {
+    "slug": "les-cartes-pokemon",
+    "title": "Les cartes Pokémon",
+    "url": "dossiers/les-cartes-pokemon.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 269,
+    "videos": [
+      "6tue5vhPPyw",
+      "aLh9wcUygR8"
+    ]
+  },
+  {
+    "slug": "les-billes",
+    "title": "Les billes",
+    "url": "dossiers/les-billes.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 260,
+    "videos": [
+      "kahu0jlu3fw"
+    ]
+  },
+  {
+    "slug": "le-yo-yo-a-roulement",
+    "title": "Le yo-yo à roulement",
+    "url": "dossiers/le-yo-yo-a-roulement.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 263,
+    "videos": []
+  },
+  {
+    "slug": "le-scoubidou",
+    "title": "Le scoubidou",
+    "url": "dossiers/le-scoubidou.html",
+    "category": "objets",
+    "sourced": false,
+    "words": 229,
+    "videos": [
+      "Yo8n-KJucms"
+    ]
+  },
+  {
+    "slug": "malabar",
+    "title": "Malabar",
+    "url": "dossiers/malabar.html",
+    "category": "food",
+    "sourced": false,
+    "words": 230,
+    "videos": [
+      "C-fXYJj316Q"
+    ]
+  },
+  {
+    "slug": "carambar",
+    "title": "Carambar",
+    "url": "dossiers/carambar.html",
+    "category": "food",
+    "sourced": false,
+    "words": 229,
+    "videos": []
+  },
+  {
+    "slug": "pitch-contre-choco-bn",
+    "title": "Pitch contre Choco BN",
+    "url": "dossiers/pitch-contre-choco-bn.html",
+    "category": "food",
+    "sourced": false,
+    "words": 228,
+    "videos": []
+  },
+  {
+    "slug": "tang-nesquik",
+    "title": "Tang & Nesquik",
+    "url": "dossiers/tang-nesquik.html",
+    "category": "food",
+    "sourced": false,
+    "words": 231,
+    "videos": []
+  },
+  {
+    "slug": "champomy",
+    "title": "Champomy",
+    "url": "dossiers/champomy.html",
+    "category": "food",
+    "sourced": false,
+    "words": 228,
+    "videos": [
+      "PIgmiOOzIjw"
+    ]
+  },
+  {
+    "slug": "chocapic-frosties-tresor",
+    "title": "Chocapic, Frosties, Trésor",
+    "url": "dossiers/chocapic-frosties-tresor.html",
+    "category": "food",
+    "sourced": false,
+    "words": 228,
+    "videos": [
+      "tXUkcPpPl2M",
+      "5Cca1Q7Yy2Y",
+      "HAWpMPXXWSo"
+    ]
+  },
+  {
+    "slug": "yop-danette-flanby",
+    "title": "Yop, Danette, Flanby",
+    "url": "dossiers/yop-danette-flanby.html",
+    "category": "food",
+    "sourced": false,
+    "words": 210,
+    "videos": [
+      "bI8C059zUn4",
+      "TG4ASaAuZfQ",
+      "NAVrGORzqZ8"
+    ]
+  },
+  {
+    "slug": "kiri-babybel-ficello",
+    "title": "Kiri, Babybel, Ficello",
+    "url": "dossiers/kiri-babybel-ficello.html",
+    "category": "food",
+    "sourced": false,
+    "words": 218,
+    "videos": [
+      "nIv_9NAjZLA",
+      "jNGgja-Ta24",
+      "T3jEdFL2zm8"
+    ]
+  },
+  {
+    "slug": "mystere-calippo-pouss-pouss",
+    "title": "Mystère, Calippo, Pouss'Pouss'",
+    "url": "dossiers/mystere-calippo-pouss-pouss.html",
+    "category": "food",
+    "sourced": false,
+    "words": 242,
+    "videos": []
+  },
+  {
+    "slug": "pom-potes",
+    "title": "Pom'Potes",
+    "url": "dossiers/pom-potes.html",
+    "category": "food",
+    "sourced": false,
+    "words": 193,
+    "videos": [
+      "PIgmiOOzIjw"
+    ]
+  },
+  {
+    "slug": "le-mcdo-du-samedi",
+    "title": "Le McDo du samedi",
+    "url": "dossiers/le-mcdo-du-samedi.html",
+    "category": "food",
+    "sourced": false,
+    "words": 211,
+    "videos": [
+      "G1KlgkR87Ww",
+      "wQMu7BU6hXs",
+      "m1Dlk8rpTro"
+    ]
+  },
+  {
+    "slug": "le-ketchup-du-vendredi",
+    "title": "Le ketchup du vendredi",
+    "url": "dossiers/le-ketchup-du-vendredi.html",
+    "category": "food",
+    "sourced": false,
+    "words": 208,
+    "videos": []
+  },
+  {
+    "slug": "jurassic-park",
+    "title": "Jurassic Park",
+    "url": "dossiers/jurassic-park.html",
+    "category": "cine",
+    "sourced": true,
+    "words": 500,
+    "videos": [
+      "UGl2o7TfHmU"
+    ]
+  },
+  {
+    "slug": "retour-vers-le-futur",
+    "title": "Retour vers le futur",
+    "url": "dossiers/retour-vers-le-futur.html",
+    "category": "cine",
+    "sourced": true,
+    "words": 472,
+    "videos": [
+      "wlovrxHwLxI"
+    ]
+  }
+]

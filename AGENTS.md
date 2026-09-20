@@ -8,7 +8,7 @@ Lis-le en entier avant la première modification.
 ## 1. Ce qu'est le site
 
 RETOUR90.FR est un site hommage aux années 90 françaises, écrit et maintenu par
-Aymeric Deschard, fondateur solo. Il réunit le vrai contenu d'époque : génériques
+Aymeric, fondateur solo. Il réunit le vrai contenu d'époque : génériques
 télé, pubs, clips, buts, JT, intros de jeux. Les vidéos ne sont pas hébergées ici,
 elles sont lues depuis YouTube via le lecteur embarqué officiel
 `youtube-nocookie.com`, ce qui laisse droits et monétisation chez les ayants droit.
@@ -226,3 +226,11 @@ Vérifie ce que tu livres. Une correction d'affichage se contrôle dans un
 navigateur, aux deux largeurs qui comptent, 375 pixels et 1280 pixels, et sur le
 domaine de production après publication. Ne dis pas qu'une chose fonctionne sans
 l'avoir vue fonctionner, et dis clairement ce que tu n'as pas pu vérifier.
+
+## 11. Refonte éditoriale de septembre 2026
+
+La nouvelle présentation est portée par assets/edition.css. Les interactions complémentaires sont dans assets/edition.js. Le fonds des anciens dossiers demeure dans assets/docs.js ; les textes enrichis et les collections sont dans content/editorial.mjs. Les 72 pages dossiers/*.html et les nouvelles pages éditoriales sont écrites par tools/write-editorial-pages.mjs. Ne pas les modifier directement sans reporter le changement dans leur source.
+
+Avant publication : build-index.mjs, write-editorial-pages.mjs, build-index.mjs, inject-seo.mjs, puis version-assets.mjs. Le second passage de l'index conserve les liens des nouvelles pages. Aucune étape de génération n'est nécessaire sur GitHub Pages.
+
+Le compte X officiel communiqué par Aymeric est https://x.com/R90_fr. Le catalogue compte désormais 188 vidéos avec l'ajout d'une bande-annonce officielle de Retour vers le futur. Les images assets/editorial/*.webp sont des ambiances générées, à signaler comme reconstituées ; elles ne prouvent pas l'identité d'un modèle. Le README décrit la structure actuelle.

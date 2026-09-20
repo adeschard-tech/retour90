@@ -1,74 +1,62 @@
-# RETOUR90.FR — le grand bol de nostalgie
+# RETOUR90.FR
 
-Site hommage aux années 90, avec le **vrai contenu d'époque** : génériques, pubs, clips, buts, JT — lus
-directement depuis les archives publiées sur YouTube (INA, chaînes officielles d'artistes, studios,
-chaînes d'archives spécialisées) via le lecteur embarqué officiel `youtube-nocookie.com`.
+Site hommage à la culture populaire des années 90 en France. HTML, CSS et JavaScript natif, sans dépendance npm ni compilation nécessaire au déploiement. Lire `AGENTS.md` avant toute intervention.
 
-## Lancer en local
+## Lancer le site
 
-```bash
-node C:/Users/adesc/retour90/serve.cjs
+Depuis la racine du dépôt : `node serve.cjs`, puis http://localhost:5391. La variable `PORT` permet de choisir un autre port.
+
+## Édition de septembre 2026
+
+- Accueil illustré et trois collections : mercredi après-midi, vidéo-club, goûter.
+- 72 pages de dossiers et souvenirs, avec une URL propre, une image, un sommaire, des archives associées et des liens de découverte.
+- 11 sujets enrichis de sources éditoriales explicites. Les autres reprennent le fonds existant, qui reste à approfondir et à documenter.
+- 188 entrées vidéo, embarquées depuis les chaînes qui les publient. Leur disponibilité et l'autorisation d'intégration peuvent changer.
+- Recherche globale, catalogue filtrable et boîte à souvenirs enregistrée sur l'appareil.
+- Dix jeux dans une arcade dédiée, dont Memory 90, Réflexe néon et le quiz. Fenêtre agrandissable, pause, commandes tactiles et records personnels.
+- Six cassettes de clips, neuf sélections Spotify, une carte locale et des POGS.
+- Forum public, inscription et courrier utilisant les services existants. La carte, les scores et les favoris ne sont pas un compte synchronisé.
+- Cinq réseaux : YouTube, Facebook, Instagram, X et LinkedIn.
+
+## Où modifier quoi
+
+| Fichier | Fonction |
+| --- | --- |
+| `assets/r90.js` | Navigation, recherche, lecteur YouTube, régie audio, baladeur, services existants |
+| `assets/edition.css` | Direction graphique et adaptations mobiles |
+| `assets/edition.js` | Favoris, partage, filtres, progression de lecture |
+| `assets/data.js` | Catalogue des vidéos |
+| `assets/docs.js` | Fonds éditorial historique |
+| `assets/photos.js` | Photos et attributions historiques |
+| `content/editorial.mjs` | Collections, textes enrichis, sources, sélections vidéo explicites |
+| `tools/write-editorial-pages.mjs` | Écriture des pages HTML, catalogue, sitemap et llms.txt |
+| `content/catalogue.json` | Inventaire généré pour le suivi éditorial |
+| `assets/arcade.js` et `assets/arcade.css` | Salle, catalogue et dix jeux avec cycle de vie isolé |
+
+Les HTML générés sont versionnés et servis tels quels. Le script éditorial est un outil d'auteur local, pas une dépendance du site hébergé. Une modification directe d'une page générée sera écrasée à la prochaine génération.
+
+## Préparer une publication
+
+```sh
+node tools/build-index.mjs
+node tools/write-editorial-pages.mjs
+node tools/build-index.mjs
+node tools/inject-seo.mjs
+node tools/version-assets.mjs
 ```
-→ http://localhost:5391 (entrée `retour90` dans `.claude/launch.json` du workspace)
 
-## Structure
+Contrôler ensuite les pages et les fonctions dans le navigateur à 375 et 1280 pixels. `version-assets.mjs` est obligatoire après les changements de scripts ou de styles, y compris dans les sous-dossiers. Les corrections Safari du lecteur et la régie empêchant plusieurs sources audio de jouer ensemble doivent être préservées.
 
-```
-retour90/
-├── serve.cjs               # serveur statique local (port 5391)
-├── index.html              # hero mur de vignettes + zapping du jour + portails
-├── tele.html               # canal 01 — génériques TV FR (17 vidéos)
-├── manga.html              # canal 02 — génériques Club Do & co (16)
-├── musique.html            # canal 03 — 6 K7-playlists chaînées + 52 clips par genre
-├── cine.html               # canal 04 — bandes-annonces d'époque (12)
-├── jeux.html               # canal 05 — pubs consoles FR + intros cultes (11)
-├── pub.html                # canal 06 — spots d'époque + pages de pub intégrales (32)
-├── sport.html              # canal 07 — France 98, OM 93, Pérec, Dream Team (8)
-├── actu.html               # canal 08 — les 20h de l'INA (12)
-├── objets.html             # canal 09 — le grenier : pubs & reportages JT des objets (27)
-├── food.html               # canal 10 — le goûter (éditorial + pubs du goûter)
-├── arcade.html             # canal 11 — Snake, Pong, Simon, Tamagotchi + quiz
-├── club.html               # canal 12 — carte de membre, POGS, forum (localStorage)
-└── assets/
-    ├── r90.css             # design system « hommage VHS »
-    ├── r90.js              # moteur : shell nav/footer, lecteur TV, murs, K7, recherche
-    ├── arcade.js           # les 4 jeux + le quiz
-    └── data.js             # 187 vidéos vérifiées (généré, voir ci-dessous)
-```
+La branche `main` alimente GitHub Pages. Une refonte se vérifie sur sa branche de travail avant fusion. Après publication, refaire les contrôles sur https://retour90.fr, notamment sur un véritable iPhone.
 
-## Le contenu vidéo
+## Contenu et provenance
 
-- **187 vidéos**, trouvées par 4 agents de recherche (télé/manga, pubs, musique, ciné/jeux/sport/actu),
-  puis **chacune vérifiée** contre l'API oEmbed de YouTube (vérif oEmbed : 3 mortes écartées sur 190 candidates).
-- Lues via **iframe youtube-nocookie** : la vidéo reste hébergée chez YouTube, la monétisation et les droits
-  restent chez les ayants droit / chaînes qui les publient. C'est le mécanisme d'embed officiel.
-- Vignettes : `i.ytimg.com` (le CDN d'images de YouTube, partie du mécanisme d'embed).
-- Régénérer/re-vérifier : scripts `verify.mjs` + `gen.mjs` (dans le scratchpad de session ; à recopier
-  dans `tools/` si besoin durable). À refaire tous les 2-3 mois : des vidéos meurent.
+Les photographies d'objets du fonds existant sont attribuées dans `photos.js`. Les décors de l'édition sont des reconstitutions générées, signalées dans l'interface. Ils ne certifient pas un modèle ou un emballage d'époque. Les marques et les dates doivent être vérifiées à partir de documents avant d'être présentées comme des repères historiques.
 
-## Fonctionnalités
+Les archives vidéo restent chez leurs diffuseurs. Aucun fichier vidéo d'archive n'est réhébergé. Les nouveaux dossiers disposent aussi d'un lien direct vers YouTube.
 
-- **Lecteur TV par page** (poste cathodique : LED, molettes, haut-parleur) : clic sur une vignette → passe « à l'antenne »
-- **Le walkman** : baladeur flottant présent sur toutes les pages, 6 K7 de vrais clips (YouTube IFrame API),
-  mémorise cassette + piste + position et reprend d'un geste après chaque changement de page
-- **Zapping du jour** : 12 vidéos au hasard sur l'accueil, change à chaque rechargement
-- **Madeleine du jour** : 30 textes, un par jour calendaire
-- **Recherche** dans les 187 vidéos
-- **Arcade** : Snake, Pong, Simon, Tamagotchi persistant + quiz « Prouve que t'étais là »
-- **Le Club** : pseudo/avatar, carte de membre, 24 POGS à débloquer, forum 5 fils (localStorage)
-- Code Konami sur toutes les pages
+Les pages possèdent des titres, descriptions, URL canoniques et données structurées. Les dossiers enrichis indiquent leurs sources. Cela facilite la compréhension et l'indexation, sans garantir un classement Google ni une citation par un moteur de réponse. Le fichier `llms.txt` est un complément expérimental.
 
-## Mise en ligne — état réel
+## Services
 
-- Repo : github.com/adeschard-tech/retour90 (public), GitHub Pages actif (branche main), CNAME retour90.fr déclaré.
-- Backend : Supabase projet Retour90 (oajbjsevqefacdxkikmm, Paris) — tables comments / forum_posts / contact_messages / members, RLS lecture publique + insertion publique (contact et members : insertion seule). Clé publiable dans assets/r90.js (safe par design).
-- Resend : domaine retour90.fr ajouté (eu-west-1), DNS en attente — enregistrements sur send.retour90.fr + resend._domainkey (aucun conflit avec la boîte IONOS).
-- DNS IONOS à poser : A @ -> 185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153 ; CNAME www -> adeschard-tech.github.io ; + les 3 enregistrements Resend. NE PAS toucher aux MX de la racine (email).
-- Après propagation : activer « Enforce HTTPS » dans les réglages Pages du repo.
-
-## Points d'attention
-
-- Les embeds YouTube nécessitent d'être en ligne ; certains ayants droit désactivent la lecture
-  intégrée sur certaines vidéos (elles affichent alors « Regarder sur YouTube » — le clic fonctionne).
-- Prévoir un job de re-vérification oEmbed périodique pour remplacer les vidéos supprimées.
-- Le forum/compte actuel est un prototype localStorage : rien n'est partagé entre visiteurs.
+Le domaine retour90.fr est en ligne. Search Console et les services Supabase/Resend existants sont décrits dans `AGENTS.md`. Ce dépôt ne contient pas de secret serveur. Aucun changement de DNS, de schéma ou de permission backend n'est nécessaire pour cette édition.
