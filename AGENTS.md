@@ -8,7 +8,7 @@ Lis-le en entier avant la première modification.
 ## 1. Ce qu'est le site
 
 RETOUR90.FR est un site hommage aux années 90 françaises, écrit et maintenu par
-Aymeric Deschard, fondateur solo. Il réunit le vrai contenu d'époque : génériques
+Aymeric, fondateur solo. Il réunit le vrai contenu d'époque : génériques
 télé, pubs, clips, buts, JT, intros de jeux. Les vidéos ne sont pas hébergées ici,
 elles sont lues depuis YouTube via le lecteur embarqué officiel
 `youtube-nocookie.com`, ce qui laisse droits et monétisation chez les ayants droit.

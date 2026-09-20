@@ -13,7 +13,8 @@ Depuis la racine du dépôt : `node serve.cjs`, puis http://localhost:5391. La v
 - 11 sujets enrichis de sources éditoriales explicites. Les autres reprennent le fonds existant, qui reste à approfondir et à documenter.
 - 188 entrées vidéo, embarquées depuis les chaînes qui les publient. Leur disponibilité et l'autorisation d'intégration peuvent changer.
 - Recherche globale, catalogue filtrable et boîte à souvenirs enregistrée sur l'appareil.
-- Sept jeux, un quiz, six cassettes musicales, une carte locale et des POGS.
+- Dix jeux dans une arcade dédiée, dont Memory 90, Réflexe néon et le quiz. Fenêtre agrandissable, pause, commandes tactiles et records personnels.
+- Six cassettes de clips, neuf sélections Spotify, une carte locale et des POGS.
 - Forum public, inscription et courrier utilisant les services existants. La carte, les scores et les favoris ne sont pas un compte synchronisé.
 - Cinq réseaux : YouTube, Facebook, Instagram, X et LinkedIn.
 
@@ -30,7 +31,7 @@ Depuis la racine du dépôt : `node serve.cjs`, puis http://localhost:5391. La v
 | `content/editorial.mjs` | Collections, textes enrichis, sources, sélections vidéo explicites |
 | `tools/write-editorial-pages.mjs` | Écriture des pages HTML, catalogue, sitemap et llms.txt |
 | `content/catalogue.json` | Inventaire généré pour le suivi éditorial |
-| `assets/arcade.js` | Jeux et quiz |
+| `assets/arcade.js` et `assets/arcade.css` | Salle, catalogue et dix jeux avec cycle de vie isolé |
 
 Les HTML générés sont versionnés et servis tels quels. Le script éditorial est un outil d'auteur local, pas une dépendance du site hébergé. Une modification directe d'une page générée sera écrasée à la prochaine génération.
 

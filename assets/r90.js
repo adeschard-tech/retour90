@@ -71,7 +71,7 @@ function shell(){
       <button class="nav-menu" aria-expanded="false" aria-controls="explore-menu">Explorer <img src="assets/icons/chevron-down.svg" alt=""></button>
       <a href="dossiers.html">Les dossiers</a><a href="club.html">Le Club</a>
     </nav><div class="rech" role="search"><img class="search-icon" src="assets/icons/search.svg" alt=""><input id="rech" type="search" autocomplete="off" placeholder="Un souvenir en tête ?" aria-label="Chercher un souvenir" aria-expanded="false" aria-controls="rechout"><div id="rechout" class="rech-out" role="listbox" hidden></div></div><span class="brand-note">La culture pop<br>de nos années 90</span></div>
-    <nav id="explore-menu" class="explore-menu" aria-label="Tous les univers" hidden>${PAGES.slice(1).map(p=>`<a href="${p[0]}.html"><small>${p[2]}</small>${p[1]}</a>`).join('')}<a href="collections.html">Les collections</a><a href="reseaux.html">Vu sur nos réseaux</a><a href="souvenirs.html">Ma boîte à souvenirs</a><a href="a-propos.html">L'histoire de RETOUR90</a></nav>`;
+    <nav id="explore-menu" class="explore-menu" aria-label="Tous les univers" hidden><a class="menu-feature" href="collections.html"><img src="assets/editorial/mercredi.webp" alt="" width="450" height="300"><span class="menu-feature-copy"><small>POSE TON CARTABLE</small><strong>Tu commences où ?</strong><span>Retrouver les collections →</span></span></a><div class="menu-group menu-group-0"><h2>À regarder</h2><a href="tele.html"><strong>Télé<span aria-hidden="true">↗</span></strong><small>Les rendez-vous du mercredi</small></a><a href="manga.html"><strong>Manga<span aria-hidden="true">↗</span></strong><small>Génériques dans la tête</small></a><a href="cine.html"><strong>Ciné<span aria-hidden="true">↗</span></strong><small>Le samedi au vidéo-club</small></a><a href="pub.html"><strong>Pubs<span aria-hidden="true">↗</span></strong><small>La pause qu’on connaissait par cœur</small></a></div><div class="menu-group menu-group-1"><h2>À vivre</h2><a href="jeux.html"><strong>Jeux vidéo<span aria-hidden="true">↗</span></strong><small>Encore une dernière partie</small></a><a href="musique.html"><strong>Musique<span aria-hidden="true">↗</span></strong><small>La bande-son de nos années</small></a><a href="sport.html"><strong>Sport<span aria-hidden="true">↗</span></strong><small>Les soirs où tout a basculé</small></a><a href="actu.html"><strong>Actu<span aria-hidden="true">↗</span></strong><small>Le monde changeait aussi</small></a></div><div class="menu-group menu-group-2"><h2>À retrouver</h2><a href="objets.html"><strong>Objets<span aria-hidden="true">↗</span></strong><small>Les trésors du grenier</small></a><a href="food.html"><strong>Le goûter<span aria-hidden="true">↗</span></strong><small>Il est déjà 16h30</small></a><a href="arcade.html"><strong>Arcade<span aria-hidden="true">↗</span></strong><small>À toi de battre le record</small></a><a href="club.html"><strong>Le Club<span aria-hidden="true">↗</span></strong><small>La bande est toujours là</small></a></div><div class="menu-bottom"><a href="reseaux.html">Vu sur nos réseaux ↗</a><a href="souvenirs.html">Ma boîte à souvenirs ↗</a><a href="a-propos.html">L’histoire de RETOUR90 ↗</a></div></nav>`;
   document.body.prepend(tb);
   const toggle=$('.nav-menu',tb),menu=$('#explore-menu');
   toggle.onclick=()=>{const open=menu.hidden;menu.hidden=!open;toggle.setAttribute('aria-expanded',String(open))};
@@ -79,7 +79,7 @@ function shell(){
   document.addEventListener('click',e=>{if(!tb.contains(e.target)){menu.hidden=true;toggle.setAttribute('aria-expanded','false')}});
   const main=$('main');if(main&&!main.id)main.id='contenu';
   const ft=document.createElement('footer');ft.className='footer';
-  ft.innerHTML=`<div class="footer-in"><div><a class="logo" href="index.html">RETOUR<b>90</b><i>.FR</i></a><p>Les images, les objets et les petits rituels qui nous rassemblent encore. Un site hommage, une réserve de souvenirs, et toujours une bonne raison de dire « tu te rappelles ? ».</p>${sociaux()}</div><div><h5>On explore ?</h5>${PAGES.slice(1,8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}</div><div><h5>La suite du programme</h5><a href="dossiers.html">Tous les dossiers</a><a href="collections.html">Les collections</a><a href="arcade.html">Jouer à l'arcade</a><a href="reseaux.html">Nos réseaux</a><a href="souvenirs.html">Ma boîte à souvenirs</a><a href="club.html">Le Club et le forum</a><a href="a-propos.html">À propos et méthode</a><a href="credits.html">Crédits des images</a><a href="audimat.html">L'audience du site</a></div></div><div class="footer-bottom">RETOUR90.FR, un site hommage imaginé par Aymeric Deschard. Archives lues chez leurs diffuseurs. Photos créditées, ambiances reconstituées signalées.</div>`;
+  ft.innerHTML=`<div class="footer-in"><div><a class="logo" href="index.html">RETOUR<b>90</b><i>.FR</i></a><p>Les images, les objets et les petits rituels qui nous rassemblent encore. Un site hommage, une réserve de souvenirs, et toujours une bonne raison de dire « tu te rappelles ? ».</p>${sociaux()}</div><div><h5>On explore ?</h5>${PAGES.slice(1,8).map(p=>`<a href="${p[0]}.html">${p[1]}</a>`).join('')}</div><div><h5>La suite du programme</h5><a href="dossiers.html">Tous les dossiers</a><a href="collections.html">Les collections</a><a href="arcade.html">Jouer à l'arcade</a><a href="reseaux.html">Nos réseaux</a><a href="souvenirs.html">Ma boîte à souvenirs</a><a href="club.html">Le Club et le forum</a><a href="a-propos.html">À propos et méthode</a><a href="credits.html">Crédits des images</a><a href="audimat.html">L'audience du site</a></div></div><div class="footer-bottom">RETOUR90.FR, un site hommage imaginé par Aymeric. Archives lues chez leurs diffuseurs. Photos créditées, ambiances reconstituées signalées.</div>`;
   document.body.appendChild(ft);
   if(!S.vus.includes(HERE))S.vus.push(HERE);
   const today=new Date().toISOString().slice(0,10);if(!S.days.includes(today))S.days.push(today);save();
@@ -125,13 +125,13 @@ function track(){
 
 /* ---------- photos réelles dans les fiches ---------- */
 function renderPhotos(){
-  const PH=window.PHOTOS||{};
+  const PH={...(window.PHOTOS||{}),...(window.R90_IMAGES||{})};
   $$('.fiche').forEach(f=>{
     if($('.ph',f))return;
     const h=$('.h',f);if(!h)return;
     const p=PH[slugify(h.textContent)];if(!p)return;
-    const sp=document.createElement('span');sp.className='ph';
-    sp.innerHTML=`<img loading="lazy" src="${p.f}" alt="${esc(p.t)}" title="${esc(p.c)}">`;
+    const sp=document.createElement('span');sp.className='ph'+(p.generated?' reconstituted':'');
+    sp.innerHTML=`<img loading="lazy" src="${p.thumb||p.f}" alt="${esc(p.t)}" title="${esc(p.c)}">`;
     f.prepend(sp);
   });
 }
@@ -177,15 +177,16 @@ function tvMount(){
       <div class="tv-speaker" aria-hidden="true"></div>
       <div class="tv-badge" aria-hidden="true">RETOUR90 · CRT-2000</div>
     </div>
-    <div class="tv-bar"><span class="play">■ STOP</span><span class="title">Choisis une archive</span>
+    <div class="tv-bar"><div class="tv-transport"><button type="button" class="tv-prev" aria-label="Archive précédente">⏮ Précédente</button><button type="button" class="play" disabled>▶ Lire</button><button type="button" class="tv-next" aria-label="Archive suivante">Suivante ⏭</button><span class="tv-counter" aria-live="polite"></span></div><span class="title">Choisis une archive</span>
       <button class="close" hidden>⏏ ÉJECTER</button></div></div>`;
   $('.close',tvEl).onclick=()=>tvStop();
+  $('.tv-prev',tvEl).onclick=()=>tvStep(-1);$('.tv-next',tvEl).onclick=()=>tvStep(1);
   /* Le voyant du bandeau fait aussi office de bouton lecture/pause : quand
      une autre source prend l'antenne, il faut pouvoir relancer le poste
      sans aller chercher le bouton de YouTube au milieu de l'image. */
   const voyant=$('.play',tvEl);
-  voyant.setAttribute('role','button');voyant.tabIndex=0;
-  voyant.title='Lecture ou pause';
+  voyant.setAttribute('aria-label','Lire la vidéo');
+  voyant.title='Lire la vidéo';
   const bascule=()=>{
     if(!tvLecteur||!tvPret)return;
     if(tvLecteur.getPlayerState()===1){tvLecteur.pauseVideo()}
@@ -193,7 +194,7 @@ function tvMount(){
     blip(520,.04);
   };
   voyant.onclick=bascule;
-  voyant.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bascule()}};
+
   $$('.tv-knob',tvEl).forEach(k=>k.onclick=()=>{
     k.classList.remove('turn');void k.offsetWidth;k.classList.add('turn');
     tvStep(+k.dataset.dir);
@@ -205,21 +206,21 @@ function tvMount(){
    comme un vrai bouton de chaîne, on ne tombe jamais sur du vide. Si la TV
    est éteinte, la molette allume la première (ou la dernière en arrière). */
 function tvStep(dir){
-  const vids=$$('.vid');
+  const vids=Array.from(document.querySelectorAll('.vid'));
   if(!vids.length){toast('AUCUNE VIDÉO SUR CETTE PAGE');return}
   const cur=vids.findIndex(v=>v.classList.contains('now'));
   const next=cur<0?(dir>0?0:vids.length-1)
                   :(cur+dir+vids.length)%vids.length;
   const b=vids[next];
-  tvPlay(b.dataset.id,b.dataset.t,b);
+  const id=b.dataset.id||b.dataset.video;const archive=(window.R90||[]).find(v=>v.id===id);tvPlay(id,b.dataset.t||archive?.title||b.textContent.trim(),b);
 }
 const tvEtat=(txt,couleur)=>{const p=tvEl&&$('.play',tvEl);
-  if(p){p.textContent=txt;p.style.color=couleur||''}};
+  if(p){p.textContent=txt;p.style.color=couleur||'';p.disabled=!tvPret||txt==='Chargement…';p.setAttribute('aria-label',txt.replace(/^[▶⏸Ⅱ]\s*/,''));p.title=p.getAttribute('aria-label')}};
 
 function tvPlay(id,title,card){
   if(!tvEl)return;
   $('.tv-shell',tvEl).classList.add('on');
-  tvEtat('OUVERTURE…','var(--yel)');
+  tvEtat('Chargement…','var(--yel)');
   let direct=$('.tv-external',tvEl);
   if(!direct){direct=document.createElement('a');direct.className='tv-external';direct.target='_blank';direct.rel='noopener';direct.textContent='Ouvrir sur YouTube';$('.tv-bar',tvEl).append(direct)}
   direct.href='https://www.youtube.com/watch?v='+id;
@@ -227,6 +228,9 @@ function tvPlay(id,title,card){
   $('.close',tvEl).hidden=false;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
   if(card)card.classList.add('now');
+  const sequence=Array.from(document.querySelectorAll('.vid')),position=sequence.findIndex(v=>(v.dataset.id||v.dataset.video)===id);
+  $('.tv-counter',tvEl).textContent=position>=0?(position+1)+' / '+sequence.length:'';
+  $('.tv-prev',tvEl).disabled=sequence.length<2;$('.tv-next',tvEl).disabled=sequence.length<2;
 
   /* Le poste est piloté par l'API YouTube et non par une simple iframe :
      c'est ce qui permet de le mettre vraiment en pause quand une autre
@@ -247,19 +251,19 @@ function tvPlay(id,title,card){
       if(tvLecteur)return;
       tvLecteur=new YT.Player('tvscreen',{
         events:{
-          onReady:()=>{tvPret=true;
+          onReady:()=>{tvPret=true;tvEtat(tvLecteur.getPlayerState()===1?'Ⅱ Pause':'▶ Lire');
             if(tvEnAttente){tvLecteur.loadVideoById(tvEnAttente);tvEnAttente=null}},
           onStateChange:e=>{
             /* La régie se déclenche sur la lecture RÉELLE, pas sur l'intention.
                C'est ce qui la rend juste au doigt : si le visiteur lance la
                vidéo par le bouton de YouTube, le baladeur se tait quand même,
                et s'il ne la lance pas, le baladeur continue tranquillement. */
-            if(e.data===1){REGIE.antenne('tv');rendreLeSon(tvLecteur);tvEtat('▶ PLAY','var(--lime)')}
-            else if(e.data===2)tvEtat('⏸ PAUSE','var(--yel)');
-            else if(e.data===0)tvEtat('■ FIN DE BANDE','');
+            if(e.data===1){REGIE.antenne('tv');rendreLeSon(tvLecteur);tvEtat('Ⅱ Pause','var(--lime)')}
+            else if(e.data===2)tvEtat('▶ Reprendre','var(--yel)');
+            else if(e.data===0)tvEtat('▶ Rejouer','');
             /* si le navigateur refuse le départ, on le dit plutôt que de
                laisser croire à une panne : la vidéo attend un doigt */
-            else if(e.data===5||e.data===-1)tvEtat('▶ TOUCHE L’ÉCRAN','var(--yel)');
+            else if(e.data===5||e.data===-1)tvEtat('▶ Lire','var(--yel)');
           }
         }});
     };
@@ -288,7 +292,7 @@ function tvStop(){
   $('.tv-screen',tvEl).innerHTML=`<div class="tv-idle"><div class="snow"></div>
     <p><b>${esc(tvEl.dataset.idle||'CHOISIS UNE VIDÉO')}</b>clique sur une vignette , elle passe à l'antenne ici</p></div>`;
   $('.tv-shell',tvEl).classList.remove('on');
-  tvEtat('■ STOP','');$('.title',tvEl).textContent=',';
+  tvEtat('▶ Lire','');$('.title',tvEl).textContent='Choisis une archive';$('.tv-counter',tvEl).textContent='';
   $('.close',tvEl).hidden=true;
   $$('.vid.now').forEach(v=>v.classList.remove('now'));
 }
@@ -306,6 +310,7 @@ const WK=(function(){
   const KEYW='retour90.wk';
   let st;try{st=JSON.parse(localStorage.getItem(KEYW)||'null')}catch(e){st=null}
   if(!st)st={g:null,idx:0,t:0,playing:false,min:true};
+  st.playing=false; // Une nouvelle page attend un geste avant de reprendre.
   const saveW=()=>{try{localStorage.setItem(KEYW,JSON.stringify(st))}catch(e){}};
   let player=null,ready=false,el=null,tick=null;
 
@@ -344,6 +349,7 @@ const WK=(function(){
   }
   const loadAPI=chargerAPI;   // le chargeur est partagé avec la télé et les dossiers
   function start(user){
+    window.R90Spotify?.showClips();
     const list=ids();if(!list.length)return;
     st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼';
     $('#wkhold').style.display='none';
@@ -366,7 +372,7 @@ const WK=(function(){
     };
     // même raison que pour la TV : sur iPhone, l'iframe doit naître dans le geste
     if(window.YT&&window.YT.Player)creer();else loadAPI(creer);
-    st.playing=true;saveW();paint();
+    saveW();paint();
     if(user)blip(660,.06);
   }
   function skip(d){
@@ -378,6 +384,7 @@ const WK=(function(){
   function paint(){
     if(!el)return;
     const c=cur();
+    $('#wkpp').textContent=st.playing?'Ⅱ':'▶';$('#wkpp').setAttribute('aria-label',st.playing?'Mettre le clip en pause':'Lire le clip');
     $('#wknm').textContent=st.g?'· '+(K7S.find(k=>k.g===st.g)||{}).n:'· choisis une K7';
     $('#wkfoot').textContent=c?('PISTE '+(st.idx+1)+'/'+ids().length+' · '+c.title):'SIDE A · AUTOREVERSE';
     $$('#wkk7s button').forEach(b=>b.classList.toggle('on',b.dataset.g===st.g));
@@ -387,6 +394,12 @@ const WK=(function(){
     if(player&&ready&&st.playing){try{st.t=player.getCurrentTime()||0;saveW()}catch(e){}}
   },4000);
   return {mount,start,
+    toggle(){
+      if(player&&ready){
+        const state=player.getPlayerState();
+        if(state===1||state===3)player.pauseVideo();else player.playVideo();
+      }else{if(!st.g)st.g=K7S[0].g;start(true)}
+    },
     startGenre(g){st.g=g;st.idx=0;st.t=0;start(true)},
     open(){if(!el)return;st.min=false;el.classList.remove('min');$('#wkmin').textContent='▼'},
     /* la régie a besoin de pouvoir couper la K7 sans toucher au reste */
@@ -404,6 +417,7 @@ const REGIE={
   antenne(qui){
     // les trois lecteurs passent par l'API YouTube : on les met en pause,
     // jamais on ne les coupe. Chacun repart où il en était.
+    if(qui!=='spotify')window.R90Spotify?.pause();
     if(qui!=='k7')try{WK.pause()}catch(e){}
     if(qui!=='tv')tvPause();
     if(qui!=='doc')docPause();
@@ -442,13 +456,7 @@ function renderK7(){
     const defs=JSON.parse(rk.dataset.k7rack);
     rk.innerHTML=defs.map((k,i)=>{
       const n=(k.genre?byGenre(k.genre):byCat(k.cat)).length;
-      return `<button class="k7" style="--c:${cc(i)}" data-genre="${k.genre||''}" data-t="${esc(k.n)}">
-        <span class="shell">
-          <span class="stripe"></span>
-          <span class="lbl"><b>${esc(k.n)}</b><span>${esc(k.s)}</span></span>
-          <span class="win"><span class="tape"></span><span class="reel"></span><span class="reel"></span></span>
-          <span class="foot">${n} TITRES · FACE A · 90 MIN</span>
-        </span></button>`;
+      return `<button class="k7 photo-k7" style="--c:${cc(i)}" data-genre="${k.genre||''}" data-t="${esc(k.n)}" aria-label="Écouter la cassette ${esc(k.n)}"><img src="assets/editorial/k7-${i}-720.webp" alt="Cassette TDK portant l’étiquette ${esc(k.n)}, scène reconstituée" width="720" height="480" loading="lazy"><span class="k7-description"><strong>${esc(k.n)}</strong><small>${esc(k.s)} · ${n} titres</small><span class="k7-play">Écouter la cassette →</span></span></button>`;
     }).join('');
     $$('.k7',rk).forEach(k=>k.onclick=()=>{
       const g=k.dataset.genre;
@@ -658,7 +666,7 @@ function openDoc(o){
   const X=(window.DOCS||{})[curSlug]||{};
   $('.doc-t',d).textContent=o.t;
   $('.doc-meta',d).textContent=[o.yr,o.tag].filter(Boolean).join(' · ');
-  const ph=(window.PHOTOS||{})[curSlug],fig=$('.doc-photo',d);
+  const ph=(window.R90_IMAGES||window.PHOTOS||{})[curSlug],fig=$('.doc-photo',d);
   fig.hidden=!ph;
   if(ph){$('img',fig).src=ph.f;$('img',fig).alt=ph.t;$('figcaption',fig).textContent='Photo : '+ph.c}
   $('.doc-desc',d).textContent=o.desc;
